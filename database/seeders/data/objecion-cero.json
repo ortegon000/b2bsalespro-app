@@ -1,0 +1,2852 @@
+{
+  "CATS": [
+    {
+      "id": "precio",
+      "label": "Precio",
+      "icon": "$"
+    },
+    {
+      "id": "tiempo",
+      "label": "Tiempo y urgencia",
+      "icon": "◷"
+    },
+    {
+      "id": "confianza",
+      "label": "Confianza",
+      "icon": "◇"
+    },
+    {
+      "id": "autoridad",
+      "label": "Autoridad y decisión",
+      "icon": "⌘"
+    },
+    {
+      "id": "competencia",
+      "label": "Competencia",
+      "icon": "⚔"
+    },
+    {
+      "id": "necesidad",
+      "label": "Necesidad",
+      "icon": "◎"
+    }
+  ],
+  "CHECKLISTS": [
+    {
+      "id": "antes",
+      "titulo": "Antes de la reunión",
+      "sub": "Los 15 puntos que separan una reunión ganada de una improvisada",
+      "bloques": [
+        {
+          "h": "Inteligencia · 10 minutos",
+          "items": [
+            "Sé exactamente quién estará en la reunión (nombre, cargo, poder de decisión).",
+            "Investigué al cliente: giro, tamaño, situación actual y noticias recientes.",
+            "Identifiqué su problema principal y lo puedo decir en una frase.",
+            "Sé cuánto le cuesta ese problema hoy (o tengo la pregunta lista para averiguarlo).",
+            "Revisé todo el historial previo: mensajes, llamadas, cotizaciones anteriores."
+          ]
+        },
+        {
+          "h": "Estrategia · 5 minutos",
+          "items": [
+            "Definí el objetivo de la reunión en una frase (firmar / demo / datos / acceder al decisor).",
+            "Elegí las 3 objeciones más probables y releí sus fichas del Banco Maestro.",
+            "Tengo mi pregunta estratégica principal escrita.",
+            "Decidí qué cierre voy a usar según el Selector de Cierres.",
+            "Preparé el siguiente paso que propondré con día y hora concretos."
+          ]
+        },
+        {
+          "h": "Materiales · 5 minutos",
+          "items": [
+            "Propuesta impresa o en pantalla, con números actualizados.",
+            "Dos referencias de clientes con teléfono, listas para compartir.",
+            "Calculadora / hoja para hacer números frente al cliente.",
+            "Contrato o acuerdo listo para firmar hoy si la reunión lo permite.",
+            "Agenda del cliente confirmada hoy mismo."
+          ]
+        }
+      ],
+      "nota": "Regla de los 20 minutos: esta checklist toma 20 minutos. Una venta perdida por improvisar cuesta tu ticket promedio. Es el mejor pago por hora de tu semana."
+    },
+    {
+      "id": "durante",
+      "titulo": "Durante la reunión",
+      "sub": "Guía de vuelo: qué hacer minuto a minuto",
+      "bloques": [
+        {
+          "h": "1 · Apertura (primeros 5 minutos)",
+          "items": [
+            "Rompí el hielo con algo específico de él, no del clima.",
+            "Establecí agenda y duración: \"Te propongo usar estos [n] minutos así… ¿te funciona?\"",
+            "Confirmé quién decide: \"¿Esta decisión la tomas tú o participa alguien más?\""
+          ]
+        },
+        {
+          "h": "2 · Diagnóstico (escuchar 70%, hablar 30%)",
+          "items": [
+            "Pregunté por su situación actual antes de presentar nada.",
+            "Cuantifiqué su problema: \"¿Y eso cuánto te cuesta al mes?\"",
+            "Pregunté qué ha intentado antes y qué pasó.",
+            "Identifiqué su criterio de decisión: \"¿Qué va a inclinar la balanza al final?\"",
+            "Tomé notas visibles (el cliente habla más cuando ve que anotas)."
+          ]
+        },
+        {
+          "h": "3 · Presentación (corta y dirigida)",
+          "items": [
+            "Presenté solo lo que resuelve los problemas que él mencionó.",
+            "Traduje cada característica a dinero, tiempo o tranquilidad.",
+            "Usé sus propias palabras del diagnóstico.",
+            "Di el precio con seguridad, sin bajar la voz ni justificarme, y después guardé silencio."
+          ]
+        },
+        {
+          "h": "4 · Objeciones (el momento Objeción Cero)",
+          "items": [
+            "Recibí cada objeción con una frase del bloque A — nunca a la defensiva.",
+            "Clasifiqué con el Semáforo: ¿real, duda o excusa?",
+            "Apliqué la ficha: pregunta estratégica → respuesta → cierre.",
+            "No ofrecí descuento sin recibir compromiso a cambio."
+          ]
+        },
+        {
+          "h": "5 · Cierre (nunca salir sin esto)",
+          "items": [
+            "Apliqué el cierre elegido del Selector.",
+            "Si no hubo firma: acordé siguiente paso con día, hora y objetivo.",
+            "Resumí acuerdos en voz alta antes de despedirme.",
+            "Definí qué entrego yo y qué entrega él, con fechas."
+          ]
+        }
+      ],
+      "nota": "Prohibido salir de una reunión con un \"quedamos en contacto\". Eso no es un acuerdo: es una despedida disfrazada."
+    },
+    {
+      "id": "despues",
+      "titulo": "Después de la reunión",
+      "sub": "La venta se gana en el seguimiento",
+      "bloques": [
+        {
+          "h": "En la primera hora",
+          "items": [
+            "Envié mensaje de resumen de acuerdos por WhatsApp (Conversación 10).",
+            "Registré en mi CRM: objeciones que surgieron, semáforo de cada una y siguiente paso.",
+            "Agendé en MI calendario el siguiente contacto con alarma.",
+            "Anoté los datos personales que soltó (hijos, viaje, afición): oro para la próxima."
+          ]
+        },
+        {
+          "h": "En las primeras 24 horas",
+          "items": [
+            "Envié todo lo que prometí (propuesta, referencias, comparativo). Prometer y tardar mata la confianza.",
+            "Si prometí referencias: avisé a mis clientes referencia que les escribirán.",
+            "Preparé las respuestas de las objeciones que quedaron abiertas.",
+            "Si hubo compromiso de firma: contrato enviado con instrucciones simples."
+          ]
+        },
+        {
+          "h": "En la semana",
+          "items": [
+            "Cumplí el seguimiento exactamente el día y hora acordados (ni antes ni después).",
+            "Si hubo silencio: apliqué la Conversación 18 (menú de 3 opciones).",
+            "Si cerró: pedí el referido en el momento de máxima satisfacción (Conversación 23).",
+            "Si no cerró: registré la razón real y programé el recontacto con motivo concreto.",
+            "Actualicé mi tasa personal: reuniones → propuestas → cierres."
+          ]
+        }
+      ],
+      "nota": "La mayoría de los cierres B2B ocurren después del cuarto contacto, y la mayoría de los vendedores abandona antes del segundo. Tu constancia es tu ventaja competitiva más barata."
+    }
+  ],
+  "CIERRES": [
+    {
+      "obj": "\"Está caro\" / precio",
+      "nombre": "Cierre de retorno",
+      "script": "Si te demuestro con tus números que esto se paga solo en [plazo] y de ahí en adelante es ganancia, ¿lo arrancamos esta semana?",
+      "usar": "Cuando puedes calcular un retorno o ahorro medible con datos del cliente.",
+      "noUsar": "Cuando tu producto no genera retorno económico directo o no tienes datos."
+    },
+    {
+      "obj": "\"No tengo presupuesto\"",
+      "nombre": "Cierre por etapas",
+      "script": "Empecemos con la etapa uno, que cuesta [monto menor] y cabe en lo que sí tienes hoy. La etapa dos la programamos para [fecha]. ¿Arrancamos la primera?",
+      "usar": "Cuando el proyecto es divisible y la primera etapa entrega valor por sí sola.",
+      "noUsar": "Cuando fraccionar encarece el proyecto o la etapa uno no genera valor sola."
+    },
+    {
+      "obj": "\"¿Qué descuento me haces?\"",
+      "nombre": "Cierre de intercambio",
+      "script": "Te aplico [beneficio] a cambio de tu confirmación hoy con [anticipo/firma]. Descuento con compromiso: ganamos los dos. ¿Trato?",
+      "usar": "Cuando el cliente ya decidió comprar y solo negocia condiciones.",
+      "noUsar": "Cuando el cliente aún tiene dudas de fondo: un descuento no cura la desconfianza."
+    },
+    {
+      "obj": "\"Déjame pensarlo\"",
+      "nombre": "Cierre de agenda",
+      "script": "Piénsalo con calma hasta el [día]. Ese día hablamos 10 minutos ya con tu decisión. Te agendo la llamada: ¿a qué hora?",
+      "usar": "Siempre que el cliente pida tiempo y no logres destapar la objeción real.",
+      "noUsar": "Cuando ya destapaste la objeción real: resuélvela ahí mismo en vez de agendar."
+    },
+    {
+      "obj": "\"No es buen momento\"",
+      "nombre": "Cierre de preparación",
+      "script": "Dejemos todo listo hoy —propuesta, condiciones congeladas— para ejecutar el [fecha]. Tú no inviertes tiempo ahora ni lo pierdes después. ¿Hecho?",
+      "usar": "Cuando el mal momento tiene fecha de término identificable.",
+      "noUsar": "Cuando el \"mal momento\" es indefinido: primero destapa la objeción real."
+    },
+    {
+      "obj": "\"Lo consulto con mi socio\"",
+      "nombre": "Cierre de reunión conjunta",
+      "script": "Las preguntas técnicas y de números son mi trabajo, no el tuyo. Veámoslo los tres en 20 minutos: ¿martes o jueves?",
+      "usar": "Cuando el contacto está convencido y el decisor es accesible.",
+      "noUsar": "Cuando tu contacto aún duda: primero convéncelo o la reunión conjunta te hundirá."
+    },
+    {
+      "obj": "\"Ya tengo proveedor\"",
+      "nombre": "Cierre de prueba pequeña",
+      "script": "No te pido cambiar nada: dame solo [proyecto puntual] como punto de comparación. Si tu proveedor gana, confirmaste que estás bien. ¿Te lo cotizo?",
+      "usar": "Cuando existe un servicio o proyecto pequeño separable del contrato principal.",
+      "noUsar": "Cuando tu servicio es todo-o-nada y no puede probarse en pequeño."
+    },
+    {
+      "obj": "\"Estoy comparando opciones\"",
+      "nombre": "Cierre de criterios",
+      "script": "Cuando tengas todas las propuestas, revisémoslas juntos con esta tabla de cinco criterios. Si la mía no gana con datos, te ayudo a elegir la que sí. ¿Agendamos?",
+      "usar": "Cuando confías en que tu propuesta gana en una comparación objetiva.",
+      "noUsar": "Cuando sabes que pierdes en los criterios objetivos: redefine el alcance antes de comparar."
+    },
+    {
+      "obj": "\"¿Y si no funciona?\" / miedo",
+      "nombre": "Cierre de riesgo invertido",
+      "script": "Te dejo el resultado y la garantía por escrito: si no se cumple [umbral], aplica [compensación]. Con el riesgo de mi lado, ¿arrancamos?",
+      "usar": "Cuando puedes respaldar una garantía real de resultado o servicio.",
+      "noUsar": "Cuando no puedes cumplir la garantía: prometer de más destruye todo lo demás."
+    },
+    {
+      "obj": "\"No lo necesito\" / \"estamos bien\"",
+      "nombre": "Cierre de diagnóstico",
+      "script": "No te propongo comprar: te propongo medir. Dame [dato] y en 24 horas te digo con números si esto te conviene. Si no, no te vuelvo a buscar. ¿Trato?",
+      "usar": "Cuando puedes producir un diagnóstico rápido y gratuito con datos del cliente.",
+      "noUsar": "Cuando el diagnóstico es costoso de producir y el interés es casi nulo."
+    },
+    {
+      "obj": "\"No es prioridad\"",
+      "nombre": "Cierre de financiamiento cruzado",
+      "script": "Este proyecto no compite con tus prioridades: las financia con [beneficio mensual]. ¿Te muestro ese cálculo en 15 minutos?",
+      "usar": "Cuando tu solución libera dinero o tiempo aplicable a las prioridades del cliente.",
+      "noUsar": "Cuando tu beneficio es a muy largo plazo y no alivia las prioridades actuales."
+    },
+    {
+      "obj": "Silencio / indeciso crónico",
+      "nombre": "Cierre de alternativa",
+      "script": "Para no marearte: ¿te preparo la opción A [describir] o la B [describir]? Las dos funcionan; es cuestión de estilo.",
+      "usar": "Cuando el cliente ya quiere comprar pero se paraliza al decidir.",
+      "noUsar": "Al inicio de la conversación o con clientes analíticos que aún comparan a fondo."
+    },
+    {
+      "obj": "Fin de negociación larga",
+      "nombre": "Cierre de resumen",
+      "script": "Recapitulemos: [punto 1], [punto 2], [punto 3]. Todo esto ya lo validamos juntos. Lo único que falta es la firma. ¿La ponemos hoy?",
+      "usar": "Tras varias reuniones, cuando todos los puntos fueron acordados uno a uno.",
+      "noUsar": "En primeras reuniones: no hay nada acordado que resumir."
+    },
+    {
+      "obj": "\"Ya lo intentamos y falló\"",
+      "nombre": "Cierre de revancha asegurada",
+      "script": "Esta vez con tres seguros que la otra vez no tuvieron: [seguro 1], [seguro 2], [seguro 3], por escrito. ¿Le damos al proyecto la revancha?",
+      "usar": "Cuando diagnosticaste la causa exacta del fracaso anterior y puedes blindarla.",
+      "noUsar": "Cuando no sabes por qué falló la vez anterior: primero pregunta, luego cierra."
+    },
+    {
+      "obj": "Cliente convencido que no da el paso",
+      "nombre": "Cierre directo",
+      "script": "Creo que ya lo vimos todo y los dos sabemos que esto te conviene. ¿Hay alguna razón para no empezar el lunes?",
+      "usar": "Cuando todas las señales de compra están presentes y solo falta el empujón.",
+      "noUsar": "Cuando quedan objeciones visibles sin resolver: el cierre directo las entierra, no las elimina."
+    }
+  ],
+  "FICHAS": [
+    {
+      "n": 1,
+      "cat": "precio",
+      "tipo": "real",
+      "obj": "Está muy caro",
+      "confirmar": "Pregunta \"¿Caro respecto a qué?\" Si responde con datos, es real.",
+      "significa": "Todavía no percibe que el valor supere el precio; el problema no es la cifra, es la comparación mental que está haciendo.",
+      "peor": [
+        "\"Bueno, puedo hacerte un descuento.\" → Confirma que tu precio estaba inflado.",
+        "\"Caro pero bueno.\" → Frase vacía que no cambia nada en la mente del cliente."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Está muy caro."
+        },
+        {
+          "who": "t",
+          "t": "Entiendo, y me alegra que lo digas directo, porque significa que sí te interesa. Déjame preguntarte algo: cuando dices caro, ¿es porque supera el monto que tenías destinado, o porque no ves todavía qué obtienes exactamente a cambio?"
+        },
+        {
+          "who": "c",
+          "t": "Es que es bastante dinero."
+        },
+        {
+          "who": "t",
+          "t": "Lo es, y por eso no te pido que lo veas como un gasto de hoy, sino como lo que te cuesta cada mes. Este proyecto representa [monto] al mes durante [plazo], y desde el primer mes te genera [beneficio concreto]. No estás sacando dinero de tu bolsillo: estás redirigiendo dinero que hoy ya se te va en [problema actual]."
+        }
+      ],
+      "pregunta": "¿Caro comparado con qué exactamente?",
+      "ramas": [
+        {
+          "r": "Comparado con otra cotización",
+          "t": "Perfecto, eso me ayuda mucho. ¿Me permites ver qué incluye esa cotización? En este mercado la diferencia de precio casi siempre está en lo que NO viene escrito: garantías, materiales, tiempos y quién responde si algo falla. Si al compararlas punto por punto la otra opción es igual, yo mismo te diré que la tomes."
+        },
+        {
+          "r": "Comparado con lo que pensaba gastar",
+          "t": "Entiendo, tenías otra cifra en mente. Dime qué monto tenías considerado y te muestro exactamente qué se puede hacer con ese presupuesto y qué quedaría fuera. Así decides tú si la diferencia vale la pena, con toda la información sobre la mesa."
+        },
+        {
+          "r": "Es que ahorita no puedo pagar eso",
+          "t": "Eso es distinto a que sea caro, y tiene solución. Tenemos opciones de pago en [número] parcialidades. Si te estructuro el proyecto en pagos de [monto aproximado] al mes, ¿la conversación cambia?"
+        }
+      ],
+      "cierre": "Si te demuestro con números que en [periodo] el proyecto se paga solo, ¿lo arrancamos esta semana?",
+      "error": "Bajar el precio antes de preguntar con qué lo está comparando.",
+      "consejo": "\"Caro\" nunca es la objeción final: es la puerta de entrada a la objeción real. Pregunta antes de argumentar."
+    },
+    {
+      "n": 2,
+      "cat": "precio",
+      "tipo": "real",
+      "obj": "No tengo presupuesto",
+      "confirmar": "Si menciona cifras o fechas de presupuesto, es real. Si es vago, excusa.",
+      "significa": "El dinero existe, pero está asignado a otras cosas; no le has dado una razón para reasignarlo.",
+      "peor": [
+        "\"¿Y cuándo tendrías presupuesto?\" → Le regalas la salida fácil: \"el próximo año\".",
+        "\"Es más barato de lo que crees.\" → Suena a vendedor desesperado y no responde nada."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Es que no tenemos presupuesto para esto."
+        },
+        {
+          "who": "t",
+          "t": "Te entiendo, y es normal: casi ningún cliente tiene una partida esperando a que yo llegue. La pregunta correcta no es si hay presupuesto, sino si esto merece presupuesto. Hoy están gastando aproximadamente [monto] al año en [problema que resuelves]. Mi propuesta cuesta [monto] y elimina ese gasto. No estoy pidiendo dinero nuevo: estoy proponiendo mover dinero que ya se está yendo."
+        }
+      ],
+      "pregunta": "Si el presupuesto no fuera el tema, ¿esto es algo que sí harían?",
+      "ramas": [
+        {
+          "r": "Sí, definitivamente lo haríamos",
+          "t": "Perfecto, entonces el proyecto está aprobado en lo importante y solo nos falta resolver la forma de pago. Déjame prepararte dos escenarios: uno con pago diferido y otro por etapas, empezando por la fase que genera retorno más rápido. ¿Cuál te presento primero?"
+        },
+        {
+          "r": "No sé, tendría que verlo",
+          "t": "Justo. Entonces el presupuesto no es el único tema, y prefiero saberlo ahora. ¿Qué necesitarías ver o comprobar para decir \"esto sí lo quiero, busquemos cómo pagarlo\"?"
+        },
+        {
+          "r": "El presupuesto de este año ya está cerrado",
+          "t": "Perfecto, eso me da un dato clave. ¿Cuándo se define el presupuesto del próximo periodo? Trabajemos juntos para que este proyecto entre en esa planeación con nombre y monto, y mientras tanto arranquemos con la fase de [diagnóstico], que es menor y nos deja todo listo para ejecutar en cuanto se libere."
+        }
+      ],
+      "cierre": "¿Te parece si estructuramos el proyecto por etapas para que la primera quepa en lo que sí tienes disponible este mes?",
+      "error": "Aceptar el \"no hay presupuesto\" como definitivo en lugar de tratarlo como un problema de prioridad.",
+      "consejo": "El presupuesto sigue a la prioridad. Vende la prioridad y el presupuesto aparece."
+    },
+    {
+      "n": 3,
+      "cat": "precio",
+      "tipo": "real",
+      "obj": "¿Qué descuento me haces?",
+      "confirmar": "Ya decidió comprar. Está negociando.",
+      "significa": "Ya decidió comprar; ahora quiere sentir que ganó algo en la negociación.",
+      "peor": [
+        "\"Te puedo dar un 10% ahorita mismo.\" → Regalaste margen sin recibir nada a cambio.",
+        "\"Nuestros precios no se negocian, punto.\" → Ganaste la discusión, perdiste al cliente."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "¿Y qué descuento me haces?"
+        },
+        {
+          "who": "t",
+          "t": "Me encanta la pregunta, porque significa que ya estamos hablando de cómo cerrar, no de si cerramos. Te soy directo: el precio está calculado justo para garantizar [calidad/garantía/tiempos]. Lo que sí puedo hacer es mejorar las condiciones sin tocar la calidad: [mejor forma de pago / bonificación de un servicio / extensión de garantía] si cerramos antes del [fecha]. ¿Cuál de esas dos te sirve más?"
+        }
+      ],
+      "pregunta": "Si el número final te funciona, ¿estás listo para firmar esta semana?",
+      "ramas": [
+        {
+          "r": "Sí, si me ajustas el precio firmamos ya",
+          "t": "Perfecto, entonces hagamos un intercambio justo: yo te aplico [beneficio o ajuste específico] y tú me confirmas hoy con [anticipo/orden de compra/firma]. Descuento con compromiso, así ganamos los dos. ¿Trato hecho?"
+        },
+        {
+          "r": "Primero dime el descuento y luego veo",
+          "t": "Te propongo hacerlo al revés, y te explico por qué: si te doy un número sin compromiso, ese número se convierte en el nuevo punto de partida para seguir negociando. Dime qué condición te haría decir \"cerramos hoy\" y sobre eso trabajo."
+        },
+        {
+          "r": "Es que la otra cotización trae descuento",
+          "t": "Claro, y es válido compararlas. Solo asegúrate de comparar el precio final contra lo que incluye cada una. Un descuento sobre un alcance menor sale más caro que un precio justo sobre el alcance completo. ¿Revisamos las dos juntas, partida por partida?"
+        }
+      ],
+      "cierre": "Entonces cerramos así: [condición mejorada] a cambio de tu confirmación hoy. ¿Firmamos?",
+      "error": "Dar descuento sin pedir nada a cambio (fecha, anticipo, volumen o referencia).",
+      "consejo": "Nunca regales un descuento: intercámbialo. Todo ajuste debe comprar un compromiso."
+    },
+    {
+      "n": 4,
+      "cat": "precio",
+      "tipo": "duda",
+      "obj": "Otro proveedor me lo da más barato",
+      "confirmar": "Si te lo dice, es porque prefiere trabajar contigo. Busca justificación.",
+      "significa": "Prefiere trabajar contigo, pero necesita que le justifiques la diferencia; si no, ya habría firmado con el otro.",
+      "peor": [
+        "\"Ese proveedor es malísimo, te lo aseguro.\" → Hablar mal de la competencia te hace ver inseguro.",
+        "\"Te igualo el precio.\" → Acabas de admitir que cobrabas de más."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Es que otro proveedor me da lo mismo más barato."
+        },
+        {
+          "who": "t",
+          "t": "Puede ser, y te voy a decir algo que pocos vendedores admiten: siempre habrá alguien más barato. La pregunta es por qué es más barato. En proyectos como este, la diferencia suele estar en tres lugares: los materiales que no se ven, la garantía que nadie lee y quién te contesta el teléfono cuando algo falla en el mes ocho. ¿Me dejas mostrarte punto por punto dónde está la diferencia entre las dos propuestas?"
+        }
+      ],
+      "pregunta": "Si los dos costáramos exactamente lo mismo, ¿con quién te quedarías y por qué?",
+      "ramas": [
+        {
+          "r": "Contigo, la verdad",
+          "t": "Gracias por decirlo. Entonces la diferencia de precio es el costo de esa confianza que ya sientes. Dime cuál es la diferencia exacta en pesos y busco cómo acercarme con condiciones —no recortando calidad— para que trabajar con quien realmente quieres no te cueste la decisión."
+        },
+        {
+          "r": "Con el otro, porque al final es lo mismo",
+          "t": "Te agradezco la honestidad. Solo te pido un favor antes de decidir: pídele al otro proveedor que te detalle por escrito [3 elementos críticos: marca de equipos, alcance de garantía, tiempos de respuesta]. Si te lo iguala por escrito, es una gran opción. Si no puede, ya sabes dónde estaba la diferencia."
+        },
+        {
+          "r": "No sé, tendría que compararlos bien",
+          "t": "Hagámoslo juntos, es lo más rápido. Trae la otra cotización a una llamada de 20 minutos y las ponemos lado a lado, partida por partida. Sin trucos: si la otra conviene más, te lo digo yo mismo. ¿Mañana o el jueves?"
+        }
+      ],
+      "cierre": "Comparemos las dos propuestas por escrito el [día]. Si la mía no justifica su diferencia línea por línea, la ajusto o te recomiendo la otra. ¿Trato?",
+      "error": "Competir bajando el precio en lugar de subir la comparación al terreno del valor.",
+      "consejo": "Quien te dice que hay alguien más barato te está pidiendo razones para pagarte a ti. Dáselas."
+    },
+    {
+      "n": 5,
+      "cat": "precio",
+      "tipo": "duda",
+      "obj": "Es más de lo que esperaba pagar",
+      "confirmar": "Problema de expectativa, no de dinero.",
+      "significa": "Su expectativa se formó sin información real del mercado; el problema es la referencia, no tu precio.",
+      "peor": [
+        "\"Es que las cosas están caras hoy en día.\" → Excusa genérica que no aporta nada.",
+        "\"¿Cuánto esperabas pagar?\" (defensivo) → Convierte la conversación en regateo inmediato."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "La verdad es más de lo que esperaba."
+        },
+        {
+          "who": "t",
+          "t": "Es la reacción más común, y es buena señal: significa que nadie te había explicado el proyecto completo. Casi todos llegan con una referencia parcial —lo que le costó a un conocido, un anuncio, una versión más pequeña—. Déjame hacer algo mejor que defender el precio: déjame desglosarlo. Cuando veas qué contiene cada parte, tú mismo vas a poder decidir si algo sobra o si todo suma."
+        }
+      ],
+      "pregunta": "¿De dónde salió la cifra que tenías en mente?",
+      "ramas": [
+        {
+          "r": "Un conocido pagó mucho menos por algo igual",
+          "t": "¿Sabes de cuándo fue ese proyecto y qué incluía exactamente? \"Algo igual\" casi nunca es igual: cambia el tamaño, los materiales, el año y lo que quedó fuera. Si me compartes esos detalles, te muestro la comparación real y decidimos con datos, no con recuerdos."
+        },
+        {
+          "r": "Vi precios en internet más bajos",
+          "t": "Claro, y esos precios existen. Lo que no aparece en internet es lo que agregan después: traslados, ajustes, instalación, trámites y todo lo que en mi propuesta ya viene incluido. Mi número es el final; esos números son el inicial. ¿Te muestro la diferencia entre precio publicado y precio terminado?"
+        },
+        {
+          "r": "Simplemente pensé que sería menos",
+          "t": "Totalmente válido. Entonces trabajemos con tu número: dime qué rango tenías en mente y te armo una versión del proyecto ajustada a ese rango, dejando claro qué entra y qué quedaría para una segunda etapa."
+        }
+      ],
+      "cierre": "¿Prefieres el proyecto completo con la facilidad de pago en [plazo], o empezamos con la etapa uno dentro de tu rango y programamos la segunda?",
+      "error": "Justificar el precio con \"calidad\" en abstracto en lugar de desglosarlo en componentes concretos.",
+      "consejo": "Contra una expectativa equivocada no sirven argumentos: sirve un desglose. El detalle educa mejor que el discurso."
+    },
+    {
+      "n": 6,
+      "cat": "precio",
+      "tipo": "excusa",
+      "obj": "Prefiero esperar a que baje el precio",
+      "confirmar": "Casi nadie monitorea precios de verdad. Falta urgencia.",
+      "significa": "No siente urgencia; esperar le parece gratis porque nadie le ha mostrado lo que cuesta cada mes sin decidir.",
+      "peor": [
+        "\"Los precios nunca bajan, al contrario.\" → Aunque sea cierto, suena a presión de vendedor.",
+        "\"Bueno, aquí estaré cuando decidas.\" → Acabas de archivar tú mismo la venta."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Voy a esperar, seguro esto baja de precio más adelante."
+        },
+        {
+          "who": "t",
+          "t": "Es una estrategia válida si el número completo estuviera a tu favor. Hagamos la cuenta juntos: supongamos que en un año el precio baja un 5%, es decir, [monto]. Durante ese año de espera, tú sigues pagando [gasto actual mensual] cada mes por [problema actual], o sea [monto anual]. Esperar para \"ahorrar\" [monto pequeño] te cuesta [monto grande]. La espera no es gratis: es la opción más cara de la mesa."
+        }
+      ],
+      "pregunta": "¿Cuánto te cuesta cada mes que pasa sin resolver esto?",
+      "ramas": [
+        {
+          "r": "No lo había visto así",
+          "t": "Casi nadie lo ve así, porque el gasto actual está disfrazado de normalidad. Cada mes de espera cuesta [monto]. Si arrancamos esta semana, en [plazo] ese dinero deja de irse. ¿Lo detenemos ya?"
+        },
+        {
+          "r": "Sí, pero aun así prefiero esperar un poco",
+          "t": "De acuerdo, es tu decisión y la respeto. Solo déjame congelarte lo que sí puedo congelar: te mantengo este precio y estas condiciones por [días concretos] por escrito. Después de esa fecha, la propuesta se recalcula. Así esperas con red de seguridad. ¿Te la mando firmada?"
+        },
+        {
+          "r": "Escuché que esta tecnología va a bajar",
+          "t": "Es posible que el componente baje algo, pero es solo una parte del proyecto: la instalación, la mano de obra y los trámites suben cada año. Históricamente, el precio total termina igual o más alto. Y hay algo que nunca baja: los meses de beneficio que pierdes esperando. ¿Comparamos \"empiezo hoy\" contra \"empiezo en un año\" con números reales?"
+        }
+      ],
+      "cierre": "Te congelo precio y condiciones por escrito hasta el [fecha]. Si decides antes, ganas la diferencia. ¿Te preparo el documento?",
+      "error": "Discutir si el precio bajará en lugar de mostrar el costo acumulado de la espera.",
+      "consejo": "Nunca pelees contra el futuro: pelea contra el presente. El costo de hoy es tu mejor argumento."
+    },
+    {
+      "n": 7,
+      "cat": "tiempo",
+      "tipo": "excusa",
+      "obj": "Déjame pensarlo",
+      "confirmar": "Si no dice QUÉ va a pensar, oculta la objeción real.",
+      "significa": "Hay una objeción específica que no te ha dicho, y \"pensarlo\" es la forma educada de no decírtela.",
+      "peor": [
+        "\"Claro, tómate tu tiempo.\" → El 90% de los \"déjame pensarlo\" sin seguimiento mueren.",
+        "\"¿Qué hay que pensar? Está clarísimo.\" → Arrinconar al cliente lo hace huir."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Déjame pensarlo y te aviso."
+        },
+        {
+          "who": "t",
+          "t": "Por supuesto, es una decisión importante y merece pensarse. Solo ayúdame con algo para no dejarte pensando a ciegas: normalmente, cuando alguien me dice esto, está pensando en una de tres cosas —el precio, el momento, o si realmente va a funcionar—. ¿En cuál de las tres estás tú? Si es algo que puedo aclarar en dos minutos, te ahorro días de duda."
+        }
+      ],
+      "pregunta": "¿Qué es exactamente lo que necesitas pensar: el precio, el momento o el resultado?",
+      "ramas": [
+        {
+          "r": "El precio, la verdad",
+          "t": "Perfecto, entonces no lo pienses solo: pensémoslo juntos. Dime qué parte del precio te hace ruido —el monto total, la forma de pago o lo que incluye— y lo resolvemos ahora. (Continúa con la Ficha 1, 2 o 5.)"
+        },
+        {
+          "r": "Es que no sé si es el momento",
+          "t": "¿Y qué tendría que pasar para que fuera el momento? Si es algo con fecha —un cierre de mes, un proyecto que termina— lo agendamos hoy para esa fecha. Y si no tiene fecha, entonces el momento no va a llegar solo: lo vamos a tener que crear tú y yo."
+        },
+        {
+          "r": "No sé si me va a funcionar",
+          "t": "Esa es la duda más importante de todas, y me alegra que salga ahora. ¿Qué evidencia te haría sentir seguro: ver un caso igual al tuyo, hablar con un cliente actual, o una garantía por escrito? Dímelo y te lo consigo antes del viernes."
+        }
+      ],
+      "cierre": "Piénsalo con toda calma hasta el [día concreto], y ese día hablamos 10 minutos ya con tu decisión. Te agendo la llamada ahora, ¿a qué hora te queda bien?",
+      "error": "Despedirse sin fecha, sin hora y sin saber qué es lo que el cliente va a \"pensar\".",
+      "consejo": "\"Déjame pensarlo\" sin fecha de respuesta es un \"no\" en cámara lenta. Siempre sal con día y hora."
+    },
+    {
+      "n": 8,
+      "cat": "tiempo",
+      "tipo": "duda",
+      "obj": "Ahora no es buen momento",
+      "confirmar": "Si describe el motivo (auditoría, obra, cierre fiscal), es duda. Si no, excusa.",
+      "significa": "Su atención está en otra prioridad y percibe tu propuesta como una carga adicional, no como un alivio.",
+      "peor": [
+        "\"¿Entonces cuándo te busco?\" → Le entregas el control total del proceso.",
+        "\"Nunca hay un momento perfecto.\" → Frase de motivador, no de asesor."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Ahora no es buen momento para nosotros."
+        },
+        {
+          "who": "t",
+          "t": "Te creo, y justamente por eso quiero entenderlo bien: ¿qué está pasando ahora que hace que no sea el momento? Hay dos tipos de \"mal momento\": los que tienen fecha de término —una obra, una auditoría, un cierre— y los que no. Si el tuyo tiene fecha, trabajemos hacia esa fecha. Y si no la tiene, quizá el problema no es el momento, y prefiero que me lo digas."
+        }
+      ],
+      "pregunta": "¿Qué tendría que terminar o resolverse para que sí fuera buen momento?",
+      "ramas": [
+        {
+          "r": "En dos meses nos liberamos de un proyecto grande",
+          "t": "Perfecto, eso es un mal momento con fecha, y esos son los mejores. Dejamos todo preparado ahora —levantamiento, propuesta final, condiciones congeladas— para que el día que se liberen, arranquemos sin perder una semana. Lo pesado lo hago yo ahora; tú solo firmas cuando llegue el momento. ¿Agendo el levantamiento?"
+        },
+        {
+          "r": "Es que traemos muchas cosas encima",
+          "t": "Justo por eso existe mi trabajo: para que esto no sea una cosa más encima, sino una cosa menos. Mi propuesta requiere de tu lado exactamente [dos reuniones de 30 minutos]. Todo lo demás lo cargo yo. ¿Ese nivel de esfuerzo sí cabe en tu momento actual?"
+        },
+        {
+          "r": "No sé, simplemente no lo siento ahora",
+          "t": "Te agradezco la franqueza. Cuando no hay una razón concreta, normalmente es que algo de la propuesta no terminó de convencer. ¿Qué fue: el alcance, el precio o el resultado? Prefiero un \"no me convenció esto\" hoy, que un \"no es buen momento\" cada tres meses."
+        }
+      ],
+      "cierre": "Preparemos todo hoy para ejecutar el [fecha en que se libera]. Tú no inviertes tiempo ahora y no pierdes tiempo después. ¿Hecho?",
+      "error": "Retirarse educadamente sin averiguar si el \"mal momento\" tiene fecha de caducidad.",
+      "consejo": "Un mal momento con fecha es una venta agendada. Un mal momento sin fecha es otra objeción disfrazada."
+    },
+    {
+      "n": 9,
+      "cat": "tiempo",
+      "tipo": "excusa",
+      "obj": "Llámame el próximo mes",
+      "confirmar": "Si fuera real, agendaría día y hora contigo.",
+      "significa": "Quiere terminar esta conversación sin conflicto; el \"próximo mes\" es una puerta de salida, no una cita.",
+      "peor": [
+        "\"Perfecto, te marco en un mes.\" → En un mes ni te recordará, y repetirás la venta desde cero.",
+        "\"¿Seguro? Mira que esta promoción se acaba…\" → Presión barata que confirma sus ganas de colgar."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Mejor llámame el próximo mes."
+        },
+        {
+          "who": "t",
+          "t": "Con gusto lo hago, y para que esa llamada valga la pena para ti —no solo para mí—, dime: ¿qué va a ser diferente el próximo mes? Si algo va a cambiar (presupuesto, tiempo, una decisión interna), preparo la llamada en torno a eso. Pero si nada va a cambiar, la llamada del próximo mes va a ser idéntica a esta, y prefiero no quitarte el tiempo dos veces."
+        }
+      ],
+      "pregunta": "¿Qué va a ser diferente el próximo mes que hoy no tenemos?",
+      "ramas": [
+        {
+          "r": "En dos semanas me pagan / cierro un cobro",
+          "t": "Perfecto, eso es concreto. Entonces te agendo el [fecha posterior al cobro] a las [hora], y te mando hoy la propuesta cerrada para que ese día solo confirmemos. ¿Te llega la invitación al calendario?"
+        },
+        {
+          "r": "No sé, es que ando saturado",
+          "t": "Lo entiendo. Esta decisión necesita 15 minutos tuyos, hoy o en un mes. Los 15 minutos no van a cambiar; lo que sí cambia es que cada mes de espera cuesta [costo concreto]. ¿Buscamos esos 15 minutos esta semana en el hueco que tú me digas? Yo me adapto: temprano, tarde o sábado."
+        },
+        {
+          "r": "La verdad no creo que lo tomemos",
+          "t": "Te agradezco la honestidad, porque me permite hacerte una última pregunta y ya no insistir: ¿qué fue lo que no te convenció? No es para rebatirte, es para saber si hubo algo que expliqué mal o que sí tiene solución."
+        }
+      ],
+      "cierre": "No te llamo el próximo mes \"a ver qué pasa\": agendemos ahora el [día] a las [hora] con un objetivo claro. Si ese día la respuesta es no, lo acepto y cierro el expediente. ¿Va?",
+      "error": "Aceptar la llamada futura sin agendar día, hora y motivo concreto.",
+      "consejo": "Nunca aceptes un \"después\" sin fecha. Un seguimiento sin cita es una venta abandonada con estilo."
+    },
+    {
+      "n": 10,
+      "cat": "tiempo",
+      "tipo": "real",
+      "obj": "No tengo prisa con esto",
+      "confirmar": "Falta de urgencia genuina. Trabaja el costo de esperar.",
+      "significa": "No percibe ningún costo por esperar; para él, decidir hoy o en seis meses da exactamente lo mismo.",
+      "peor": [
+        "\"Es que los precios van a subir.\" → Amenaza genérica que ya nadie cree.",
+        "\"Ok, no hay prisa, tú me dices.\" → Acabas de validar que esperar es gratis."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "La verdad no tengo prisa con esto."
+        },
+        {
+          "who": "t",
+          "t": "Y haces bien en no decidir con prisa. Pero déjame separar dos cosas: una es decidir con prisa y otra es conocer el costo de esperar. Hoy, cada mes sin este proyecto te cuesta [monto o consecuencia: pago de luz, horas perdidas, mantenimiento, clientes no atendidos]. En seis meses de \"sin prisa\", eso suma [monto]. No te pido prisa: te pido que decidas sabiendo cuánto cuesta la calma."
+        }
+      ],
+      "pregunta": "Si esperar seis meses te costara [monto calculado], ¿seguiría sin haber prisa?",
+      "ramas": [
+        {
+          "r": "Visto así, sí es bastante dinero",
+          "t": "Lo es, y lo mejor es que es dinero recuperable: se detiene el día que arrancamos. Mi propuesta no es \"fírmame hoy\", sino \"no pagues un mes más de este costo sin necesidad\". Si arrancamos esta semana, el contador se detiene en [fecha]. ¿Lo detenemos?"
+        },
+        {
+          "r": "Sí, pero hay cosas más urgentes ahorita",
+          "t": "Seguro que sí, y no compito contra tus urgencias: me formo detrás de ellas. Dime cuáles son y cuándo se resuelven, y reservamos la fecha siguiente. Lo que no te recomiendo es dejarlo sin fecha, porque lo urgente siempre se come a lo importante. ¿Qué fecha le ponemos?"
+        },
+        {
+          "r": "No me afecta tanto como dices",
+          "t": "Puede ser, y prefiero comprobarlo a suponerlo. ¿Me compartes [dato verificable: recibo, reporte, factura] y hacemos el cálculo con tus números reales, no con mis promedios? Si al verlo el costo de esperar es bajo, yo mismo te diré que no hay prisa."
+        }
+      ],
+      "cierre": "No necesito que tengas prisa: necesito que tengas fecha. ¿Qué día de este mes lo dejamos resuelto?",
+      "error": "Intentar crear urgencia con presión externa (promociones, escasez) en lugar de urgencia con datos propios del cliente.",
+      "consejo": "La urgencia no se declara, se calcula. Muestra el costo mensual de esperar y deja que el número haga la prisa."
+    },
+    {
+      "n": 11,
+      "cat": "tiempo",
+      "tipo": "excusa",
+      "obj": "Lo retomamos el próximo año",
+      "confirmar": "Horizonte indefinido = no hay intención.",
+      "significa": "Te está archivando con elegancia; un horizonte tan lejano y redondo casi nunca corresponde a un plan real.",
+      "peor": [
+        "\"Perfecto, te contacto en enero.\" → En enero serás un desconocido más en su bandeja.",
+        "\"¡Pero para el próximo año esto habrá subido muchísimo!\" → Presión sin credibilidad."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Esto mejor lo retomamos el próximo año."
+        },
+        {
+          "who": "t",
+          "t": "De acuerdo, puede tener sentido. Solo ayúdame a entenderlo: ¿es una fecha de planeación real —por presupuesto o cierre fiscal— o es una forma amable de decirme que el proyecto no los convenció? Las dos respuestas me sirven; la única que no me sirve es la incorrecta."
+        }
+      ],
+      "pregunta": "Si te dijera que podemos dejar todo aprobado hoy y ejecutar en enero, ¿firmarías hoy?",
+      "ramas": [
+        {
+          "r": "Sí, si la ejecución es en enero, sí",
+          "t": "Perfecto, entonces el proyecto está decidido y solo movemos el calendario. Firmamos ahora con precio y condiciones de hoy, anticipo simbólico de [monto o %] y ejecución programada en enero. Congelas el precio de este año y estrenas en el siguiente. ¿Preparamos el contrato así?"
+        },
+        {
+          "r": "Hasta enero se define el presupuesto",
+          "t": "Excelente dato. Trabajemos para que este proyecto entre en ese presupuesto con nombre y apellido: te preparo un expediente de una página con inversión, retorno y cronograma para que lo presentes en la planeación. ¿Quién más participa en esa definición?"
+        },
+        {
+          "r": "La verdad no estamos convencidos",
+          "t": "Te agradezco que lo digas. ¿Me regalas dos minutos para saber qué no convenció? Si es algo de mi propuesta, lo corrijo. Si es algo del proyecto en sí, te dejo de quitar tiempo y quedamos en buenos términos. ¿Qué fue?"
+        }
+      ],
+      "cierre": "Firmemos hoy con precio congelado y ejecución en enero. Tú ganas el precio de este año; yo gano la certeza. ¿Lo dejamos amarrado?",
+      "error": "Creer que \"el próximo año\" es una fecha, cuando casi siempre es un adiós educado.",
+      "consejo": "Convierte fechas lejanas en decisiones presentes: se puede decidir hoy aunque se ejecute después."
+    },
+    {
+      "n": 12,
+      "cat": "confianza",
+      "tipo": "real",
+      "obj": "No conozco su empresa",
+      "confirmar": "Legítima. Se resuelve con prueba social.",
+      "significa": "Necesita evidencia de que otros ya confiaron en ti y les fue bien; no es rechazo, es prudencia.",
+      "peor": [
+        "\"Somos una empresa muy seria, te lo aseguro.\" → Nadie compra por autodeclaración.",
+        "\"Tenemos muchos años de experiencia.\" → Vago, incomprobable y lo dice todo el mundo."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Es que la verdad no conozco su empresa."
+        },
+        {
+          "who": "t",
+          "t": "Y es la reacción correcta: yo tampoco le confiaría un proyecto de este tamaño a alguien que no conozco. Por eso no te voy a pedir que confíes en mi palabra, sino en tres cosas verificables: uno, te comparto [número] proyectos terminados como el tuyo, con fotos y datos; dos, te paso el teléfono de dos clientes actuales para que les preguntes lo que quieras sin que yo esté presente; y tres, todo lo que te prometo queda por escrito en el contrato, con garantía. ¿Por cuál de las tres quieres empezar?"
+        }
+      ],
+      "pregunta": "¿Qué necesitarías ver o comprobar para sentir que sí nos conoces?",
+      "ramas": [
+        {
+          "r": "Me gustaría hablar con algún cliente suyo",
+          "t": "Hecho. Te voy a conectar con [nombre], que hizo un proyecto muy parecido al tuyo hace [tiempo]. Le aviso hoy para que espere tu mensaje. Pregúntale especialmente cómo respondimos cuando hubo [imprevisto resuelto], porque ahí es donde se conoce a un proveedor."
+        },
+        {
+          "r": "Quisiera ver trabajos que hayan hecho",
+          "t": "Te mando hoy el portafolio con [número] proyectos, y te propongo algo mejor: si alguno te queda cerca, te llevo a verlo en persona. Una obra terminada dice más que cualquier presentación. ¿Cuál prefieres?"
+        },
+        {
+          "r": "Es que son nuevos en esto, ¿no?",
+          "t": "La empresa tiene [tiempo real], y las personas que ejecutamos tu proyecto llevamos [años] haciendo exactamente esto. Pero más importante que el tiempo es la estructura: te firmo garantía de [alcance], calendario con penalización por retraso y pagos contra avances, no por adelantado. El riesgo queda de mi lado, no del tuyo."
+        }
+      ],
+      "cierre": "Habla con mi cliente esta semana. Si después de esa llamada te quedas tranquilo, arrancamos el lunes. ¿Te parece justo?",
+      "error": "Responder con adjetivos (\"serios\", \"profesionales\") en lugar de pruebas verificables.",
+      "consejo": "La confianza no se pide, se presta: pon referencias, garantías escritas y pagos por avance sobre la mesa."
+    },
+    {
+      "n": 13,
+      "cat": "confianza",
+      "tipo": "duda",
+      "obj": "¿Y si no funciona?",
+      "confirmar": "Miedo al riesgo. Pide certeza, no información.",
+      "significa": "Quiere comprar, pero le aterra equivocarse; no necesita más información, necesita reducir el riesgo de la decisión.",
+      "peor": [
+        "\"Va a funcionar, confía en mí.\" → Confianza pedida, no ganada.",
+        "\"Nunca nos ha fallado a nadie.\" → Nadie lo cree, y si algo falla, quedas de mentiroso."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "¿Y si no funciona?"
+        },
+        {
+          "who": "t",
+          "t": "Es la pregunta más inteligente que puedes hacer, así que te la respondo en dos partes. Primero: ¿por qué sí va a funcionar? Porque esto mismo ya funciona en [número] casos como el tuyo, con [resultado medible]. Y segundo, la parte importante: ¿qué pasa si aun así algo falla? Tienes garantía por escrito de [alcance], con [acción: reparación, reposición, devolución] en un plazo de [días]. El escenario \"no funciona\" también está cubierto, en papel y con mi firma."
+        }
+      ],
+      "pregunta": "¿Qué significaría exactamente para ti que \"no funcione\"?",
+      "ramas": [
+        {
+          "r": "Que no dé los resultados que prometes",
+          "t": "Pongámosle número al resultado: te estoy proyectando [métrica concreta]. Ese cálculo sale de [fuente: norma, historial, medición]. Y lo dejamos escrito: si el resultado real queda por debajo de [umbral], se aplica [compensación]. El resultado deja de ser una promesa y se vuelve una cláusula."
+        },
+        {
+          "r": "Que se descomponga y me dejen solo",
+          "t": "Esa es la duda correcta, porque cualquier equipo puede fallar; la diferencia es quién responde. Nuestro compromiso por escrito: tiempo de respuesta de [horas/días], garantía de [años] y un teléfono directo —el mío— que sí contesta. Pregúntale a [cliente referencia] cómo respondimos cuando tuvo [incidente]."
+        },
+        {
+          "r": "Me da miedo equivocarme",
+          "t": "Es normal. Por eso vamos a hacer que equivocarte sea prácticamente imposible: empezamos con [primera etapa de bajo riesgo], validamos el resultado juntos, y solo entonces avanzamos al resto. Decides el total viendo resultados, no imaginándolos. ¿Así sí te sientes seguro?"
+        }
+      ],
+      "cierre": "Te dejo el resultado y la garantía por escrito en el contrato. Si eso está firmado, ¿arrancamos?",
+      "error": "Responder al miedo con más información técnica, cuando lo que el cliente necesita es un plan para el peor escenario.",
+      "consejo": "A la duda no se le responde con promesas sino con garantías. Escribe el \"¿y si falla?\" en el contrato."
+    },
+    {
+      "n": 14,
+      "cat": "confianza",
+      "tipo": "real",
+      "obj": "Ya tuve una mala experiencia con algo así",
+      "confirmar": "Herida previa. Requiere diferenciación explícita.",
+      "significa": "Alguien más rompió su confianza y ahora tú pagas la fianza; necesita ver con claridad por qué esta vez será diferente.",
+      "peor": [
+        "\"Nosotros no somos como ellos.\" → Eso mismo le dijo el anterior.",
+        "\"Qué mala suerte, pero eso no pasa con nosotros.\" → Minimiza su experiencia y no aporta pruebas."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Ya tuve una mala experiencia con un proveedor de esto."
+        },
+        {
+          "who": "t",
+          "t": "Lamento escucharlo, y antes de decirte nada de mí, cuéntame qué pasó exactamente. (Escucha sin interrumpir.) Gracias por contármelo. No te voy a decir \"nosotros somos diferentes\", porque eso te lo dijo también el anterior. Lo que voy a hacer es quitarle el punto exacto donde te fallaron: si te fallaron en [tiempos, calidad, abandono], en nuestro contrato eso queda blindado con [penalización por retraso, supervisión, retención de pago final]. Que lo que te pasó sea contractualmente imposible de repetir."
+        }
+      ],
+      "pregunta": "¿Qué fue exactamente lo que falló la vez anterior?",
+      "ramas": [
+        {
+          "r": "Me dejaron el trabajo a medias",
+          "t": "Eso tiene un antídoto directo: pagos contra avances verificados. Tú no adelantas la siguiente etapa hasta ver terminada la anterior, y el último pago se libera solo con tu firma de conformidad. Si alguien abandona, pierde él, no tú. ¿Te estructuro la propuesta con ese esquema?"
+        },
+        {
+          "r": "Prometieron un resultado que nunca llegó",
+          "t": "Entonces el problema fue vender con promesas y no con números. Mi propuesta trae el resultado calculado con [fuente verificable] y un rango realista. Y el compromiso queda escrito: si no se alcanza [umbral], aplica [compensación]. Prefiero prometerte menos y cumplirte más."
+        },
+        {
+          "r": "Después de cobrar, desaparecieron",
+          "t": "Ese es el clásico, y se resuelve con estructura, no con palabras: contrato con garantía de [plazo], póliza de servicio con visitas en [frecuencia] y mi número directo. Además, habla con [cliente de más de un año]: pregúntale si seguimos contestando después de cobrar."
+        }
+      ],
+      "cierre": "Armemos el contrato blindando exactamente lo que te falló la otra vez. Si ese punto queda protegido por escrito, ¿avanzamos?",
+      "error": "Hablar de tus virtudes en lugar de blindar contractualmente el punto específico donde el otro falló.",
+      "consejo": "Primero escucha toda la historia. La objeción no es contra ti: es una herida abierta con nombre y apellido ajenos."
+    },
+    {
+      "n": 15,
+      "cat": "confianza",
+      "tipo": "excusa",
+      "obj": "Mándame la información por correo",
+      "confirmar": "Forma educada de terminar la conversación.",
+      "significa": "Quiere colgar sin conflicto; el correo que pide tiene altas probabilidades de no abrirse jamás.",
+      "peor": [
+        "\"¡Claro! Ahora mismo te lo mando.\" → Y ahí murió la venta, en una bandeja de entrada.",
+        "\"Es que por correo no se entiende bien.\" → Suena a que ocultas algo."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Mejor mándame la información por correo y la reviso."
+        },
+        {
+          "who": "t",
+          "t": "Con todo gusto te la mando. Y para mandarte algo que de verdad te sirva —y no un PDF genérico de 20 páginas que nadie lee— déjame hacerte dos preguntas rápidas: ¿qué es lo que más te interesa resolver con esto, y qué dato necesitas ver sí o sí para tomar la decisión? Con eso te armo un correo de una página, directo al punto."
+        }
+      ],
+      "pregunta": "Cuando la revises, ¿qué esperas encontrar para decir \"esto sí me interesa\"?",
+      "ramas": [
+        {
+          "r": "Los precios, básicamente",
+          "t": "Entonces lo que necesitas es una cotización, no información general. Para cotizarte en serio necesito [2-3 datos mínimos]. ¿Me los das ahora en dos minutos? Te mando hoy la cotización formal y mañana te llamo cinco minutos. ¿A qué hora te marco?"
+        },
+        {
+          "r": "Quiero entender bien cómo funciona",
+          "t": "Te propongo algo más eficiente que un correo: una videollamada de 15 minutos donde te lo muestro funcionando y me preguntas en vivo. Lo que por escrito te tomaría una hora, en vivo lo resolvemos en 15 minutos. ¿Mañana o el jueves?"
+        },
+        {
+          "r": "Ahorita no tengo tiempo de nada",
+          "t": "Lo entiendo, y no te quito más. Te mando hoy un resumen de UNA página con tres datos: qué obtienes, cuánto cuesta y cuánto te ahorra. Y te propongo la fecha para comentarlo: ¿te marco el [día] a las [hora]? Cinco minutos, cronometrados."
+        }
+      ],
+      "cierre": "Te lo mando hoy y lo comentamos el [día] a las [hora], cinco minutos. Te agendo la llamada ahora mismo, ¿de acuerdo?",
+      "error": "Enviar el correo sin agendar antes la llamada de seguimiento con día y hora.",
+      "consejo": "El correo nunca vende: solo acompaña. Ninguna información sale de tu mano sin una cita amarrada."
+    },
+    {
+      "n": 16,
+      "cat": "confianza",
+      "tipo": "duda",
+      "obj": "Suena demasiado bueno para ser verdad",
+      "confirmar": "Interés alto + desconfianza. Muy recuperable.",
+      "significa": "Está muy interesado, pero su experiencia le dice que las ofertas perfectas esconden letra chica; busca el truco.",
+      "peor": [
+        "\"Pues créeme, es verdad.\" → Pedir fe no genera fe.",
+        "\"Es que tenemos los mejores precios del mercado.\" → Refuerza exactamente su sospecha."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Suena demasiado bueno para ser verdad."
+        },
+        {
+          "who": "t",
+          "t": "Y haces bien en sospechar: la mayoría de las ofertas que suenan así, esconden algo. Por eso déjame hacer lo contrario a esconder: te voy a decir lo que esta propuesta NO incluye y sus límites reales. No incluye [exclusión real], el resultado depende de [condición real] y el escenario que te mostré es el promedio, no el máximo. Ahora ya conoces la letra chica completa. Con todo y eso, ¿sigue pareciéndote buena? Porque lo es, y ahora sabes exactamente por qué."
+        }
+      ],
+      "pregunta": "¿Qué parte específicamente te parece demasiado buena: el precio, el resultado o el plazo?",
+      "ramas": [
+        {
+          "r": "El resultado que prometes",
+          "t": "Vamos a la fuente: este número sale de [origen verificable: mediciones, normas, historial]. Te muestro [caso real] con datos de antes y después. Y para tu caso, hago el cálculo con TUS datos frente a ti, para que veas de dónde sale cada cifra. ¿Cuándo hacemos ese ejercicio?"
+        },
+        {
+          "r": "El precio, está muy por debajo de otros",
+          "t": "Tiene explicación concreta: cobramos menos porque [sin intermediarios, costos fijos menores, alianza directa con fabricante]. No es magia ni recorte de calidad: es estructura. Compara mi especificación técnica contra cualquier otra, línea por línea. Si encuentras un recorte escondido, dímelo y lo discutimos."
+        },
+        {
+          "r": "Todo en general, desconfío",
+          "t": "La desconfianza no se cura con palabras sino con estructura. Te propongo tres seguros: referencias de clientes para que preguntes sin filtro, todo compromiso por escrito en contrato, y pagos contra avance para que nunca tengas más dinero arriesgado que trabajo recibido. ¿Con esas tres condiciones, seguimos?"
+        }
+      ],
+      "cierre": "Ya conoces lo bueno y también los límites. Sabiendo las dos caras, ¿avanzamos con la propuesta?",
+      "error": "Defender la oferta con más entusiasmo, cuando el entusiasmo es justo lo que despierta la sospecha.",
+      "consejo": "La transparencia sobre los límites vende más que la perfección. Di lo que NO incluye antes de que lo pregunten."
+    },
+    {
+      "n": 17,
+      "cat": "autoridad",
+      "tipo": "real",
+      "obj": "Tengo que consultarlo con mi socio / mi pareja",
+      "confirmar": "Si acepta agendar reunión con el socio, es real.",
+      "significa": "O es verdad y necesitas llegar a esa segunda persona, o es un escudo para no decirte que no; tu trabajo es distinguirlo ya.",
+      "peor": [
+        "\"Claro, coméntalo y me avisas.\" → Tu propuesta será defendida por un aficionado: el propio cliente.",
+        "\"¿Pero tú qué opinas?\" (con presión) → Lo pones contra su propio socio."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Me gusta, pero tengo que consultarlo con mi socio."
+        },
+        {
+          "who": "t",
+          "t": "Por supuesto, una decisión así se toma en equipo. Y justo por eso te propongo algo: déjame estar en esa conversación. No para presionar, sino porque tu socio va a hacer preguntas técnicas y de números que es mi trabajo responder, no el tuyo. Una llamada de 20 minutos los tres, y tu socio decide con la información completa, no con mi propuesta contada de segunda mano. ¿Cuándo coinciden los dos?"
+        }
+      ],
+      "pregunta": "Y a ti, con lo que ya viste, ¿te convence? ¿Tú sí lo harías?",
+      "ramas": [
+        {
+          "r": "Sí, yo estoy convencido",
+          "t": "Excelente, ya tenemos un voto de dos. Ahora consigamos el segundo bien conseguido: dime qué es lo que más le importa a tu socio —¿el costo, el riesgo, los tiempos?— y preparo la reunión enfocada en eso. ¿Lo vemos los tres el [día] o el [día]?"
+        },
+        {
+          "r": "Tengo mis dudas todavía",
+          "t": "Perfecto que lo digas, porque entonces la consulta al socio puede esperar: primero resolvamos las tuyas. Si tú llegas convencido a esa conversación, la decisión fluye; si llegas dudando, el \"no\" es casi seguro. ¿Cuál es tu duda principal?"
+        },
+        {
+          "r": "Es que él es quien decide estas cosas",
+          "t": "Eso cambia mi estrategia y te convierte en mi aliado. Dos preguntas: ¿qué es lo que más pesa en sus decisiones? ¿Y qué le pareció importante cuando surgió este tema? Con eso preparo una propuesta dirigida a él, y tú me ayudas a conseguir 20 minutos de su agenda. ¿Me los consigues?"
+        }
+      ],
+      "cierre": "Agendemos la llamada con tu socio esta semana. Tú pones la fecha, yo pongo las respuestas. ¿Martes o jueves?",
+      "error": "Dejar que el cliente le \"venda\" al socio: nadie defiende bien una propuesta que no es suya.",
+      "consejo": "Nunca dejes tu venta en boca de terceros. Donde se decide, ahí debes estar tú."
+    },
+    {
+      "n": 18,
+      "cat": "autoridad",
+      "tipo": "real",
+      "obj": "Yo no soy quien decide",
+      "confirmar": "Información valiosa: pide acceso al decisor.",
+      "significa": "Te acaba de dar el dato más valioso de la reunión: estás hablando con un influenciador, y el decisor está en otro lado.",
+      "peor": [
+        "\"Ah, ¿entonces con quién debo hablar?\" (con decepción) → Acabas de decirle que ya no te importa.",
+        "Seguir presentando la propuesta completa como si nada → Gastas tus mejores balas con quien no puede comprar."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Es que yo no soy quien decide esto."
+        },
+        {
+          "who": "t",
+          "t": "Te agradezco que me lo digas, porque me permite hacer bien mi trabajo y hacerte quedar bien a ti. Aunque no decidas, tu opinión pesa —por algo estás en esta conversación—. Te propongo un plan: tú me dices qué le importa a quien decide y cómo prefiere recibir propuestas, yo preparo el material perfecto, y buscamos presentárselo juntos. Si esto sale bien, el proyecto llega con tu sello. ¿Quién es la persona y qué es lo que más valora?"
+        }
+      ],
+      "pregunta": "Si de ti dependiera, ¿lo aprobarías? ¿Y qué crees que diría quien sí decide?",
+      "ramas": [
+        {
+          "r": "Yo sí; mi jefe se fija mucho en el costo",
+          "t": "Dos datos de oro. Preparo una versión ejecutiva de una página centrada en números: inversión, retorno y comparativo contra no hacer nada. ¿Me ayudas a conseguir 15 minutos con él esta semana, estando tú presente? Tú lo conoces, yo respondo lo técnico: somos mejor equipo juntos."
+        },
+        {
+          "r": "No sé qué diría, es impredecible",
+          "t": "Entonces no adivinemos: preguntémosle. Propónle algo pequeño: \"hay una propuesta que creo que vale 15 minutos de tu tiempo\". No le pides que apruebe nada, solo que escuche. Y en esos 15 minutos, el impredecible me toca a mí. ¿Se lo planteas hoy?"
+        },
+        {
+          "r": "Mejor pásame la info y yo se la hago llegar",
+          "t": "Te la paso en el formato que sí funciona: una página, tres puntos, cero tecnicismos, para que la presentes en dos minutos. Y hagamos equipo: ¿qué pregunta crees que te va a hacer? Te preparo la respuesta por escrito para que no te agarre en curva."
+        }
+      ],
+      "cierre": "Consígueme 15 minutos con quien decide, estando tú presente, y yo me encargo del resto. ¿Lo intentamos esta semana?",
+      "error": "Menospreciar al contacto por no ser el decisor, cuando es tu única puerta hacia él.",
+      "consejo": "El que no decide, influye. Conviértelo en tu campeón interno, no en tu mensajero."
+    },
+    {
+      "n": 19,
+      "cat": "autoridad",
+      "tipo": "real",
+      "obj": "Lo tiene que aprobar dirección / el comité",
+      "confirmar": "Proceso B2B normal. Conviértete en aliado interno.",
+      "significa": "Hay un proceso formal de decisión; tu venta ahora depende de qué tan bien equipes a tu contacto para ese proceso.",
+      "peor": [
+        "\"Ok, ¿y como cuánto tardan en aprobar?\" → Te resignas a esperar en la banca.",
+        "\"¿No hay forma de saltarse ese trámite?\" → Le pides que viole su propio proceso: pésima señal."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Esto lo tiene que aprobar el comité de dirección."
+        },
+        {
+          "who": "t",
+          "t": "Perfecto, es lo normal en proyectos de este nivel, y me da gusto que ya estemos hablando de aprobación. Ayúdame a preparar esa aprobación como se debe: ¿cuándo sesiona el comité, quiénes lo integran y qué criterios pesan más —costo, riesgo, retorno, urgencia—? Con eso te preparo un expediente ejecutivo diseñado para ese comité: una página de resumen, números claros y las tres preguntas difíciles ya respondidas. Que tú entres a esa sala con todo resuelto."
+        }
+      ],
+      "pregunta": "¿Qué proyectos suelen aprobarse a la primera en ese comité, y qué tienen en común?",
+      "ramas": [
+        {
+          "r": "Los que muestran retorno claro y rápido",
+          "t": "El expediente girará en torno al retorno: inversión, ahorro mensual, punto de equilibrio y comparativo contra no hacer nada. Todo en una página, con los cálculos anexos. Te lo entrego el [día] para que lo revises antes de presentarlo. ¿En qué fecha sesionan?"
+        },
+        {
+          "r": "A veces rebotan cosas sin razón clara",
+          "t": "Reduzcamos el azar: ¿quién es la voz que más pesa en ese comité? Preparemos la propuesta pensando en esa persona, y si es posible, consíganme 10 minutos con ella antes de la sesión. Un proyecto que ya conoce el líder del comité entra con ventaja. ¿Se puede?"
+        },
+        {
+          "r": "El proceso es largo, como dos meses",
+          "t": "Dos meses con fecha es mejor que \"pronto\" sin fecha. Hagamos el cronograma inverso: si el comité sesiona el [fecha], te entrego el expediente el [fecha], resolvemos dudas el [fecha] y tenemos la propuesta final el [fecha]. Además, congelo precio y condiciones por escrito durante todo el proceso. ¿Armamos ese calendario ahora?"
+        }
+      ],
+      "cierre": "Te preparo el expediente ejecutivo para el comité y lo revisamos juntos antes de la sesión. ¿Me confirmas la fecha en que sesionan para trabajar hacia atrás?",
+      "error": "Esperar pasivamente la decisión del comité en lugar de equipar activamente a quien la presentará.",
+      "consejo": "No le vendas a tu contacto: entrénalo para vender por ti. Tu propuesta debe poder defenderse sin que estés en la sala."
+    },
+    {
+      "n": 20,
+      "cat": "autoridad",
+      "tipo": "duda",
+      "obj": "Déjame presentarlo internamente y te aviso",
+      "confirmar": "Teme no saber defenderlo. Dale las armas.",
+      "significa": "Le interesa, pero teme no saber defender tu propuesta ante los suyos; si lo dejas solo, la presentación interna diluirá tu venta.",
+      "peor": [
+        "\"Va, quedo al pendiente.\" → El \"pendiente\" es el cementerio de las ventas B2B.",
+        "\"¿Y como para cuándo crees tener respuesta?\" → Pregunta pasiva que acepta perder el control."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Déjame presentarlo internamente y yo te aviso."
+        },
+        {
+          "who": "t",
+          "t": "Perfecto, y déjame hacerte más fácil esa presentación. Te voy a preparar tres cosas: un resumen de una página para repartir, una tabla de preguntas y respuestas con lo que seguramente te van a cuestionar, y los números en formato editable por si quieres ajustarlos. Con eso, la presentación es tuya pero el respaldo es mío. ¿Cuándo la vas a presentar, para tenerte todo antes?"
+        }
+      ],
+      "pregunta": "¿Qué crees que te van a cuestionar cuando lo presentes?",
+      "ramas": [
+        {
+          "r": "\"¿Por qué este proveedor y no otro?\"",
+          "t": "Esa pregunta tiene respuesta preparada: te armo un comparativo objetivo de tres columnas —nosotros, alternativa típica, no hacer nada— con criterios verificables. Así no dices \"porque me cayeron bien\", sino \"porque los números dicen esto\". ¿Te lo mando hoy junto con el resumen?"
+        },
+        {
+          "r": "El presupuesto, seguramente",
+          "t": "Armémoste la respuesta financiera: costo total, costo mensualizado, ahorro esperado y punto de equilibrio. Y un dato clave: el costo de NO aprobarlo, que es [monto anual]. Cuando el presupuesto se compara contra ese número, la conversación cambia. ¿Lo incluyo?"
+        },
+        {
+          "r": "No sé, nunca se sabe con ellos",
+          "t": "Preparémonos para todo: te mando el documento de preguntas difíciles con sus respuestas —precio, garantía, riesgos, tiempos, referencias—. Y un plan B: si en plena presentación surge algo que no está en el documento, me marcas y lo resuelvo en vivo, aunque sea por teléfono. ¿Trato?"
+        }
+      ],
+      "cierre": "Te entrego el paquete completo el [día]. Presenta el [día] y hablamos al día siguiente a las [hora] para conocer el resultado. ¿Agendamos esa llamada de una vez?",
+      "error": "Soltar la propuesta sin materiales de apoyo, dejando que el cliente improvise tu venta interna.",
+      "consejo": "Cada presentación interna es una reunión de ventas donde no estás. Escribe el guion de esa reunión."
+    },
+    {
+      "n": 21,
+      "cat": "competencia",
+      "tipo": "real",
+      "obj": "Ya trabajamos con otro proveedor",
+      "confirmar": "Statu quo. No ataques al proveedor: abre una rendija.",
+      "significa": "Cambiar le representa esfuerzo y riesgo; no necesita que su proveedor sea malo, necesita una razón concreta para abrir la puerta.",
+      "peor": [
+        "\"¿Y qué tal les responde? ¿No han tenido problemas?\" → Pescar errores ajenos se nota y genera rechazo.",
+        "\"Nosotros somos mejores, dame una oportunidad.\" → Afirmación vacía + súplica: doble error."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Gracias, pero ya trabajamos con otro proveedor."
+        },
+        {
+          "who": "t",
+          "t": "Me parece muy bien, y no te llamo para pedirte que lo cambies: un proveedor que funciona vale oro. Te llamo para algo más pequeño y más útil: darte un punto de comparación. La mayoría de las empresas llevan años sin cotizar con nadie más, y eso significa decidir a ciegas. Déjame prepararte una propuesta sin compromiso sobre [proyecto específico]. Si tu proveedor sale mejor, la usas para confirmar que estás bien. Y si yo salgo mejor, ya sabes dónde estoy. Pierdes cero, ganas información."
+        }
+      ],
+      "pregunta": "Si pudieras cambiar una sola cosa de tu proveedor actual, ¿cuál sería?",
+      "ramas": [
+        {
+          "r": "Los tiempos de respuesta",
+          "t": "Ahí sí tengo algo que decir: nuestro compromiso de respuesta es de [tiempo], por contrato y con penalización si no se cumple. Pruébalo en pequeño: dame el siguiente [servicio menor] y compara los tiempos tú mismo. Sin cambiar nada de tu operación. ¿Va?"
+        },
+        {
+          "r": "Nada, estamos muy contentos",
+          "t": "Excelente, eso habla bien de ustedes. Te dejo dos cosas: mi propuesta de referencia para que compares precios cuando renueven, y mi contacto para el día que necesiten capacidad extra o un plan B. ¿En qué mes suelen revisar contratos?"
+        },
+        {
+          "r": "El precio ha ido subiendo bastante",
+          "t": "Es el patrón clásico: el proveedor de años sube precios porque asume que no compararás. Hagamos la prueba sin drama: pásame [datos de lo que contratan] y te cotizo lo mismo, mismas especificaciones. Si salgo igual o más caro, te lo digo. Si salgo notablemente mejor, tienes una decisión interesante. ¿Me pasas los datos?"
+        }
+      ],
+      "cierre": "Déjame cotizarte solo [proyecto puntual] como punto de comparación. Sin compromiso y sin mover nada de tu operación actual. ¿Te la preparo?",
+      "error": "Atacar al proveedor actual, obligando al cliente a defenderlo y cerrando la puerta que querías abrir.",
+      "consejo": "No pidas el matrimonio, pide la primera cita: un proyecto pequeño, una cotización comparativa, un plan B."
+    },
+    {
+      "n": 22,
+      "cat": "competencia",
+      "tipo": "real",
+      "obj": "Estoy comparando otras opciones",
+      "confirmar": "Proceso de compra activo. Excelente señal.",
+      "significa": "Está en proceso activo de compra —excelente noticia—; tu misión es definir los criterios con los que comparará.",
+      "peor": [
+        "\"Ok, avísame cuando decidas.\" → Renuncias a influir justo en la fase decisiva.",
+        "\"¿Con quién más estás viendo?\" (a quemarropa) → Interrogatorio incómodo sin haberlo ganado."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Estoy comparando otras opciones antes de decidir."
+        },
+        {
+          "who": "t",
+          "t": "Haces exactamente lo correcto, y déjame ayudarte a comparar bien, aunque suene raro que te lo diga yo. Las propuestas nunca son iguales aunque el precio se parezca. Te sugiero comparar cinco cosas en todas: [especificación exacta de materiales], [alcance de garantía], [tiempos con penalización], [qué NO incluye] y [quién responde después de la entrega]. Pídeselas por escrito a todos, incluido yo. El que no te las dé por escrito, ya te dio su respuesta."
+        }
+      ],
+      "pregunta": "¿Qué va a inclinar la balanza al final: el precio, el respaldo o los tiempos?",
+      "ramas": [
+        {
+          "r": "El precio, principalmente",
+          "t": "Asegúrate de comparar el precio final, no el inicial: suma lo que cada propuesta cobra aparte —traslados, ajustes, trámites— y lo que costará mantenerla. Mi propuesta ya trae todo integrado, por eso a primera vista puede no ser la más baja, pero al sumar el total suele serlo. ¿Hacemos esa suma juntos con todas tus cotizaciones?"
+        },
+        {
+          "r": "El respaldo, ya me han quedado mal antes",
+          "t": "Tu comparación es fácil: pide a cada opción garantía por escrito, tiempo de respuesta comprometido y dos referencias de clientes con más de un año. Yo te entrego las tres hoy. El que tarde o se excuse, se descalificó solo. ¿Te mando las mías ahora?"
+        },
+        {
+          "r": "Un poco de todo",
+          "t": "Te propongo el método más justo: una tabla comparativa con los cinco criterios, una columna por proveedor. Te la mando con mis datos ya llenos, y tú completas las otras columnas. La decisión se toma sola cuando la tabla está llena. ¿Te la envío hoy?"
+        }
+      ],
+      "cierre": "Cuando tengas todas las propuestas, dame 20 minutos para revisarlas contigo con la tabla enfrente. Si la mía no gana con datos, te ayudo a elegir la que sí. ¿Agendamos esa revisión?",
+      "error": "Esperar pasivamente el veredicto en lugar de instalar los criterios de comparación que te favorecen legítimamente.",
+      "consejo": "El que define cómo se compara, gana la comparación. Entrega tú la tabla antes de que otro lo haga."
+    },
+    {
+      "n": 23,
+      "cat": "competencia",
+      "tipo": "duda",
+      "obj": "Tu competencia me ofrece más",
+      "confirmar": "Quiere que le demuestres por qué tú.",
+      "significa": "Sigue en tu mesa a pesar de esa oferta \"superior\": quiere que le des la razón para elegirte, o está negociando contigo.",
+      "peor": [
+        "\"Te igualo lo que te ofrezcan.\" → Guerra de ofertas que destruye tu margen y tu credibilidad.",
+        "\"Dudo mucho que te cumplan eso.\" → Descalificación sin pruebas: suena a envidia."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Es que tu competencia me está ofreciendo más por lo mismo."
+        },
+        {
+          "who": "t",
+          "t": "Puede ser cierto, y si lo es, deberías considerarlo en serio. Pero antes hagamos algo que te conviene a ti: pongamos las dos ofertas por escrito, lado a lado. \"Más\" a veces significa más cosas escritas en la propuesta, y otras veces significa más cosas que de verdad se entregan. La diferencia se descubre en los detalles: especificaciones, marcas, garantías y penalizaciones. Si en esa comparación ellos ganan, te felicito y en paz. ¿Me compartes su propuesta para hacer el ejercicio?"
+        }
+      ],
+      "pregunta": "Si ofrecen más, ¿qué te detiene de firmar con ellos hoy mismo?",
+      "ramas": [
+        {
+          "r": "A ustedes les tengo más confianza",
+          "t": "Esa confianza es información valiosa: tu instinto detectó algo. No voy a igualar promesas que quizá no se cumplan, pero sí puedo hacer esto: [ampliar garantía, mejorar forma de pago, agregar servicio]. Con eso, la diferencia se reduce y te quedas con quien confías. ¿Cerramos así?"
+        },
+        {
+          "r": "Estoy a punto de firmar con ellos",
+          "t": "Solo te pido una cosa como profesional: antes de firmar, verifica tres puntos por escrito en su contrato: [punto 1], [punto 2] y [punto 3]. Son los tres lugares donde las ofertas grandes suelen desinflarse. Si los tres están sólidos, firmaste bien. Si alguno falla, aquí estoy."
+        },
+        {
+          "r": "Ofrecen más, pero no sé si creerles",
+          "t": "Esa duda es sabia. Pídeles referencias de clientes a los que ya les hayan cumplido exactamente eso, y pide que \"lo extra\" quede en contrato con penalización. Una oferta que no sobrevive a esas dos pruebas era decoración. Yo hago las mismas dos pruebas contigo hoy: ¿empezamos por mis referencias?"
+        }
+      ],
+      "cierre": "Comparemos ambas propuestas por escrito este [día]. Si la de ellos gana en papel Y en referencias, firma con ellos con mi bendición. Si no, firmamos tú y yo. ¿Hacemos el ejercicio?",
+      "error": "Entrar a la subasta de promesas en lugar de mover la comparación al terreno de lo verificable.",
+      "consejo": "No compitas contra la oferta más grande: compite contra la oferta más real. Lo verificable es tu campo de juego."
+    },
+    {
+      "n": 24,
+      "cat": "competencia",
+      "tipo": "duda",
+      "obj": "Eso lo podemos hacer internamente",
+      "confirmar": "Subestima el costo real de hacerlo solo.",
+      "significa": "Solo está viendo el costo de contratarte, no el costo completo de hacerlo él: tiempo, errores, distracción y resultado inferior.",
+      "peor": [
+        "\"No es tan fácil como parece, eh.\" → Suena a que lo subestimas.",
+        "\"Bueno, si algo sale mal ya sabes dónde encontrarme.\" → Sarcasmo que quema el puente."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Esto lo podemos resolver internamente con nuestro equipo."
+        },
+        {
+          "who": "t",
+          "t": "Es posible, y hay casos donde es la mejor decisión. Para saber si es tu caso, hagamos la cuenta completa, porque hacerlo interno no cuesta cero: cuesta las horas de tu equipo a su tarifa real, el tiempo extra por la curva de aprendizaje, los errores de primera vez y —el más caro de todos— lo que tu equipo deja de hacer mientras hace esto. Cuando sumas eso, hacerlo interno suele costar entre [rango realista] y muchas veces más que contratarlo. ¿Hacemos ese cálculo con tus números?"
+        }
+      ],
+      "pregunta": "¿Cuántas horas de tu equipo va a consumir, y qué dejarán de hacer durante esas horas?",
+      "ramas": [
+        {
+          "r": "No lo he calculado",
+          "t": "Casi nadie lo calcula, por eso la opción interna siempre parece gratis. Hagámoslo ahora, en cinco minutos: ¿quién lo haría, cuánto gana, y cuántas horas le tomaría? (Haz la multiplicación frente a él.) Ese es el costo real, sin contar errores. Contra ese número compara mi propuesta, no contra cero."
+        },
+        {
+          "r": "Mi gente tiene capacidad de sobra",
+          "t": "Entonces la pregunta cambia: no es si pueden, sino si es el mejor uso de esa capacidad. Cada hora de tu equipo en esto es una hora menos en [su actividad principal]. Yo hago esto todos los días, con métodos probados y en la mitad del tiempo. ¿Qué opción le genera más dinero a tu empresa?"
+        },
+        {
+          "r": "Ya lo hemos hecho antes nosotros",
+          "t": "Entonces pueden comparar con conocimiento de causa. La vez anterior, ¿cuánto tiempo real les tomó y qué fue lo más complicado? (Escucha.) Justo eso es lo que mi propuesta elimina: [solución específica]. La pregunta no es si pueden repetirlo, sino si quieren volver a pasar por eso."
+        }
+      ],
+      "cierre": "Calculemos juntos el costo interno real y compáralo contra mi propuesta. Si hacerlo ustedes sale mejor con todo incluido, te lo confirmo yo mismo. ¿Cinco minutos?",
+      "error": "Discutir si el cliente \"puede\" hacerlo en lugar de cuantificar cuánto le cuesta realmente hacerlo.",
+      "consejo": "Tu competidor no es su equipo interno: es la ilusión de que lo interno es gratis. Destruye esa ilusión con una multiplicación."
+    },
+    {
+      "n": 25,
+      "cat": "competencia",
+      "tipo": "duda",
+      "obj": "Un conocido me lo hace más barato",
+      "confirmar": "Compara precio, no resultado ni respaldo.",
+      "significa": "Está comparando solo el precio de ejecución, sin ver el precio del riesgo: sin contrato, sin garantía y sin a quién reclamar.",
+      "peor": [
+        "\"Esos conocidos luego te dejan tirado el trabajo.\" → Quizá sea su primo: acabas de insultar a la familia.",
+        "\"Pues con él no tendrás factura ni garantía, allá tú.\" → Cierto, pero dicho con soberbia pierde."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Tengo un conocido que me lo hace bastante más barato."
+        },
+        {
+          "who": "t",
+          "t": "Y es una opción real, no la voy a descartar. Solo te propongo compararlas completas, porque son productos distintos aunque parezcan lo mismo. Con tu conocido pagas menos y recibes la ejecución. Conmigo pagas más y recibes la ejecución más cuatro cosas: responsabilidad legal con contrato y factura, garantía por escrito de [plazo], respaldo de una empresa si algo falla en dos años, y [diferencial técnico]. La pregunta honesta es: ¿ese paquete de respaldo vale la diferencia para un proyecto de este tamaño?"
+        }
+      ],
+      "pregunta": "Si algo falla dentro de un año, ¿qué respaldo tendrías con él?",
+      "ramas": [
+        {
+          "r": "Supongo que le hablaría y lo arreglaría",
+          "t": "Puede ser, si sigue disponible, si sigue en el oficio y si acepta que fue su responsabilidad. Son tres \"si\" sin contrato de por medio. Mi garantía no depende de buena voluntad: es una obligación por escrito, con tiempos de respuesta. En un proyecto de [monto], ¿tu tranquilidad la dejarías en tres suposiciones?"
+        },
+        {
+          "r": "Es que la diferencia de precio es mucha",
+          "t": "Entiende de dónde sale: normalmente él no factura, no incluye [materiales certificados, trámites, seguridad] y no carga costos de responsabilidad. Pídele su presupuesto desglosado por escrito y compáralo con el mío línea por línea. Donde su papel diga menos líneas, ahí vive la diferencia. ¿Comparamos?"
+        },
+        {
+          "r": "Es de confianza, lleva años haciendo esto",
+          "t": "Y eso cuenta. Mi propuesta es de coexistencia: usa a tu conocido para lo que su formato resuelve bien, y usa una empresa para lo que requiere respaldo formal —como este proyecto, donde hay [normativa, garantía de fábrica, monto alto]—. No es uno o el otro: es cada quien para lo suyo. En este proyecto, ¿qué pesa más: el ahorro o el respaldo?"
+        }
+      ],
+      "cierre": "Pídele su presupuesto por escrito y compáralo con el mío partida por partida. Si con todo desglosado sigue conviniendo, adelante con él. ¿Hacemos la comparación el [día]?",
+      "error": "Descalificar al conocido, olvidando que suele existir un vínculo personal que te hará quedar como arrogante.",
+      "consejo": "No compitas contra su precio: compite contra su papel. Todo lo que él no puede poner por escrito es tu propuesta de valor."
+    },
+    {
+      "n": 26,
+      "cat": "necesidad",
+      "tipo": "excusa",
+      "obj": "No lo necesito",
+      "confirmar": "Si escuchó menos de 2 minutos, es excusa. Si escuchó todo, puede ser real.",
+      "significa": "O rechaza en automático sin haberte escuchado, o le presentaste características cuando él necesitaba escuchar problemas resueltos.",
+      "peor": [
+        "\"Sí lo necesitas, déjame explicarte.\" → Contradecir de frente activa la defensa total.",
+        "\"Ok, disculpa la molestia.\" → Rendición inmediata ante la objeción más superficial de todas."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Gracias, pero no lo necesito."
+        },
+        {
+          "who": "t",
+          "t": "Y puede que tengas toda la razón: esto no es para todo el mundo. Solo déjame hacerte una pregunta de 20 segundos para confirmar que efectivamente no es para ti: ¿hoy cuánto estás pagando por [problema que resuelves] al mes? (Espera la respuesta.) Las personas que \"no lo necesitan\" se dividen en dos: las que de verdad no lo necesitan, y las que están pagando [monto] al año sin saber que existe alternativa. En 20 segundos sabemos en cuál grupo estás."
+        }
+      ],
+      "pregunta": "¿Cuánto te está costando hoy el problema que esto resuelve?",
+      "ramas": [
+        {
+          "r": "Pago como [monto considerable]",
+          "t": "Entonces sí tenemos de qué hablar, porque justo eso es lo que esto reduce. Tu caso pinta para un ahorro de aproximadamente [estimación]. No te pido que compres hoy: te pido 15 minutos para hacer el cálculo exacto con tus números. Si no te conviene, tú mismo lo verás. ¿Mañana o el jueves?"
+        },
+        {
+          "r": "Casi nada, no es un tema para mí",
+          "t": "Perfecto, entonces eres del primer grupo y te lo confirmo yo: hoy no lo necesitas. Solo te dejo mi contacto para el día que [crezcas, cambies de local, suba la tarifa], porque ese día la cuenta cambia. ¿Te guardo con una nota para ese escenario?"
+        },
+        {
+          "r": "No sé cuánto pago, no lo he revisado",
+          "t": "Ahí está el punto exacto: no se puede decidir \"no lo necesito\" sin conocer ese número. Mándame una foto de [recibo, factura, estado] y te regreso el análisis en 24 horas, sin costo y sin compromiso. Si el número dice que no lo necesitas, te lo digo tal cual. ¿Me la mandas hoy?"
+        }
+      ],
+      "cierre": "Regálame el dato de [gasto actual] y en 24 horas te digo con números si lo necesitas o no. Si no, no te vuelvo a buscar. ¿Trato?",
+      "error": "Discutir la necesidad con argumentos en lugar de revelarla con una sola pregunta sobre su gasto actual.",
+      "consejo": "\"No lo necesito\" casi siempre significa \"no sé cuánto me cuesta no tenerlo\". Tu trabajo es ponerle número."
+    },
+    {
+      "n": 27,
+      "cat": "necesidad",
+      "tipo": "duda",
+      "obj": "Así estamos bien",
+      "confirmar": "Comodidad. No ve el costo de no cambiar.",
+      "significa": "La comodidad del presente le impide ver el costo de no cambiar; \"bien\" significa \"acostumbrado\", no \"óptimo\".",
+      "peor": [
+        "\"¿Seguro? Yo creo que podrían estar mejor.\" → Opinión no pedida que suena presuntuosa.",
+        "\"Bueno, cualquier cosa aquí estoy.\" → Retirada instantánea sin haber sembrado nada."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Gracias, pero así estamos bien."
+        },
+        {
+          "who": "t",
+          "t": "Y qué bueno que estén bien, en serio: mi mejor cliente es el que está bien, porque decide con calma. Justo por eso te hago una sola pregunta, sin ánimo de venderte nada hoy: ¿\"bien\" comparado con qué? Muchas empresas están \"bien\" comparadas con su propio pasado, pero cuando comparan contra lo que ya es posible hoy —[beneficio concreto del mercado]— descubren que \"bien\" les estaba costando [tipo de costo] cada mes sin saberlo."
+        }
+      ],
+      "pregunta": "Si les mostrara que \"bien\" les está costando [monto] al año contra la alternativa, ¿valdría 15 minutos revisarlo?",
+      "ramas": [
+        {
+          "r": "¿Cómo está eso?",
+          "t": "Muy simple: hoy pagan [gasto actual] por [concepto]. La alternativa moderna hace lo mismo por [gasto menor] o con [resultado mayor]. La diferencia anual es de [monto]. Estar \"bien\" con el esquema anterior cuesta esa diferencia cada año. ¿Hacemos el cálculo exacto con tus números?"
+        },
+        {
+          "r": "Puede ser, pero cambiar es mucho lío",
+          "t": "Totalmente de acuerdo: si cambiar fuera un lío, no valdría la pena. Por eso el proceso está diseñado para que tu operación no se detenga: nosotros cargamos con [instalación, trámites, migración] y tu equipo solo invierte [tiempo mínimo]. El \"lío\" es mi trabajo, el ahorro es tuyo. ¿Te muestro el plan de transición?"
+        },
+        {
+          "r": "De verdad, no nos interesa",
+          "t": "Lo respeto por completo. Solo hago mi última labor de asesor: te mando un resumen de una página con el comparativo, para que lo tengas archivado. El día que \"bien\" empiece a sentirse caro, vas a querer tener ese papel a la mano. ¿Te lo mando al correo o por WhatsApp?"
+        }
+      ],
+      "cierre": "No te propongo cambiar: te propongo medir. Un diagnóstico de 15 minutos y tú decides si \"bien\" es suficiente. ¿Cuándo te queda?",
+      "error": "Aceptar el \"estamos bien\" sin preguntar contra qué se están comparando.",
+      "consejo": "No vendas cambio, vende medición. Nadie se resiste a saber cuánto le cuesta su comodidad."
+    },
+    {
+      "n": 28,
+      "cat": "necesidad",
+      "tipo": "real",
+      "obj": "No es prioridad en este momento",
+      "confirmar": "Compite contra otros proyectos. Cuantifica el costo de posponer.",
+      "significa": "Tu proyecto compite contra otros proyectos por los mismos recursos, y hoy va perdiendo; necesitas cambiar su posición en la fila.",
+      "peor": [
+        "\"¿Y cuándo crees que sea prioridad?\" → Nadie tiene esa fecha; te vas con las manos vacías.",
+        "\"Pues debería serlo.\" → Decirle al cliente cómo administrar su empresa: error de principiante."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Está interesante, pero no es prioridad en este momento."
+        },
+        {
+          "who": "t",
+          "t": "Lo entiendo, toda empresa tiene más proyectos que recursos. Déjame hacer una pregunta de estratega, no de vendedor: ¿qué proyectos sí son la prioridad ahora? (Escucha.) A veces este proyecto no compite contra esas prioridades: las financia. Si esto libera [monto] al mes, ese dinero empuja justamente los proyectos que sí te urgen. En lugar de pedirte presupuesto, te estaría generando presupuesto."
+        }
+      ],
+      "pregunta": "¿Contra qué proyecto está compitiendo este, y qué criterio usan para ordenar la fila?",
+      "ramas": [
+        {
+          "r": "Estamos metidos en [proyecto X], eso se lleva todo",
+          "t": "Respetemos esa prioridad y sumémonos a ella: ¿[proyecto X] mejoraría con [monto de ahorro] extra al mes? Porque eso es lo que este proyecto libera. Además, mi propuesta requiere de tu equipo solo [esfuerzo mínimo]. No vengo a competir con [proyecto X]: vengo a patrocinarlo."
+        },
+        {
+          "r": "Hay que ordenar muchas cosas antes",
+          "t": "Las cosas se ordenan mejor con fechas. Dime qué tiene que quedar ordenado y para cuándo. Con esa fecha, programo la nuestra justo después, congelo condiciones por escrito hasta entonces, y dejo el expediente listo. El día que se ordene la casa, esto arranca en una semana en vez de tres meses. ¿Qué fecha pongo?"
+        },
+        {
+          "r": "La dirección definió otras prioridades este año",
+          "t": "Trabajemos para el siguiente ciclo de decisión: ¿cuándo se revisan las prioridades del próximo periodo y qué información pesa? Te preparo el expediente ejecutivo con inversión, retorno y el costo anual de seguir posponiéndolo, para que llegue a esa revisión con los números que la dirección quiere ver. ¿Te lo preparo?"
+        }
+      ],
+      "cierre": "Este proyecto no compite con tus prioridades: las financia con [beneficio mensual]. ¿Te muestro ese cálculo en 15 minutos esta semana?",
+      "error": "Aceptar el lugar en la fila en vez de demostrar que tu proyecto ayuda a los que están adelante.",
+      "consejo": "No pelees por el primer lugar de la fila: demuestra que tu proyecto le paga la cuenta a los que ya están formados."
+    },
+    {
+      "n": 29,
+      "cat": "necesidad",
+      "tipo": "real",
+      "obj": "No veo claro qué gano con esto",
+      "confirmar": "Fallo de comunicación tuyo. Reformula en resultados.",
+      "significa": "Le hablaste de características y procesos, pero nunca tradujiste nada a su dinero, su tiempo o su tranquilidad; el fallo es de comunicación, y es tuyo.",
+      "peor": [
+        "Repetir la misma presentación, más lento y más fuerte. → Si no funcionó a la primera, repetida funciona menos.",
+        "\"¿Cómo que no ves qué ganas? Es obvio.\" → Culpar al cliente de tu explicación confusa."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "La verdad no veo claro qué gano yo con esto."
+        },
+        {
+          "who": "t",
+          "t": "Y si no lo ves claro, es mi culpa, no tuya: me fui a los detalles técnicos antes de responderte lo único que importa. Déjame corregirlo en tres frases. Con este proyecto ganas tres cosas: uno, [dejas de pagar X al mes]; dos, [tu equipo se quita Y horas de encima]; y tres, [si Z falla, respondo yo, no tú]. Dinero, tiempo y tranquilidad. Todo lo demás son los medios; esto es lo que ganas. ¿Cuál de las tres pesa más para ti?"
+        }
+      ],
+      "pregunta": "De estas tres —ahorrar dinero, liberar tiempo o dormir tranquilo— ¿cuál resolvería tu semana?",
+      "ramas": [
+        {
+          "r": "El dinero, sin duda",
+          "t": "Entonces hablemos solo de dinero: inviertes [monto], recuperas [monto] al mes, alcanzas punto de equilibrio en [plazo] y de ahí en adelante son [monto] anuales a tu favor durante [vida útil]. Cuatro números, esa es toda la propuesta. ¿Los validamos con tus datos reales?"
+        },
+        {
+          "r": "El tiempo, estamos ahogados",
+          "t": "La propuesta se resume así: hoy tu equipo dedica [horas] a [tarea]; con esto, esa carga baja a [horas menores] porque [mecanismo]. Son [total] horas al mes que regresan a [actividad valiosa]. ¿A qué dedicarías esas horas recuperadas?"
+        },
+        {
+          "r": "Ni así me hace clic",
+          "t": "Te agradezco la franqueza, y eso me dice que quizá el problema que resuelvo no es un problema que tú tengas. Última pregunta: ¿cuál es hoy el dolor de cabeza número uno de tu operación? (Escucha.) Si tiene relación con lo mío, te muestro la conexión en un minuto. Si no la tiene, te lo digo honestamente."
+        }
+      ],
+      "cierre": "Ganas [beneficio elegido] desde [plazo]. Si ese número se sostiene al revisarlo con tus datos, ¿avanzamos?",
+      "error": "Responder con más información técnica cuando el cliente está pidiendo traducción, no ampliación.",
+      "consejo": "Toda propuesta debe sobrevivir a la prueba de las tres frases: dinero, tiempo, tranquilidad. Si necesitas más, aún no está lista."
+    },
+    {
+      "n": 30,
+      "cat": "necesidad",
+      "tipo": "real",
+      "obj": "Ya lo intentamos antes y no funcionó",
+      "confirmar": "Experiencia previa. Diferénciate del intento anterior.",
+      "significa": "Tiene una cicatriz de un intento anterior y asume que el resultado se repetirá; debes demostrar que el intento falló, no la solución.",
+      "peor": [
+        "\"Seguro lo hicieron mal.\" → Aunque sea verdad, acabas de llamarlos incompetentes.",
+        "\"Las cosas han cambiado mucho desde entonces.\" → Genérico: todos los vendedores dicen eso."
+      ],
+      "dialogo": [
+        {
+          "who": "c",
+          "t": "Eso ya lo intentamos hace tiempo y no funcionó."
+        },
+        {
+          "who": "t",
+          "t": "Ese dato vale oro, y quiero entenderlo a fondo antes de proponerte nada: ¿cuándo fue, quién lo implementó y en qué falló exactamente? (Escucha con atención y toma nota.) Gracias. Con lo que me cuentas, lo que falló fue [la implementación, el dimensionamiento, el proveedor, el seguimiento], no el concepto. Mi propuesta ataca exactamente ese punto: donde aquella vez hubo [causa de la falla], esta vez hay [mecanismo que lo previene]. No te pido que confíes en que \"ahora sí\": te pido que compares las dos fichas técnicas."
+        }
+      ],
+      "pregunta": "Si aquella vez hubiera funcionado, ¿qué habría cambiado para ustedes?",
+      "ramas": [
+        {
+          "r": "Nos habría ahorrado muchísimos problemas",
+          "t": "Es decir: el premio sigue siendo valioso, lo que falló fue el camino. La decisión inteligente no es renunciar al premio, sino cambiar de camino con seguros que la otra vez no existían: [garantía de resultado, etapa piloto, pagos contra avance]. Empecemos con la etapa de menor riesgo, validamos, y solo entonces escalamos. ¿Así sí se puede volver a intentar?"
+        },
+        {
+          "r": "Quedamos muy quemados con el tema",
+          "t": "Es entendible: nadie quiere tropezar dos veces. No te propongo repetir la experiencia sino invertirla: aquella vez el riesgo fue de ustedes; esta vez lo cargo yo, con [resultado garantizado por contrato, piloto acotado, cláusula de salida]. Si vuelve a fallar, el costo es mío. ¿Con el riesgo de mi lado, lo evaluamos?"
+        },
+        {
+          "r": "El proveedor nos quedó mal y nos dejó tirados",
+          "t": "Entonces no falló la solución: falló la persona. Contra eso hay antídotos desde el contrato: pagos contra avances verificados, penalización por abandono e historial comprobable —te paso hoy [número] referencias con teléfono—. La solución merece una segunda oportunidad con un proveedor de primera. ¿Llamamos juntos a una referencia ahora mismo?"
+        }
+      ],
+      "cierre": "Esta vez con tres seguros que la otra vez no tuvieron: [seguro 1], [seguro 2] y [seguro 3], por escrito. ¿Le damos al proyecto la revancha que merece?",
+      "error": "Defender la solución en abstracto sin diagnosticar la causa específica del fracaso anterior.",
+      "consejo": "Primero autopsia, luego propuesta. No puedes prometer que \"esta vez sí\" sin saber exactamente por qué aquella vez no."
+    }
+  ],
+  "FRASES": [
+    {
+      "t": "Para recibir una objeción sin pelear",
+      "items": [
+        "\"Me alegra que lo digas directo, porque eso significa que sí te interesa.\"",
+        "\"Es la pregunta correcta, y merece una respuesta directa.\"",
+        "\"Te entiendo, y en tu lugar yo preguntaría exactamente lo mismo.\"",
+        "\"Qué bueno que salga este tema ahora y no después de firmar.\"",
+        "\"Es la reacción más común, y tiene una explicación concreta.\"",
+        "\"Gracias por decírmelo de frente; la mayoría no lo dice y simplemente desaparece.\"",
+        "\"Es una preocupación válida, así que vamos a resolverla con datos, no con discursos.\"",
+        "\"Justo esperaba esa pregunta, y me da gusto responderla.\"",
+        "\"Tienes razón en dudar; la confianza se gana, no se pide.\"",
+        "\"Buen punto. Déjame responderlo en dos partes.\""
+      ]
+    },
+    {
+      "t": "Para pedir permiso de profundizar",
+      "items": [
+        "\"¿Me permites hacerte una pregunta antes de responderte?\"",
+        "\"¿Puedo ser completamente directo contigo?\"",
+        "\"Déjame entender bien tu situación antes de proponerte nada.\"",
+        "\"¿Te parece si lo vemos con números en lugar de opiniones?\"",
+        "\"¿Me regalas dos minutos para mostrarte algo que cambia esta conversación?\"",
+        "\"Antes de darte la respuesta corta, ¿puedo darte el contexto que la explica?\"",
+        "\"¿Puedo contarte lo que le pasó a un cliente en tu misma situación?\"",
+        "\"¿Te molesta si escribo esto mientras hablamos? Quiero responderte punto por punto.\"",
+        "\"¿Qué tanto conoces de [tema]? Para explicarte al nivel correcto.\"",
+        "\"¿Me dejas hacer de abogado del diablo un momento?\""
+      ]
+    },
+    {
+      "t": "Para reformular lo que dijo el cliente",
+      "items": [
+        "\"Entonces, si te entiendo bien, el tema no es X sino Y, ¿cierto?\"",
+        "\"Déjame ver si lo capté: lo que necesitas es…, ¿correcto?\"",
+        "\"O sea que si resolvemos esto, lo demás ya está decidido, ¿es así?\"",
+        "\"Lo que escucho detrás de tu pregunta es una preocupación por…, ¿le atiné?\"",
+        "\"En resumen: te gusta la solución, te preocupa la forma de pago. ¿Es justo?\"",
+        "\"Corrígeme si me equivoco: no es que no lo quieras, es que no lo quieres así.\"",
+        "\"Entonces tu duda no es si funciona, sino si funciona en tu caso, ¿verdad?\"",
+        "\"A ver si lo digo bien con tus palabras: …\"",
+        "\"Lo que me estás diciendo entre líneas es que ya te fallaron antes, ¿cierto?\"",
+        "\"Si tuviera que resumir tu postura en una frase, sería: … ¿Estoy cerca?\""
+      ]
+    },
+    {
+      "t": "Para introducir datos o pruebas",
+      "items": [
+        "\"No me creas a mí: créele a este número.\"",
+        "\"Te lo muestro con un caso real en lugar de explicártelo en teoría.\"",
+        "\"Hagamos la cuenta juntos, aquí mismo, con tus datos.\"",
+        "\"Esto no es una promesa mía: es una cláusula del contrato.\"",
+        "\"Déjame ponerle números a lo que acabo de decir.\"",
+        "\"El dato que te voy a dar es verificable; te digo dónde comprobarlo.\"",
+        "\"En lugar de adjetivos, te doy tres hechos.\"",
+        "\"Esta cifra no sale de mi optimismo: sale de [fuente].\"",
+        "\"Compara tú mismo: aquí está el antes y aquí está el después.\"",
+        "\"Te propongo algo mejor que creerme: compruébalo.\""
+      ]
+    },
+    {
+      "t": "Para transicionar de la duda a la solución",
+      "items": [
+        "\"Y justo para eso existe una solución concreta. Te la muestro.\"",
+        "\"Esa preocupación tiene antídoto, y viene por escrito.\"",
+        "\"Ahora que conocemos el problema real, hablemos de cómo eliminarlo.\"",
+        "\"Eso que te preocupa, vamos a blindarlo en el contrato. Así de simple.\"",
+        "\"Buena noticia: ese escenario también está cubierto. Te explico cómo.\"",
+        "\"Entonces el problema no es si avanzamos, sino cómo. Y el cómo tiene opciones.\"",
+        "\"Ya sabemos qué te detiene. Ahora déjame quitarlo de en medio.\"",
+        "\"Esa es exactamente la parte que mi propuesta resuelve distinto a las demás.\"",
+        "\"Tomemos esa duda y convirtámosla en una condición del acuerdo.\"",
+        "\"De acuerdo: diseñemos la propuesta alrededor de esa preocupación.\""
+      ]
+    },
+    {
+      "t": "Para crear urgencia sin presionar",
+      "items": [
+        "\"No te pido prisa: te pido que decidas conociendo el costo de la calma.\"",
+        "\"La espera no es gratis; solo tiene un precio que nadie te había mostrado.\"",
+        "\"Decidir después también es una decisión, y también tiene costo.\"",
+        "\"El mejor momento fue hace un año; el segundo mejor es hoy.\"",
+        "\"No es que el precio suba: es que el ahorro que no tomas no regresa.\"",
+        "\"Cada mes de análisis cuesta lo mismo que un mes de solución.\"",
+        "\"Te congelo las condiciones por escrito: así piensas con red de seguridad.\"",
+        "\"Lo urgente siempre se come a lo importante, salvo que lo importante tenga fecha.\"",
+        "\"¿Quieres decidir con calma hoy o con presión cuando sea emergencia?\"",
+        "\"El proyecto puede esperar; el gasto actual no espera: se cobra cada mes.\""
+      ]
+    },
+    {
+      "t": "Para pedir la decisión con elegancia",
+      "items": [
+        "\"¿Qué falta para que esto sea un sí?\"",
+        "\"Si resolvemos ese último punto, ¿cerramos?\"",
+        "\"¿Te parece justo lo que acabamos de acordar?\"",
+        "\"De tu lado, ¿qué necesitas para avanzar hoy?\"",
+        "\"¿Lo dejamos amarrado de una vez?\"",
+        "\"¿Empezamos con la etapa uno esta semana?\"",
+        "\"Entonces, ¿preparo el contrato con estas condiciones?\"",
+        "\"¿Firmamos y te quito este pendiente de la cabeza?\"",
+        "\"¿Cuál de las dos opciones te preparo: la A o la B?\"",
+        "\"¿Hay alguna razón para no empezar el lunes?\""
+      ]
+    },
+    {
+      "t": "Para cerrar un tema y pasar al siguiente",
+      "items": [
+        "\"¿Quedó resuelto ese punto? Perfecto, siguiente.\"",
+        "\"Con eso cerrado, hablemos ahora de los tiempos.\"",
+        "\"Ya tenemos el qué; vamos al cuánto.\"",
+        "\"Precio resuelto. Ahora lo importante: el resultado.\"",
+        "\"Si no hay más dudas ahí, avancemos a la forma de pago.\"",
+        "\"Ese tema queda por escrito en la propuesta. Sigamos.\"",
+        "\"Ese pendiente ya tiene dueño y fecha. El siguiente punto es…\"",
+        "\"Anoto ese compromiso de mi lado. Ahora te pido uno del tuyo.\"",
+        "\"Ya vimos por qué sí; ahora veamos cómo sí.\"",
+        "\"Resumo lo acordado hasta aquí y seguimos: …\""
+      ]
+    },
+    {
+      "t": "Para retomar contactos fríos o silencios",
+      "items": [
+        "\"No te escribo para presionarte: te escribo para no dejarte a medias.\"",
+        "\"Prometí buscarte hoy, y lo prometido es deuda.\"",
+        "\"¿Sigue siendo prioridad esto para ti, o cambiaron las cosas?\"",
+        "\"Prefiero un 'no' claro que un silencio eterno. ¿En cuál estamos?\"",
+        "\"Te comparto un dato nuevo que cambia la propuesta que viste: …\"",
+        "\"La condición que te congelé vence el [fecha]. ¿La usamos o la soltamos?\"",
+        "\"Imagino que la agenda te comió; retomo yo para que tú no cargues con eso.\"",
+        "\"¿Qué cambió desde la última vez que hablamos?\"",
+        "\"Cierro expedientes este viernes: ¿el tuyo lo cierro o lo reactivo?\"",
+        "\"Última llamada de mi parte, con cariño: ¿avanzamos o lo dejamos aquí?\""
+      ]
+    },
+    {
+      "t": "Para despedirse dejando la puerta abierta",
+      "items": [
+        "\"Hoy no es un no para siempre: es un no por ahora, y lo respeto.\"",
+        "\"Quedo a un mensaje de distancia para cuando el momento llegue.\"",
+        "\"Te dejo el comparativo archivado: el día que 'bien' se sienta caro, ahí está.\"",
+        "\"Gracias por la claridad; ojalá todos los clientes fueran así de directos.\"",
+        "\"Si algo cambia de mi lado —precio, tecnología, condiciones— serás el primero en saberlo.\"",
+        "\"Me llevo tus comentarios como tarea; esta propuesta va a mejorar gracias a ti.\"",
+        "\"El proyecto queda listo en pausa: se reactiva con una llamada tuya.\"",
+        "\"Aunque no cerramos, cuenta conmigo como referencia del tema.\"",
+        "\"Prefiero perder esta venta que tu confianza; nos vemos en la siguiente.\"",
+        "\"Te busco en [fecha acordada], ni antes ni después. Palabra.\""
+      ]
+    }
+  ],
+  "PLANTILLA": [
+    {
+      "paso": "1 · Tu identidad comercial",
+      "campos": [
+        {
+          "label": "Mi producto/servicio en una frase (qué hace, no qué es)",
+          "ej": "\"Instalamos sistemas solares que reducen el recibo de luz hasta 95%.\""
+        },
+        {
+          "label": "Mi cliente ideal (giro + tamaño + situación)",
+          "ej": "\"Negocios con recibos de CFE mayores a $15,000 bimestrales.\""
+        }
+      ]
+    },
+    {
+      "paso": "2 · El problema y su costo (tu munición principal)",
+      "campos": [
+        {
+          "label": "El problema que resuelvo, dicho como lo dice el cliente",
+          "ej": "\"El recibo de luz no deja de subir y se come la utilidad.\""
+        },
+        {
+          "label": "Cuánto cuesta ese problema al mes ([gasto actual])",
+          "ej": "\"$18,000 bimestrales en promedio.\""
+        },
+        {
+          "label": "Fuente verificable de mis números ([fuente])",
+          "ej": "\"Recibo CFE del cliente + producción por irradiación de la zona.\""
+        }
+      ]
+    },
+    {
+      "paso": "3 · Tus tres beneficios traducidos (Ficha 29)",
+      "campos": [
+        {
+          "label": "Beneficio en DINERO",
+          "ej": "\"Dejas de pagar ~$16,000 bimestrales desde el primer bimestre.\""
+        },
+        {
+          "label": "Beneficio en TIEMPO / OPERACIÓN",
+          "ej": "\"Cero gestión: hacemos el trámite completo ante CFE.\""
+        },
+        {
+          "label": "Beneficio en TRANQUILIDAD",
+          "ej": "\"Garantía de 25 años en paneles y 5 en instalación, por escrito.\""
+        }
+      ]
+    },
+    {
+      "paso": "4 · Tus pruebas ([referencias], [caso real], [garantía])",
+      "campos": [
+        {
+          "label": "Referencia 1 (nombre + teléfono + proyecto)",
+          "ej": ""
+        },
+        {
+          "label": "Referencia 2 (nombre + teléfono + proyecto)",
+          "ej": ""
+        },
+        {
+          "label": "Mi caso de éxito estrella (cliente + resultado medible)",
+          "ej": ""
+        },
+        {
+          "label": "Mi garantía exacta, tal como aparece en contrato",
+          "ej": ""
+        }
+      ]
+    },
+    {
+      "paso": "5 · Tus condiciones comerciales",
+      "campos": [
+        {
+          "label": "Ticket promedio · Esquema de pagos disponible",
+          "ej": ""
+        },
+        {
+          "label": "Plazo típico de entrega / instalación",
+          "ej": ""
+        },
+        {
+          "label": "Punto de equilibrio / retorno típico",
+          "ej": ""
+        },
+        {
+          "label": "Lo que puedo intercambiar en vez de descuento (Ficha 3)",
+          "ej": "1) __ 2) __ 3) __"
+        }
+      ]
+    },
+    {
+      "paso": "6 · Tus diferenciales contra cada rival (Fichas 21–25)",
+      "campos": [
+        {
+          "label": "Contra el proveedor establecido, gano en",
+          "ej": ""
+        },
+        {
+          "label": "Contra el más barato, gano en",
+          "ej": ""
+        },
+        {
+          "label": "Contra el \"conocido\" informal, gano en",
+          "ej": ""
+        },
+        {
+          "label": "Contra hacerlo interno, gano en",
+          "ej": ""
+        },
+        {
+          "label": "Lo que mi propuesta NO incluye (transparencia Ficha 16)",
+          "ej": ""
+        }
+      ]
+    }
+  ],
+  "PREGUNTAS": [
+    {
+      "t": "Precio",
+      "items": [
+        "¿Caro comparado con qué exactamente?",
+        "Si el precio no existiera, ¿esta solución es la que quieres?",
+        "¿Qué monto tenías en mente y de dónde salió esa cifra?",
+        "¿Prefieres el precio más bajo o el costo total más bajo? No son lo mismo.",
+        "¿Cuánto te está costando cada mes el problema que esto resuelve?",
+        "Si te muestro que se paga solo en [plazo], ¿el precio sigue siendo el tema?",
+        "¿El tema es el monto total o la forma de pagarlo?",
+        "¿Qué tendría que incluir esta propuesta para que el precio te pareciera justo?",
+        "¿Qué parte del alcance quitarías para llegar a tu presupuesto?",
+        "¿Has calculado cuánto cuesta la opción barata cuando falla?",
+        "Si dividimos la inversión entre los años de vida útil, ¿cuánto es al día?",
+        "¿Comparamos las cotizaciones línea por línea para ver dónde está la diferencia?",
+        "¿Qué pasa con ese dinero si no lo inviertes aquí? ¿A dónde se va?",
+        "¿El presupuesto es una limitación real o una forma de decirme otra cosa?",
+        "¿Cuándo se define el presupuesto del próximo periodo y quién lo define?",
+        "Si te congelo este precio por escrito 30 días, ¿eso te ayuda a decidir?",
+        "¿Qué vale más: ahorrar [monto] hoy o ganar [monto mayor] cada año?",
+        "¿Un descuento a cambio de qué: firma hoy, anticipo, referencia?",
+        "¿Estás comparando el precio de compra o el costo de propiedad a cinco años?",
+        "Si mañana el precio subiera 10%, ¿te arrepentirías de no haber cerrado hoy?"
+      ]
+    },
+    {
+      "t": "Confianza",
+      "items": [
+        "¿Qué necesitarías ver o comprobar para sentirte seguro con nosotros?",
+        "¿Te sirve hablar directamente con dos clientes actuales, sin que yo esté presente?",
+        "¿Qué fue exactamente lo que falló con tu proveedor anterior?",
+        "Si eso que te pasó quedara blindado por contrato, ¿qué otra duda quedaría?",
+        "¿Qué significaría para ti, en concreto, que esto \"no funcione\"?",
+        "¿Prefieres verlo funcionando en un proyecto real antes de decidir?",
+        "¿Qué garantía por escrito te dejaría tranquilo: resultado, tiempo o servicio?",
+        "¿Te da más confianza pagar todo al final o por avances verificados?",
+        "¿Qué parte de mi propuesta te suena demasiado buena para ser verdad?",
+        "¿Quién te ha quedado mal antes y qué aprendiste de esa experiencia?",
+        "Si te digo también lo que esta propuesta NO incluye, ¿la evaluamos completa?",
+        "¿Qué pregunta no me has hecho porque crees que te voy a mentir?",
+        "¿Qué haría falta para que esta decisión dejara de sentirse riesgosa?",
+        "¿Te sentirías más seguro con una etapa piloto pequeña antes del proyecto completo?",
+        "¿A quién más le has comprado algo similar y cómo decidiste confiar en él?",
+        "¿Revisamos juntos el contrato cláusula por cláusula antes de firmar?",
+        "Si algo falla en el mes ocho, ¿qué esperarías que hiciera yo? Te lo firmo.",
+        "¿Prefieres una promesa entusiasta o un compromiso por escrito con penalización?",
+        "¿Qué señal te haría cancelar esta compra a último momento? Hablémosla ahora.",
+        "¿Qué te dice tu instinto, y qué dato le falta para volverse decisión?"
+      ]
+    },
+    {
+      "t": "Competencia",
+      "items": [
+        "Si todos costáramos lo mismo, ¿a quién elegirías y por qué?",
+        "¿Qué es lo único que cambiarías de tu proveedor actual?",
+        "¿Qué criterios vas a usar para comparar las propuestas? ¿Los definimos juntos?",
+        "¿Las otras propuestas te detallan por escrito qué NO incluyen?",
+        "¿Estás comparando lo que cada quien promete o lo que cada quien firma?",
+        "¿Hace cuánto no cotizas con alguien más, aunque sea para confirmar que estás bien?",
+        "¿Qué te ofrece la competencia que yo no te haya mostrado todavía?",
+        "Si te ofrecen más, ¿qué te detiene de firmar con ellos hoy mismo?",
+        "¿Ya pediste referencias verificables de eso \"extra\" que te prometen?",
+        "¿Comparamos las especificaciones técnicas lado a lado, línea por línea?",
+        "¿Qué pesa más al final: el precio, el respaldo o los tiempos de entrega?",
+        "¿Tu proveedor actual sabe que estás comparando? ¿Qué haría si lo supiera?",
+        "¿Qué pasaría con tu operación si tu proveedor actual fallara mañana?",
+        "¿Te sirve tener un plan B calificado aunque hoy no cambies nada?",
+        "¿Cuánto te cuesta cada año la comodidad de no comparar?",
+        "¿Ese \"más barato\" incluye lo mismo, o incluye menos cosas escritas más chiquito?",
+        "¿Quién responde en cada propuesta cuando algo falla después de la entrega?",
+        "¿Hacer esto internamente cuánto le costaría a tu equipo en horas reales?",
+        "¿Qué dejaría de hacer tu equipo mientras hace esto por su cuenta?",
+        "¿Puedo cotizarte un solo proyecto pequeño como punto de comparación?"
+      ]
+    },
+    {
+      "t": "Urgencia",
+      "items": [
+        "¿Cuánto te cuesta cada mes que pasa sin resolver esto?",
+        "¿Qué va a ser diferente el próximo mes que no tengamos hoy?",
+        "Si esperar seis meses te costara [monto], ¿seguiría sin haber prisa?",
+        "¿Qué tendría que pasar para que esto se volviera urgente?",
+        "¿El costo de decidir hoy es mayor o menor que el costo de esperar?",
+        "¿Qué pierde tu empresa cada semana que esta decisión sigue abierta?",
+        "Si el problema creciera 20% este año, ¿la solución de hoy alcanzaría?",
+        "¿Prefieres decidir con calma ahora o con presión cuando ya sea emergencia?",
+        "¿Cuántas veces has pospuesto ya esta decisión y qué ha cambiado?",
+        "¿Qué fecha límite real tiene esto: fiscal, operativa, de temporada?",
+        "Si te congelo precio y condiciones hasta el [fecha], ¿decides antes de esa fecha?",
+        "¿Esperar te va a dar más información o solamente más tiempo?",
+        "¿Cuál es el costo de oportunidad de tener este dinero detenido?",
+        "¿Qué le dirías a tu yo de hace un año si hubiera decidido entonces?",
+        "¿Este proyecto es más barato hoy o dentro de un año, con todo incluido?",
+        "¿Qué proyecto de tu lista se beneficiaría del ahorro que esto genera desde el mes uno?",
+        "Si arrancamos hoy, ¿dónde estarías en 90 días? ¿Y si no arrancamos?",
+        "¿La espera es una estrategia o es solo la ausencia de una decisión?",
+        "¿Qué necesitas de mí hoy para que esto quede resuelto esta semana?",
+        "Si mañana tu situación cambiara —tarifa, avería, demanda—, ¿cuánto tardarías en reaccionar?"
+      ]
+    },
+    {
+      "t": "Autoridad",
+      "items": [
+        "Además de ti, ¿quién más participa en esta decisión?",
+        "Y a ti, con lo que ya viste, ¿te convence? ¿Tú sí lo harías?",
+        "¿Qué es lo que más le importa a quien decide: costo, riesgo o resultado?",
+        "¿Cómo prefiere recibir propuestas esa persona: números, documento o reunión?",
+        "¿Me ayudas a conseguir 15 minutos con quien decide, estando tú presente?",
+        "¿Qué crees que te van a cuestionar cuando lo presentes internamente?",
+        "¿Qué proyectos se aprueban a la primera en tu empresa y qué tienen en común?",
+        "¿Cuándo sesiona el comité y qué necesito entregarte para llegar a esa fecha?",
+        "¿Quién es la voz que más pesa en esa mesa y qué le importa?",
+        "Si tu socio dice que no, ¿qué razón crees que daría? Preparémosla.",
+        "¿Prefieres presentarlo tú con mi material o que lo presentemos juntos?",
+        "¿Qué le pareció a tu socio/jefe la última vez que surgió este tema?",
+        "¿La decisión es por consenso o alguien tiene la última palabra?",
+        "¿Qué información le faltó a la última propuesta que rechazaron?",
+        "¿Te sirve un resumen de una página diseñado para que lo apruebe dirección?",
+        "¿Quién firmaría el contrato y quién autorizaría el pago? ¿Son la misma persona?",
+        "¿Hay alguien que pueda vetar esto aunque todos los demás digan que sí?",
+        "¿Qué gana quien decide, personalmente, si este proyecto sale bien?",
+        "Si respondo por escrito las tres dudas del comité, ¿lo presentas esta semana?",
+        "¿Qué necesitas tú para verte bien internamente presentando este proyecto?"
+      ]
+    },
+    {
+      "t": "Tiempo",
+      "items": [
+        "¿Qué es exactamente lo que necesitas pensar: precio, momento o resultado?",
+        "¿Qué duda específica te gustaría resolver antes de decidir?",
+        "¿Cuánto tiempo necesitas y qué vas a evaluar en ese tiempo?",
+        "¿Te parece si lo piensas hasta el [día] y ese día hablamos 10 minutos?",
+        "¿Qué tendría que terminar o resolverse para que sí fuera buen momento?",
+        "¿Tu \"mal momento\" tiene fecha de término o es indefinido?",
+        "¿Qué requiere esta decisión de tu tiempo real? Son [minutos]: ¿cuándo caben?",
+        "Si te quito todo el trabajo operativo y solo decides, ¿el tiempo sigue siendo problema?",
+        "¿Lo retomamos el próximo año por planeación real o porque no convenció?",
+        "Si dejamos todo aprobado hoy y ejecutamos en [mes], ¿firmarías hoy?",
+        "¿Qué día de esta semana te queda mejor: martes o jueves? ¿Mañana o tarde?",
+        "¿Prefieres una llamada de 10 minutos o que te mande el resumen y hablamos el viernes?",
+        "¿A qué hora sueles tener 15 minutos tranquilos?",
+        "¿Quién de tu equipo puede avanzar esto contigo si tu agenda no da?",
+        "¿Qué pasa si esta decisión sigue pendiente dentro de tres meses?",
+        "¿Cuándo revisas pendientes de este tipo: inicio de semana, quincena, fin de mes?",
+        "Si te mando todo listo para solo firmar, ¿cuánto tardarías en revisarlo?",
+        "¿El tiempo que te falta es para analizar o para animarte? Son remedios distintos.",
+        "¿Agendamos el seguimiento ahora con día y hora, para que ninguno persiga al otro?",
+        "De hoy al viernes, ¿qué espacio de 15 minutos me regalas para dejar esto resuelto?"
+      ]
+    }
+  ],
+  "TIPOS": {
+    "real": {
+      "label": "Objeción real",
+      "short": "Real",
+      "hue": 155,
+      "desc": "Da datos concretos y pide detalles. Quiere comprar, algo específico se lo impide.",
+      "accion": "Resuélvela y cierra."
+    },
+    "duda": {
+      "label": "Duda",
+      "short": "Duda",
+      "hue": 78,
+      "desc": "Pregunta \"¿y si…?\", pide garantías o compara. Teme equivocarse.",
+      "accion": "Da certeza, no argumentos nuevos."
+    },
+    "excusa": {
+      "label": "Excusa",
+      "short": "Excusa",
+      "hue": 28,
+      "desc": "Es vago, evita agendar, habla en futuro indefinido. No quiere decirte que no.",
+      "accion": "No la resuelvas: descubre la objeción real detrás."
+    }
+  },
+  "USO": [
+    {
+      "t": "Antes de la reunión",
+      "d": "Abre el Buscador y localiza las 3 objeciones que más probablemente te dirá este cliente. Lee su ficha completa en el Banco Maestro: dos minutos por ficha. Di la respuesta en voz alta una vez."
+    },
+    {
+      "t": "Durante la llamada",
+      "d": "Si aparece una objeción inesperada, usa el Semáforo para saber si es real, duda o excusa, y responde con la ficha correspondiente."
+    },
+    {
+      "t": "Por WhatsApp",
+      "d": "Copia directamente las conversaciones de la sección de scripts y adapta el nombre y el producto."
+    },
+    {
+      "t": "Una vez por semana",
+      "d": "Usa la Plantilla de personalización para adaptar los scripts a tu negocio. Cada script adaptado vale el doble."
+    }
+  ],
+  "WHATSAPP": [
+    {
+      "titulo": "\"Está muy caro\" tras enviar cotización",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Hola, ya vi la cotización. La verdad está muy cara 😕"
+        },
+        {
+          "who": "t",
+          "t": "Hola [nombre], gracias por revisarla tan rápido 🙌"
+        },
+        {
+          "who": "t",
+          "t": "Te entiendo. Cuando dices cara, ¿es por el monto total o porque esperabas otra cifra?"
+        },
+        {
+          "who": "c",
+          "t": "Esperaba algo como [monto menor]"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto, ese dato me sirve mucho. Con [monto menor] sí se puede hacer una versión: incluiría [alcance reducido] y dejaríamos [resto] para una segunda etapa."
+        },
+        {
+          "who": "t",
+          "t": "¿Te preparo esa versión para compararla con la completa? Así decides viendo las dos."
+        },
+        {
+          "who": "c",
+          "t": "Va, mándame las dos"
+        },
+        {
+          "who": "t",
+          "t": "Te las mando hoy antes de las [hora]. ¿Te marco mañana a las [hora] 10 minutos para revisarlas juntos?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, mañana está bien"
+        },
+        {
+          "who": "t",
+          "t": "Agendado ✅ Mañana [hora]. Que tengas excelente día, [nombre]."
+        }
+      ]
+    },
+    {
+      "titulo": "\"Déjame pensarlo\" que lleva 4 días en silencio",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "Hola [nombre], ¿cómo estás? Quedamos en que lo pensarías y prefiero no dejarte a medias 🙂"
+        },
+        {
+          "who": "t",
+          "t": "Pregunta honesta: ¿en qué quedó la balanza? ¿Precio, momento o dudas del resultado?"
+        },
+        {
+          "who": "c",
+          "t": "Hola. La verdad es el precio, andamos apretados"
+        },
+        {
+          "who": "t",
+          "t": "Gracias por decírmelo directo, eso me permite ayudarte de verdad."
+        },
+        {
+          "who": "t",
+          "t": "Dos opciones: A) lo estructuro en [n] pagos de [monto] mensuales, o B) empezamos solo con la etapa uno por [monto menor]."
+        },
+        {
+          "who": "c",
+          "t": "La de pagos suena mejor"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto. Te mando hoy la propuesta con ese esquema. Si te cuadra, ¿la firmamos esta semana para arrancar el lunes?"
+        }
+      ]
+    },
+    {
+      "titulo": "\"Mándame la información\" (evasiva clásica)",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Mejor mándame la info y yo la reviso"
+        },
+        {
+          "who": "t",
+          "t": "¡Claro que sí! Y para mandarte algo útil y no un PDF de 20 páginas 😅 dime:"
+        },
+        {
+          "who": "t",
+          "t": "¿Qué es lo que más te interesa resolver: [opción A], [opción B] o [opción C]?"
+        },
+        {
+          "who": "c",
+          "t": "Más que nada [opción B]"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto. Te mando un resumen de UNA página enfocado en eso, con números claros."
+        },
+        {
+          "who": "t",
+          "t": "Te llega hoy antes de las [hora]. ¿Te marco el jueves a las [hora] 5 minutos para comentarlo?"
+        },
+        {
+          "who": "c",
+          "t": "Sale, el jueves"
+        },
+        {
+          "who": "t",
+          "t": "Agendado ✅ Jueves [hora]. Resumen en camino 📄"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente compara con competidor más barato",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Oye, me llegó otra cotización y está [monto] más barata que la tuya"
+        },
+        {
+          "who": "t",
+          "t": "Gracias por avisarme antes de decidir, [nombre]. Eso habla bien de ti 🙌"
+        },
+        {
+          "who": "t",
+          "t": "Puede ser buena opción. Solo verifica tres cosas por escrito: 1) [especificación crítica], 2) alcance de la garantía, 3) qué NO incluye."
+        },
+        {
+          "who": "t",
+          "t": "Si esos tres puntos igualan a los míos, es gran oferta y te lo confirmo yo mismo."
+        },
+        {
+          "who": "c",
+          "t": "Déjame revisar… la garantía no viene detallada"
+        },
+        {
+          "who": "t",
+          "t": "Ahí suele vivir la diferencia de precio 😉 Pídesela por escrito. ¿El [día] comparamos las dos propuestas lado a lado en 15 min?"
+        },
+        {
+          "who": "c",
+          "t": "Va, el [día] está bien"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto ✅ Trae las dos cotizaciones. Si la otra gana punto por punto, te lo digo de frente."
+        }
+      ]
+    },
+    {
+      "titulo": "\"No tengo presupuesto ahorita\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Me interesa pero ahorita no hay presupuesto"
+        },
+        {
+          "who": "t",
+          "t": "Te entiendo perfecto, [nombre]. Pregunta clave: si el presupuesto no fuera tema, ¿esto sí lo harían?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, definitivamente"
+        },
+        {
+          "who": "t",
+          "t": "Entonces el proyecto ya está aprobado en lo importante 🙌 Solo falta resolver el cómo."
+        },
+        {
+          "who": "t",
+          "t": "Opción A: pagos de [monto] al mes. Opción B: arrancamos con la etapa uno por [monto menor]."
+        },
+        {
+          "who": "c",
+          "t": "¿La etapa uno qué incluye?"
+        },
+        {
+          "who": "t",
+          "t": "Incluye [alcance concreto], que por sí sola ya te da [beneficio]. Te mando el desglose ahora."
+        },
+        {
+          "who": "t",
+          "t": "Si te hace sentido, ¿la arrancamos este mes?"
+        }
+      ]
+    },
+    {
+      "titulo": "Reactivar prospecto frío (3 semanas sin respuesta)",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "Hola [nombre] 👋 Prometí no perseguirte, así que este es mi mensaje de cierre de expediente:"
+        },
+        {
+          "who": "t",
+          "t": "¿El proyecto sigue vivo, quedó en pausa o lo descartaron? Cualquiera me sirve, la única que no me sirve es el misterio 😄"
+        },
+        {
+          "who": "c",
+          "t": "Jaja perdón, se me fue. Sigue vivo pero hemos estado a tope"
+        },
+        {
+          "who": "t",
+          "t": "¡Me da gusto! Yo cargo con todo lo operativo y tú solo decides."
+        },
+        {
+          "who": "t",
+          "t": "¿Qué día tienes 15 min: martes [hora] o jueves [hora]?"
+        },
+        {
+          "who": "c",
+          "t": "Jueves mejor"
+        },
+        {
+          "who": "t",
+          "t": "Jueves [hora] agendado ✅ Te mando invitación al calendario."
+        }
+      ]
+    },
+    {
+      "titulo": "\"Lo tengo que hablar con mi socio\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Me gustó, pero lo tengo que ver con mi socio"
+        },
+        {
+          "who": "t",
+          "t": "Claro, una decisión así se toma en equipo 🙌"
+        },
+        {
+          "who": "t",
+          "t": "Déjame estar en esa conversación. Tu socio hará preguntas técnicas que es MI trabajo responder, no el tuyo."
+        },
+        {
+          "who": "t",
+          "t": "20 minutos los tres, por videollamada. ¿Cuándo coinciden?"
+        },
+        {
+          "who": "c",
+          "t": "Déjame ver su agenda… ¿podría ser el viernes?"
+        },
+        {
+          "who": "t",
+          "t": "Viernes perfecto. ¿[hora] o [hora]?"
+        },
+        {
+          "who": "c",
+          "t": "A las [hora]"
+        },
+        {
+          "who": "t",
+          "t": "Listo ✅ Les mando la liga y un resumen de una página para que tu socio llegue con contexto. ¿Su nombre?"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente pide descuento por WhatsApp",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "¿Y no me puedes mejorar el precio? 🙏"
+        },
+        {
+          "who": "t",
+          "t": "Jaja directo al grano, me gusta 😄"
+        },
+        {
+          "who": "t",
+          "t": "Te soy honesto: el precio está justo para garantizar [calidad/garantía]. Lo que sí puedo hacer es mejorar condiciones:"
+        },
+        {
+          "who": "t",
+          "t": "A) [meses sin intereses / servicio extra / garantía extendida] si cerramos antes del [fecha]"
+        },
+        {
+          "who": "t",
+          "t": "B) [otro beneficio] pagando de contado. ¿Cuál te sirve más?"
+        },
+        {
+          "who": "c",
+          "t": "La A suena bien"
+        },
+        {
+          "who": "t",
+          "t": "Hecho 🤝 Propuesta con [beneficio A] confirmando antes del [fecha]. ¿Firmamos mañana?"
+        }
+      ]
+    },
+    {
+      "titulo": "\"¿Y si no funciona?\" antes de firmar",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Mi única duda es… ¿y si no funciona como dices?"
+        },
+        {
+          "who": "t",
+          "t": "Es LA pregunta correcta, y merece respuesta en dos partes:"
+        },
+        {
+          "who": "t",
+          "t": "1️⃣ Por qué sí funciona: ya opera en [n] casos como el tuyo. Te paso ahora dos referencias con teléfono."
+        },
+        {
+          "who": "t",
+          "t": "2️⃣ Y si aun así falla: garantía POR ESCRITO de [alcance], con [acción] en máximo [días]."
+        },
+        {
+          "who": "c",
+          "t": "¿Me pasas las referencias?"
+        },
+        {
+          "who": "t",
+          "t": "Claro: [Nombre 1] – [teléfono] y [Nombre 2] – [teléfono]. Les aviso que les escribirás 👍"
+        },
+        {
+          "who": "c",
+          "t": "Ok, les marco y te digo"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto. Te busco el [día] para tu veredicto. Si te dejan tranquilo, firmamos esa semana. ¿Justo?"
+        }
+      ]
+    },
+    {
+      "titulo": "Seguimiento post-reunión el mismo día",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "[Nombre], gracias por tu tiempo hoy 🙌 Resumen de lo acordado:"
+        },
+        {
+          "who": "t",
+          "t": "✅ Alcance: [resumen en una línea]"
+        },
+        {
+          "who": "t",
+          "t": "✅ Inversión: [monto] en [esquema de pago]"
+        },
+        {
+          "who": "t",
+          "t": "✅ Inicio: [fecha] · Entrega: [fecha]"
+        },
+        {
+          "who": "t",
+          "t": "✅ Pendiente tuyo: [documento] antes del [día]"
+        },
+        {
+          "who": "t",
+          "t": "✅ Pendiente mío: contrato listo el [día]. ¿Algo que corregir?"
+        },
+        {
+          "who": "c",
+          "t": "Todo correcto 👍"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto. Contrato en tu correo el [día]. Un gusto, [nombre]."
+        }
+      ]
+    },
+    {
+      "titulo": "\"Ahorita no es buen momento\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Está interesante pero ahorita no es buen momento"
+        },
+        {
+          "who": "t",
+          "t": "Te creo, [nombre]. ¿Ese mal momento tiene fecha de término? (una obra, un cierre, un proyecto)"
+        },
+        {
+          "who": "c",
+          "t": "Sí, terminamos una entrega grande a fin de [mes]"
+        },
+        {
+          "who": "t",
+          "t": "¡Eso es un mal momento con fecha, y esos son los mejores! 😄"
+        },
+        {
+          "who": "t",
+          "t": "Dejamos TODO preparado ahora (propuesta + condiciones congeladas) para arrancar el [día 1] sin perder una semana."
+        },
+        {
+          "who": "c",
+          "t": "Suena bien"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto ✅ Te mando la propuesta con precio congelado hasta el [fecha]. Llamada de arranque: [día] [hora]. ¿Confirmado?"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente que quiere hacerlo por su cuenta",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Creo que lo podemos hacer nosotros internamente"
+        },
+        {
+          "who": "t",
+          "t": "Es opción real, y a veces la correcta 👍 Una cuenta rápida:"
+        },
+        {
+          "who": "t",
+          "t": "¿Quién lo haría y cuántas horas calculas que le tome?"
+        },
+        {
+          "who": "c",
+          "t": "Lo haría [persona], ¿unas [n] horas?"
+        },
+        {
+          "who": "t",
+          "t": "Va: [n] horas × su costo ≈ [monto]. Súmale la curva de aprendizaje y lo que deja de hacer."
+        },
+        {
+          "who": "t",
+          "t": "Costo interno real: entre [monto] y [monto×2]. Mi propuesta: [monto], con garantía y en la mitad del tiempo."
+        },
+        {
+          "who": "c",
+          "t": "Visto así no está tan lejos…"
+        },
+        {
+          "who": "t",
+          "t": "Exacto. ¿Llamada de 10 min mañana para afinar los dos escenarios con números reales?"
+        }
+      ]
+    },
+    {
+      "titulo": "Primer contacto con lead de redes",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Hola, vi su publicación. ¿Me pueden dar información?"
+        },
+        {
+          "who": "t",
+          "t": "¡Hola! Gracias por escribirnos 🙌 Soy [nombre], de [empresa]."
+        },
+        {
+          "who": "t",
+          "t": "Para darte info útil y no genérica: ¿qué te gustaría resolver con [producto]?"
+        },
+        {
+          "who": "c",
+          "t": "Quiero [necesidad general]"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto. Dos preguntas para cotizarte bien: 1) [pregunta 1] 2) [pregunta 2]"
+        },
+        {
+          "who": "c",
+          "t": "[Respuestas]"
+        },
+        {
+          "who": "t",
+          "t": "¡Excelente! Tu caso pinta para [beneficio estimado]. ¿Llamada de 15 min hoy [hora] o mañana [hora]?"
+        },
+        {
+          "who": "c",
+          "t": "Mañana mejor"
+        },
+        {
+          "who": "t",
+          "t": "Mañana [hora] agendado ✅ Te mando recordatorio."
+        }
+      ]
+    },
+    {
+      "titulo": "\"Suena demasiado bueno para ser verdad\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "No sé, suena demasiado bueno para ser verdad 🤔"
+        },
+        {
+          "who": "t",
+          "t": "Y haces bien en sospechar 😄 Hago lo contrario a esconder:"
+        },
+        {
+          "who": "t",
+          "t": "Esto es lo que NO incluye: [exclusión 1] y [exclusión 2]. Y el resultado es el promedio, no el ideal."
+        },
+        {
+          "who": "t",
+          "t": "Esa es toda la letra chica. ¿Con las dos caras, sigue pareciéndote buena?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, aunque el precio me parece muy bajo"
+        },
+        {
+          "who": "t",
+          "t": "Tiene explicación: cobramos menos porque [sin intermediarios / alianza con fabricante]. Compara mi especificación línea por línea."
+        },
+        {
+          "who": "c",
+          "t": "Ok, me convence. ¿El siguiente paso?"
+        },
+        {
+          "who": "t",
+          "t": "Es [paso concreto]. ¿Lo agendamos para el [día]? ✅"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente molesto por experiencia previa",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Ya nos quedaron mal una vez con esto y no quiero repetir"
+        },
+        {
+          "who": "t",
+          "t": "Lamento eso, [nombre]. ¿Me cuentas qué pasó? Quiero entenderlo antes de decirte nada."
+        },
+        {
+          "who": "c",
+          "t": "Pagamos por adelantado y dejaron el trabajo a medias."
+        },
+        {
+          "who": "t",
+          "t": "Qué coraje. No te voy a decir \"somos diferentes\", porque eso te dijo también el anterior."
+        },
+        {
+          "who": "t",
+          "t": "Lo vuelvo imposible: pagos contra avances verificados, penalización por retraso, y el pago final se libera SOLO con tu firma."
+        },
+        {
+          "who": "c",
+          "t": "Eso suena más serio, sí"
+        },
+        {
+          "who": "t",
+          "t": "Es estructura, no promesas 🙂 ¿Te preparo la propuesta con ese esquema de pagos?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, mándala"
+        },
+        {
+          "who": "t",
+          "t": "Va. Y de una vez: [Nombre referencia] – [teléfono]. Pregúntale si terminamos lo que empezamos 💪"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente pide bajar el alcance para bajar precio",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "¿Y si le quitamos cosas para que salga más barato?"
+        },
+        {
+          "who": "t",
+          "t": "Se puede, y te ayudo a quitarle lo correcto 👍 Hay dos tipos de recortes:"
+        },
+        {
+          "who": "t",
+          "t": "✂️ Los que bajan precio sin dañar resultado: [ejemplo 1], [ejemplo 2]"
+        },
+        {
+          "who": "t",
+          "t": "⚠️ Los que parecen ahorro pero salen caros: [ejemplo 1], [ejemplo 2]"
+        },
+        {
+          "who": "t",
+          "t": "Con los recortes sanos, queda en [nuevo monto]. ¿Te preparo esa versión?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, esa versión me interesa"
+        },
+        {
+          "who": "t",
+          "t": "Va. Versión optimizada hoy. Si te cuadra, ¿arrancamos la semana del [fecha]?"
+        }
+      ]
+    },
+    {
+      "titulo": "Confirmar reunión y reducir cancelaciones",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "[Nombre], ¡buen día! 👋 Confirmando nuestra reunión de mañana [día] a las [hora] en [lugar/liga]."
+        },
+        {
+          "who": "t",
+          "t": "Para aprovecharla al máximo te llevo: 1) la propuesta ajustada, 2) el comparativo que pediste, 3) el plan de tiempos."
+        },
+        {
+          "who": "t",
+          "t": "De tu lado solo necesito que tengas a la mano [dato/documento]. ¿Confirmamos? ✅"
+        },
+        {
+          "who": "c",
+          "t": "Confirmado 👍"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto, nos vemos mañana. Va a ser una buena reunión 🙌"
+        }
+      ]
+    },
+    {
+      "titulo": "Recuperar cotización sin respuesta (7 días)",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "Hola [nombre] 👋 Hace una semana te mandé la cotización y no quiero que se pierda."
+        },
+        {
+          "who": "t",
+          "t": "Tres opciones, contéstame con el número:"
+        },
+        {
+          "who": "t",
+          "t": "1️⃣ La vi y tengo dudas → te marco 10 min"
+        },
+        {
+          "who": "t",
+          "t": "2️⃣ La vi y no me convenció → dime qué falló y lo ajusto"
+        },
+        {
+          "who": "t",
+          "t": "3️⃣ No la he visto → te mando el resumen de 3 líneas"
+        },
+        {
+          "who": "c",
+          "t": "Jaja la 3, no he tenido cabeza"
+        },
+        {
+          "who": "t",
+          "t": "😄 Va: [Proyecto] = [beneficio] por [monto] en [esquema], arrancando en [plazo]. ¿Te marco el [día] a las [hora]?"
+        }
+      ]
+    },
+    {
+      "titulo": "\"Lo vemos el próximo año\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Creo que esto mejor lo vemos el próximo año"
+        },
+        {
+          "who": "t",
+          "t": "Puede tener sentido 👍 ¿Es por planeación real (presupuesto/fiscal) o un \"no nos convenció\" educado?"
+        },
+        {
+          "who": "c",
+          "t": "Sí nos interesa, pero el presupuesto de este año ya está comprometido"
+        },
+        {
+          "who": "t",
+          "t": "Perfecto, te propongo lo que hacen los compradores más listos:"
+        },
+        {
+          "who": "t",
+          "t": "Firmar HOY con precio de este año, anticipo simbólico de [monto/%], y ejecución en [mes del año siguiente]."
+        },
+        {
+          "who": "t",
+          "t": "Congelas el precio actual y estrenas el próximo año. Si suben (que suben), quedaste fuera de la subida."
+        },
+        {
+          "who": "c",
+          "t": "¿Y eso se puede?"
+        },
+        {
+          "who": "t",
+          "t": "Se puede y te conviene. ¿Te preparo el contrato con ese esquema esta semana?"
+        }
+      ]
+    },
+    {
+      "titulo": "Cliente indeciso entre dos opciones tuyas",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "No sé si irme por la opción A o la B 😩"
+        },
+        {
+          "who": "t",
+          "t": "Te lo hago fácil, [nombre]. ¿Qué pesa más para ti hoy, [criterio de A] o [criterio de B]?"
+        },
+        {
+          "who": "c",
+          "t": "Creo que [criterio de A]"
+        },
+        {
+          "who": "t",
+          "t": "Entonces es la opción A, sin duda: te da [beneficio] que es justo lo que priorizas. La B es mejor solo si [condición que no aplica]."
+        },
+        {
+          "who": "t",
+          "t": "Mi recomendación profesional: A. ¿La cerramos?"
+        },
+        {
+          "who": "c",
+          "t": "Va, la A"
+        },
+        {
+          "who": "t",
+          "t": "Excelente elección 🤝 Te mando el acuerdo de la A hoy. Bienvenido, [nombre] 🎉"
+        }
+      ]
+    },
+    {
+      "titulo": "\"No corre prisa\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Lo vamos a hacer, pero no nos corre prisa"
+        },
+        {
+          "who": "t",
+          "t": "Me gusta: decisión tomada, solo falta fecha 👍 Un dato:"
+        },
+        {
+          "who": "t",
+          "t": "Cada mes sin el proyecto cuesta [monto] en [concepto]. \"Sin prisa\" 6 meses = [monto × 6]."
+        },
+        {
+          "who": "t",
+          "t": "No te pido prisa; te pido que la calma tenga precio conocido 🙂"
+        },
+        {
+          "who": "c",
+          "t": "Uy, visto así…"
+        },
+        {
+          "who": "t",
+          "t": "El contador se detiene el día que arrancamos. Si empezamos la semana del [fecha], se detiene ahí. ¿Bloqueamos esa semana?"
+        },
+        {
+          "who": "c",
+          "t": "Va, bloquéala"
+        },
+        {
+          "who": "t",
+          "t": "Bloqueada ✅ Te mando el plan de arranque hoy. Buena decisión, [nombre]."
+        }
+      ]
+    },
+    {
+      "titulo": "Reclamo o duda post-venta",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Oye, tengo un detalle con [problema] 😑"
+        },
+        {
+          "who": "t",
+          "t": "Gracias por avisarme de inmediato, [nombre]. Lo tomo ahora mismo."
+        },
+        {
+          "who": "t",
+          "t": "Para resolverlo rápido: ¿me mandas una foto de [detalle]?"
+        },
+        {
+          "who": "c",
+          "t": "[Envía foto]"
+        },
+        {
+          "who": "t",
+          "t": "Ya lo vi. Se resuelve con [solución]. Agendo a [responsable] para el [día] [hora]. Sin costo: está en tu garantía ✅"
+        },
+        {
+          "who": "c",
+          "t": "Ah perfecto, pensé que iba a ser problema"
+        },
+        {
+          "who": "t",
+          "t": "Para eso está la garantía y para eso estoy yo 🙂 Te confirmo cuando quede y en unos días verifico que todo siga perfecto."
+        }
+      ]
+    },
+    {
+      "titulo": "Pedir referidos a un cliente satisfecho",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "[Nombre], ¡qué gusto que el proyecto quedó como esperabas! 🙌"
+        },
+        {
+          "who": "c",
+          "t": "Sí, quedamos muy contentos"
+        },
+        {
+          "who": "t",
+          "t": "Me da mucho gusto. Un favor que vale oro para mí:"
+        },
+        {
+          "who": "t",
+          "t": "¿Conoces a alguien —colega, empresa vecina— con el mismo problema que tú tenías?"
+        },
+        {
+          "who": "t",
+          "t": "Solo necesito nombre y teléfono, yo hago todo lo demás con la misma calidad que a ti."
+        },
+        {
+          "who": "c",
+          "t": "Mi [contacto] estaba viendo algo así"
+        },
+        {
+          "who": "t",
+          "t": "¡Perfecto! ¿Le avisas que le escribiré de tu parte? Con tu recomendación empieza con confianza."
+        },
+        {
+          "who": "c",
+          "t": "Claro, yo le digo hoy"
+        },
+        {
+          "who": "t",
+          "t": "Mil gracias 🙏 Y como agradecimiento, en tu próximo [servicio] te aplico [beneficio]. En serio."
+        }
+      ]
+    },
+    {
+      "titulo": "\"Un conocido me lo hace más barato\"",
+      "msgs": [
+        {
+          "who": "c",
+          "t": "Un conocido me lo hace en [monto menor], la verdad"
+        },
+        {
+          "who": "t",
+          "t": "Es opción real, no la descarto 👍 Solo compáralas completas, son productos distintos:"
+        },
+        {
+          "who": "t",
+          "t": "Con él pagas [monto menor] y recibes la ejecución."
+        },
+        {
+          "who": "t",
+          "t": "Conmigo: ejecución + contrato y factura + garantía escrita de [plazo] + empresa que responde 2 años."
+        },
+        {
+          "who": "t",
+          "t": "Si algo falla en el mes 14, ¿qué respaldo tienes con él?"
+        },
+        {
+          "who": "c",
+          "t": "Pues… supongo que le hablaría"
+        },
+        {
+          "who": "t",
+          "t": "Si sigue disponible, si sigue en el oficio y si acepta la culpa. Tres \"si\" sin contrato 🙂 En un proyecto de [monto], ¿la diferencia no vale dormir tranquilo 2 años?"
+        },
+        {
+          "who": "c",
+          "t": "Tienes razón, mejor hagámoslo bien"
+        },
+        {
+          "who": "t",
+          "t": "Buena decisión 🤝 Te mando hoy contrato y calendario. Arrancamos el [fecha]."
+        }
+      ]
+    },
+    {
+      "titulo": "Cierre final tras resolver todas las objeciones",
+      "msgs": [
+        {
+          "who": "t",
+          "t": "[Nombre], recapitulemos porque creo que ya está todo resuelto:"
+        },
+        {
+          "who": "t",
+          "t": "✅ Precio: [monto] con [esquema de pago]"
+        },
+        {
+          "who": "t",
+          "t": "✅ Garantía: [alcance] por escrito"
+        },
+        {
+          "who": "t",
+          "t": "✅ Tiempos: arranque [fecha], entrega [fecha] con penalización por retraso"
+        },
+        {
+          "who": "t",
+          "t": "✅ Referencias: ya hablaste con [nombre]. ¿Queda alguna duda o procedemos?"
+        },
+        {
+          "who": "c",
+          "t": "No, creo que está todo"
+        },
+        {
+          "who": "t",
+          "t": "Entonces solo falta lo más fácil 😄 Te mando el contrato ahora. Firmas donde dice [indicación] y me lo regresas. ¿Lo firmas hoy?"
+        },
+        {
+          "who": "c",
+          "t": "Sí, hoy te lo mando"
+        },
+        {
+          "who": "t",
+          "t": "Excelente 🎉 Bienvenido a bordo, [nombre]. A partir de hoy, este pendiente es mío, no tuyo."
+        }
+      ]
+    }
+  ]
+}

@@ -7,10 +7,19 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class extends Component {
+    public string $query = '';
+
     #[Computed]
     public function cierres()
     {
-        return Cierre::orderBy('sort_order')->get();
+        return Cierre::query()
+            ->when($this->query, fn ($q) => $q->where(function ($q) {
+                $q->where('objection', 'like', "%{$this->query}%")
+                    ->orWhere('name', 'like', "%{$this->query}%")
+                    ->orWhere('script', 'like', "%{$this->query}%");
+            }))
+            ->orderBy('sort_order')
+            ->get();
     }
 }; ?>
 
@@ -19,8 +28,17 @@ new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class ext
     <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">Elige el cierre correcto</h1>
     <p style="font-size:15px;color:#8b95a3;margin:0 0 34px">Primero clasifica, luego responde, y solo entonces cierra. Cerrar antes de responder es cerrar en falso.</p>
 
+    <div style="position:relative;margin-bottom:24px">
+        <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;color:#5a6472">⌕</span>
+        <input
+            wire:model.live.debounce.300ms="query"
+            placeholder="Busca por objeción, nombre del cierre o script…"
+            style="width:100%;background:#141a24;border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:16px 18px 16px 48px;color:#e7ebf0;font:400 15px 'IBM Plex Sans';outline:none"
+        >
+    </div>
+
     <div style="display:flex;flex-direction:column;gap:12px">
-        @foreach ($this->cierres as $c)
+        @forelse ($this->cierres as $c)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 24px">
                 <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
                     <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:#fff">{{ $c->name }}</span>
@@ -38,6 +56,8 @@ new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class ext
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div style="text-align:center;padding:60px 0;color:#6b7684;font-size:14px">Ningún cierre coincide. Prueba con otras palabras.</div>
+        @endforelse
     </div>
 </section>

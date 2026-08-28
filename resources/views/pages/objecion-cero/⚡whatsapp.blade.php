@@ -7,20 +7,59 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class extends Component {
+    public string $query = '';
+
     #[Computed]
     public function scripts()
     {
-        return WhatsappScript::orderBy('sort_order')->get();
+        $scripts = WhatsappScript::orderBy('sort_order')->get();
+
+        if ($this->query === '') {
+            return $scripts;
+        }
+
+        $needle = mb_strtolower($this->query);
+
+        return $scripts
+            ->filter(function (WhatsappScript $w) use ($needle) {
+                if (str_contains(mb_strtolower($w->title), $needle)) {
+                    return true;
+                }
+
+                foreach ($w->messages as $m) {
+                    if (str_contains(mb_strtolower($m['t']), $needle)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            })
+            ->values();
+    }
+
+    #[Computed]
+    public function total(): int
+    {
+        return WhatsappScript::count();
     }
 }; ?>
 
 <section style="animation:ocfade .4s ease both;padding-top:56px">
     <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:oklch(0.72 0.14 78)">Sección 7 · Scripts de WhatsApp</div>
-    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">{{ $this->scripts->count() }} conversaciones listas para copiar</h1>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">{{ $this->total }} conversaciones listas para copiar</h1>
     <p style="font-size:15px;color:#8b95a3;margin:0 0 34px">Sustituye los [corchetes] por tus datos. Mantén uno o dos mensajes por burbuja.</p>
 
+    <div style="position:relative;margin-bottom:24px">
+        <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;color:#5a6472">⌕</span>
+        <input
+            wire:model.live.debounce.300ms="query"
+            placeholder="Busca por tema o por texto dentro de la conversación…"
+            style="width:100%;background:#141a24;border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:16px 18px 16px 48px;color:#e7ebf0;font:400 15px 'IBM Plex Sans';outline:none"
+        >
+    </div>
+
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
-        @foreach ($this->scripts as $i => $w)
+        @forelse ($this->scripts as $i => $w)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden">
                 <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:#0b0f16">
                     <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:oklch(0.80 0.13 82);letter-spacing:.06em">CONVERSACIÓN {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
@@ -35,6 +74,8 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
                     @endforeach
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div style="grid-column:1 / -1;text-align:center;padding:60px 0;color:#6b7684;font-size:14px">Ningún script coincide. Prueba con otras palabras.</div>
+        @endforelse
     </div>
 </section>

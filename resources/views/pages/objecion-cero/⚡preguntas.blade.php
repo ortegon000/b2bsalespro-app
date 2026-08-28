@@ -2,10 +2,11 @@
 
 use App\Domain\ObjecionCero\Models\PreguntaGrupo;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('120 preguntas · Objeción Cero')] class extends Component {
+new #[Layout('layouts.objecion-cero')] #[Title('120 preguntas')] class extends Component {
     #[Computed]
     public function grupos()
     {
@@ -13,25 +14,22 @@ new #[Title('120 preguntas · Objeción Cero')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col gap-6">
-    <div>
-        <flux:heading size="xl">Banco de preguntas</flux:heading>
-        <flux:text class="mt-1">Preguntas estratégicas agrupadas por tema.</flux:text>
-    </div>
+<section style="animation:ocfade .4s ease both;padding-top:56px">
+    <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:oklch(0.72 0.14 78)">Sección 4 · Banco de preguntas</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">120 preguntas listas para copiar</h1>
+    <p style="font-size:15px;color:#8b95a3;margin:0 0 34px">La pregunta correcta destapa la objeción real. Roba estas.</p>
 
-    <div class="flex flex-col gap-3">
-        @foreach ($this->grupos as $g)
-            <details class="rounded-xl border border-zinc-200 bg-white p-4 dark:border-white/10 dark:bg-white/10">
-                <summary class="flex cursor-pointer list-none items-center justify-between">
-                    <flux:heading size="sm">{{ $g->titulo }}</flux:heading>
-                    <flux:badge size="sm">{{ count($g->items) }}</flux:badge>
-                </summary>
-                <ul class="mt-4 list-disc space-y-2 pl-5">
-                    @foreach ($g->items as $q)
-                        <li><flux:text>{{ $q }}</flux:text></li>
-                    @endforeach
-                </ul>
-            </details>
-        @endforeach
-    </div>
-</div>
+    @foreach ($this->grupos as $g)
+        <div style="margin-bottom:34px">
+            <div style="display:inline-block;font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:oklch(0.80 0.13 82);padding:6px 12px;background:oklch(0.72 0.14 78 / .1);border-radius:7px;margin-bottom:16px">{{ $g->titulo }}</div>
+            <div style="columns:2;column-gap:32px">
+                @foreach ($g->items as $i => $q)
+                    <div style="break-inside:avoid;display:flex;gap:11px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+                        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4a5567;flex:none;padding-top:2px">{{ $i + 1 }}</span>
+                        <span style="font-size:13.5px;line-height:1.5;color:#c3ccd6">{{ $q }}</span>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
+</section>

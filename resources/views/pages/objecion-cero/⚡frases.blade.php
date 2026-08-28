@@ -2,10 +2,11 @@
 
 use App\Domain\ObjecionCero\Models\Frase;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('100 frases · Objeción Cero')] class extends Component {
+new #[Layout('layouts.objecion-cero')] #[Title('100 frases')] class extends Component {
     #[Computed]
     public function grupos()
     {
@@ -13,25 +14,19 @@ new #[Title('100 frases · Objeción Cero')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col gap-6">
-    <div>
-        <flux:heading size="xl">Frases de transición</flux:heading>
-        <flux:text class="mt-1">Frases listas para cada momento de la conversación.</flux:text>
-    </div>
+<section style="animation:ocfade .4s ease both;padding-top:56px">
+    <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:oklch(0.72 0.14 78)">Sección 5 · Frases de transición</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">100 frases para conectar y avanzar</h1>
+    <p style="font-size:15px;color:#8b95a3;margin:0 0 34px">Recibir, profundizar, reformular, cerrar. El pegamento entre objeción y respuesta.</p>
 
-    <div class="flex flex-col gap-3">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         @foreach ($this->grupos as $g)
-            <details class="rounded-xl border border-zinc-200 bg-white p-4 dark:border-white/10 dark:bg-white/10">
-                <summary class="flex cursor-pointer list-none items-center justify-between">
-                    <flux:heading size="sm">{{ $g->titulo }}</flux:heading>
-                    <flux:badge size="sm">{{ count($g->items) }}</flux:badge>
-                </summary>
-                <ul class="mt-4 list-disc space-y-2 pl-5">
-                    @foreach ($g->items as $frase)
-                        <li><flux:text>{{ $frase }}</flux:text></li>
-                    @endforeach
-                </ul>
-            </details>
+            <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 22px">
+                <div style="font:600 13px 'Space Grotesk';color:#fff;margin-bottom:14px">{{ $g->titulo }}</div>
+                @foreach ($g->items as $frase)
+                    <div style="font-size:13px;line-height:1.5;color:#aeb8c4;padding:7px 0;border-top:1px solid rgba(255,255,255,.05)">{{ $frase }}</div>
+                @endforeach
+            </div>
         @endforeach
     </div>
-</div>
+</section>

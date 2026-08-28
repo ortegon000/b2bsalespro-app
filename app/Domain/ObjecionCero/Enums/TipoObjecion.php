@@ -43,4 +43,40 @@ enum TipoObjecion: string
             self::Excusa => 'No la resuelvas: descubre la objeción real detrás.',
         };
     }
+
+    public function dotColor(): string
+    {
+        return match ($this) {
+            self::Real => 'oklch(0.55 0.11 155)',
+            self::Duda => 'oklch(0.72 0.13 78)',
+            self::Excusa => 'oklch(0.58 0.14 28)',
+        };
+    }
+
+    public function textColor(): string
+    {
+        return match ($this) {
+            self::Real => 'oklch(0.80 0.12 155)',
+            self::Duda => 'oklch(0.82 0.13 82)',
+            self::Excusa => 'oklch(0.72 0.15 30)',
+        };
+    }
+
+    public function bgColor(): string
+    {
+        return match ($this) {
+            self::Real => 'oklch(0.55 0.11 155 / .16)',
+            self::Duda => 'oklch(0.72 0.13 78 / .16)',
+            self::Excusa => 'oklch(0.58 0.14 28 / .18)',
+        };
+    }
+
+    public function headGradient(): string
+    {
+        return match ($this) {
+            self::Real => 'linear-gradient(160deg,#12241c,#0f1319)',
+            self::Duda => 'linear-gradient(160deg,#241f10,#0f1319)',
+            self::Excusa => 'linear-gradient(160deg,#241413,#0f1319)',
+        };
+    }
 }

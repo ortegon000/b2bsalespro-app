@@ -2,10 +2,11 @@
 
 use App\Domain\ObjecionCero\Models\Cierre;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Selector de cierres · Objeción Cero')] class extends Component {
+new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class extends Component {
     #[Computed]
     public function cierres()
     {
@@ -13,24 +14,30 @@ new #[Title('Selector de cierres · Objeción Cero')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col gap-6">
-    <div>
-        <flux:heading size="xl">Selector de cierres</flux:heading>
-        <flux:text class="mt-1">{{ $this->cierres->count() }} cierres, cada uno con cuándo usarlo y cuándo no.</flux:text>
-    </div>
+<section style="animation:ocfade .4s ease both;padding-top:56px">
+    <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:oklch(0.72 0.14 78)">Sección 6 · Selector de cierres</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em;color:#fff;margin:12px 0 8px">Elige el cierre correcto</h1>
+    <p style="font-size:15px;color:#8b95a3;margin:0 0 34px">Primero clasifica, luego responde, y solo entonces cierra. Cerrar antes de responder es cerrar en falso.</p>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div style="display:flex;flex-direction:column;gap:12px">
         @foreach ($this->cierres as $c)
-            <flux:card>
-                <flux:badge size="sm" class="mb-2">{{ $c->objecion }}</flux:badge>
-                <flux:heading size="sm">{{ $c->nombre }}</flux:heading>
-                <flux:text class="mt-2 italic">"{{ $c->script }}"</flux:text>
-
-                <div class="mt-3 flex flex-col gap-1 text-sm">
-                    <flux:text class="text-emerald-600 dark:text-emerald-400"><strong>Úsalo:</strong> {{ $c->usar }}</flux:text>
-                    <flux:text class="text-red-600 dark:text-red-400"><strong>No lo uses:</strong> {{ $c->no_usar }}</flux:text>
+            <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 24px">
+                <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
+                    <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:#fff">{{ $c->nombre }}</span>
+                    <span style="font-size:12px;font-family:'IBM Plex Mono',monospace;color:#7a8494;padding:3px 9px;background:#0b0f16;border-radius:6px">{{ $c->objecion }}</span>
                 </div>
-            </flux:card>
+                <div style="font-size:14px;line-height:1.6;color:#dbe3ec;padding:13px 16px;background:oklch(0.72 0.14 78 / .09);border-left:3px solid oklch(0.72 0.14 78);border-radius:0 8px 8px 0;margin-bottom:14px">“{{ $c->script }}”</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                    <div>
+                        <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.80 0.12 155);margin-bottom:6px">✓ Cuándo usarlo</div>
+                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->usar }}</div>
+                    </div>
+                    <div>
+                        <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.72 0.15 30);margin-bottom:6px">✕ Cuándo NO usarlo</div>
+                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->no_usar }}</div>
+                    </div>
+                </div>
+            </div>
         @endforeach
     </div>
-</div>
+</section>

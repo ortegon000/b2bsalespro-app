@@ -16,6 +16,36 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                <flux:sidebar.group heading="Objeción Cero" class="grid">
+                    <flux:sidebar.item icon="home" :href="route('objecion-cero.inicio')" :current="request()->routeIs('objecion-cero.inicio')" wire:navigate>
+                        Inicio
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="rectangle-stack" :href="route('objecion-cero.banco')" :current="request()->routeIs('objecion-cero.banco')" wire:navigate>
+                        Banco de fichas
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="question-mark-circle" :href="route('objecion-cero.preguntas')" :current="request()->routeIs('objecion-cero.preguntas')" wire:navigate>
+                        120 preguntas
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="chat-bubble-left-right" :href="route('objecion-cero.frases')" :current="request()->routeIs('objecion-cero.frases')" wire:navigate>
+                        100 frases
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="flag" :href="route('objecion-cero.cierres')" :current="request()->routeIs('objecion-cero.cierres')" wire:navigate>
+                        Selector de cierres
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="device-phone-mobile" :href="route('objecion-cero.whatsapp')" :current="request()->routeIs('objecion-cero.whatsapp')" wire:navigate>
+                        Scripts de WhatsApp
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="check-circle" :href="route('objecion-cero.checklists')" :current="request()->routeIs('objecion-cero.checklists')" wire:navigate>
+                        Checklists
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="pencil-square" :href="route('objecion-cero.plantilla')" :current="request()->routeIs('objecion-cero.plantilla')" wire:navigate>
+                        Plantilla personal
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="information-circle" :href="route('objecion-cero.como-usar')" :current="request()->routeIs('objecion-cero.como-usar')" wire:navigate>
+                        Cómo usar
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
             </flux:sidebar.nav>
 
             <flux:spacer />

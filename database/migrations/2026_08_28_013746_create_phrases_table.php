@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pregunta_grupos', function (Blueprint $table) {
+        Schema::create('phrases', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo'); // Precio, Confianza, Competencia, Urgencia, Autoridad, Tiempo
-            $table->json('items'); // array de preguntas del grupo (20 c/u)
-            $table->unsignedSmallInteger('orden')->default(0);
+            $table->string('title');
+            $table->json('items'); // array de frases del grupo
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pregunta_grupos');
+        Schema::dropIfExists('phrases');
     }
 };

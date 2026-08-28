@@ -10,7 +10,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('100 frases')] class extends Comp
     #[Computed]
     public function grupos()
     {
-        return Frase::orderBy('orden')->get();
+        return Frase::orderBy('sort_order')->get();
     }
 }; ?>
 
@@ -22,7 +22,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('100 frases')] class extends Comp
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         @foreach ($this->grupos as $g)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 22px">
-                <div style="font:600 13px 'Space Grotesk';color:#fff;margin-bottom:14px">{{ $g->titulo }}</div>
+                <div style="font:600 13px 'Space Grotesk';color:#fff;margin-bottom:14px">{{ $g->title }}</div>
                 @foreach ($g->items as $frase)
                     <div style="font-size:13px;line-height:1.5;color:#aeb8c4;padding:7px 0;border-top:1px solid rgba(255,255,255,.05)">{{ $frase }}</div>
                 @endforeach

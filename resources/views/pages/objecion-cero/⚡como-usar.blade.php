@@ -10,7 +10,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Cómo usar · Términos')] class
     #[Computed]
     public function uso()
     {
-        return UsoItem::orderBy('orden')->get();
+        return UsoItem::orderBy('sort_order')->get();
     }
 }; ?>
 
@@ -21,8 +21,8 @@ new #[Layout('layouts.objecion-cero')] #[Title('Cómo usar · Términos')] class
     <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:44px">
         @foreach ($this->uso as $u)
             <div style="display:flex;gap:16px;background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:18px 22px">
-                <div style="flex:none;width:140px;font:600 12px 'IBM Plex Mono',monospace;color:oklch(0.80 0.13 82);text-transform:uppercase;letter-spacing:.06em;padding-top:2px">{{ $u->titulo }}</div>
-                <div style="font-size:14px;line-height:1.6;color:#aeb8c4">{{ $u->descripcion }}</div>
+                <div style="flex:none;width:140px;font:600 12px 'IBM Plex Mono',monospace;color:oklch(0.80 0.13 82);text-transform:uppercase;letter-spacing:.06em;padding-top:2px">{{ $u->title }}</div>
+                <div style="font-size:14px;line-height:1.6;color:#aeb8c4">{{ $u->description }}</div>
             </div>
         @endforeach
     </div>

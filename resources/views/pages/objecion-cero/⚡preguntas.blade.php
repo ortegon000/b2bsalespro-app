@@ -10,7 +10,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('120 preguntas')] class extends C
     #[Computed]
     public function grupos()
     {
-        return PreguntaGrupo::orderBy('orden')->get();
+        return PreguntaGrupo::orderBy('sort_order')->get();
     }
 }; ?>
 
@@ -21,7 +21,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('120 preguntas')] class extends C
 
     @foreach ($this->grupos as $g)
         <div style="margin-bottom:34px">
-            <div style="display:inline-block;font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:oklch(0.80 0.13 82);padding:6px 12px;background:oklch(0.72 0.14 78 / .1);border-radius:7px;margin-bottom:16px">{{ $g->titulo }}</div>
+            <div style="display:inline-block;font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:oklch(0.80 0.13 82);padding:6px 12px;background:oklch(0.72 0.14 78 / .1);border-radius:7px;margin-bottom:16px">{{ $g->title }}</div>
             <div style="columns:2;column-gap:32px">
                 @foreach ($g->items as $i => $q)
                     <div style="break-inside:avoid;display:flex;gap:11px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)">

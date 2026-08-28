@@ -10,7 +10,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
     #[Computed]
     public function scripts()
     {
-        return WhatsappScript::orderBy('orden')->get();
+        return WhatsappScript::orderBy('sort_order')->get();
     }
 }; ?>
 
@@ -24,10 +24,10 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden">
                 <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:#0b0f16">
                     <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:oklch(0.80 0.13 82);letter-spacing:.06em">CONVERSACIÓN {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                    <div style="font-size:13.5px;font-weight:600;color:#fff;margin-top:4px;line-height:1.3">{{ $w->titulo }}</div>
+                    <div style="font-size:13.5px;font-weight:600;color:#fff;margin-top:4px;line-height:1.3">{{ $w->title }}</div>
                 </div>
                 <div style="padding:16px 16px;display:flex;flex-direction:column;gap:7px;background:#10151d">
-                    @foreach ($w->mensajes as $m)
+                    @foreach ($w->messages as $m)
                         @php $you = $m['who'] === 't'; @endphp
                         <div style="display:flex;justify-content:{{ $you ? 'flex-end' : 'flex-start' }}">
                             <div style="max-width:82%;padding:9px 13px;font-size:12.5px;line-height:1.5;border-radius:{{ $you ? '13px 13px 4px 13px' : '13px 13px 13px 4px' }};background:{{ $you ? 'oklch(0.55 0.11 155 / .15)' : '#1c2431' }};color:{{ $you ? '#d3e9dd' : '#b8c2ce' }};border:1px solid {{ $you ? 'oklch(0.55 0.11 155 / .22)' : 'rgba(255,255,255,.06)' }}">{{ $m['t'] }}</div>

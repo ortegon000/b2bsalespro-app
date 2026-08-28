@@ -8,9 +8,9 @@ class WhatsappScript extends Model
 {
     protected $table = 'whatsapp_scripts';
 
-    protected $fillable = ['titulo', 'mensajes', 'orden'];
+    protected $fillable = ['title', 'messages', 'sort_order'];
 
     protected $casts = [
-        'mensajes' => 'array',
+        'messages' => 'array',
     ];
 }

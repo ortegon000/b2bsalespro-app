@@ -10,7 +10,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class ext
     #[Computed]
     public function cierres()
     {
-        return Cierre::orderBy('orden')->get();
+        return Cierre::orderBy('sort_order')->get();
     }
 }; ?>
 
@@ -23,18 +23,18 @@ new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class ext
         @foreach ($this->cierres as $c)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 24px">
                 <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
-                    <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:#fff">{{ $c->nombre }}</span>
-                    <span style="font-size:12px;font-family:'IBM Plex Mono',monospace;color:#7a8494;padding:3px 9px;background:#0b0f16;border-radius:6px">{{ $c->objecion }}</span>
+                    <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:#fff">{{ $c->name }}</span>
+                    <span style="font-size:12px;font-family:'IBM Plex Mono',monospace;color:#7a8494;padding:3px 9px;background:#0b0f16;border-radius:6px">{{ $c->objection }}</span>
                 </div>
                 <div style="font-size:14px;line-height:1.6;color:#dbe3ec;padding:13px 16px;background:oklch(0.72 0.14 78 / .09);border-left:3px solid oklch(0.72 0.14 78);border-radius:0 8px 8px 0;margin-bottom:14px">“{{ $c->script }}”</div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
                     <div>
                         <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.80 0.12 155);margin-bottom:6px">✓ Cuándo usarlo</div>
-                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->usar }}</div>
+                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->usage }}</div>
                     </div>
                     <div>
                         <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.72 0.15 30);margin-bottom:6px">✕ Cuándo NO usarlo</div>
-                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->no_usar }}</div>
+                        <div style="font-size:12.5px;line-height:1.5;color:#9aa4b2">{{ $c->avoid }}</div>
                     </div>
                 </div>
             </div>

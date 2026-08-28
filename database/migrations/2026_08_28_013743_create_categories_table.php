@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plantilla_pasos', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('paso'); // "1 · Tu identidad comercial"
-            $table->json('campos'); // [{label: string, ej: string}]
-            $table->unsignedSmallInteger('orden')->default(0);
+            $table->string('slug')->unique();
+            $table->string('label');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plantilla_pasos');
+        Schema::dropIfExists('categories');
     }
 };

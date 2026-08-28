@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('checklists', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique(); // antes | durante | despues
-            $table->string('titulo');
-            $table->string('sub')->nullable();
-            $table->text('nota')->nullable();
-            $table->json('bloques'); // [{h: string, items: string[]}]
-            $table->unsignedSmallInteger('orden')->default(0);
+            $table->string('title');
+            $table->string('subtitle')->nullable();
+            $table->text('note')->nullable();
+            $table->json('blocks'); // [{h: string, items: string[]}]
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

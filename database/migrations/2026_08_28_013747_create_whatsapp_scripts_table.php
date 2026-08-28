@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('whatsapp_scripts', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->json('mensajes'); // [{who: c|t, t: string}]
-            $table->unsignedSmallInteger('orden')->default(0);
+            $table->string('title');
+            $table->json('messages'); // [{who: c|t, t: string}]
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }

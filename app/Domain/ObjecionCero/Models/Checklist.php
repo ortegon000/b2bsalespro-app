@@ -4,15 +4,18 @@ namespace App\Domain\ObjecionCero\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Checklist extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'checklists';
 
-    protected $fillable = ['slug', 'titulo', 'sub', 'nota', 'bloques', 'orden'];
+    protected $fillable = ['slug', 'title', 'subtitle', 'note', 'blocks', 'sort_order'];
 
     protected $casts = [
-        'bloques' => 'array',
+        'blocks' => 'array',
     ];
 
     public function progreso(): HasMany

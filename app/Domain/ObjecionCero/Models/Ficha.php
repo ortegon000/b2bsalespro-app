@@ -8,22 +8,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ficha extends Model
 {
-    protected $table = 'fichas';
+    protected $table = 'objections';
 
     protected $fillable = [
-        'numero', 'categoria_id', 'tipo', 'objecion', 'confirmar', 'significa',
-        'peor', 'dialogo', 'pregunta', 'cierre', 'error', 'consejo', 'ramas',
+        'number', 'category_id', 'type', 'objection', 'confirm', 'meaning',
+        'worst_case', 'dialogue', 'question', 'closing', 'error', 'tip', 'branches',
     ];
 
     protected $casts = [
-        'tipo' => TipoObjecion::class,
-        'peor' => 'array',
-        'dialogo' => 'array',
-        'ramas' => 'array',
+        'type' => TipoObjecion::class,
+        'worst_case' => 'array',
+        'dialogue' => 'array',
+        'branches' => 'array',
     ];
 
     public function categoria(): BelongsTo
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class, 'category_id');
     }
 }

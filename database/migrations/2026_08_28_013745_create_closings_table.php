@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('uso_items', function (Blueprint $table) {
+        Schema::create('closings', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descripcion');
-            $table->unsignedSmallInteger('orden')->default(0);
+            $table->string('objection');
+            $table->string('name');
+            $table->text('script');
+            $table->text('usage');
+            $table->text('avoid');
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('uso_items');
+        Schema::dropIfExists('closings');
     }
 };

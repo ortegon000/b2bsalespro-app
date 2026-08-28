@@ -26,7 +26,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Inicio')] class extends Componen
     #[Computed]
     public function uso()
     {
-        return UsoItem::orderBy('orden')->get();
+        return UsoItem::orderBy('sort_order')->get();
     }
 
     #[Computed]
@@ -60,8 +60,8 @@ new #[Layout('layouts.objecion-cero')] #[Title('Inicio')] class extends Componen
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         @foreach ($this->uso as $u)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:22px 24px">
-                <div style="font:600 12px 'IBM Plex Mono',monospace;color:oklch(0.80 0.13 82);text-transform:uppercase;letter-spacing:.08em">{{ $u->titulo }}</div>
-                <div style="font-size:14px;line-height:1.6;color:#aeb8c4;margin-top:9px">{{ $u->descripcion }}</div>
+                <div style="font:600 12px 'IBM Plex Mono',monospace;color:oklch(0.80 0.13 82);text-transform:uppercase;letter-spacing:.08em">{{ $u->title }}</div>
+                <div style="font-size:14px;line-height:1.6;color:#aeb8c4;margin-top:9px">{{ $u->description }}</div>
             </div>
         @endforeach
     </div>

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plantilla_respuestas', function (Blueprint $table) {
+        Schema::create('template_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('plantilla_paso_id')->constrained('plantilla_pasos')->cascadeOnDelete();
-            $table->unsignedSmallInteger('campo_index'); // índice del campo dentro de campos[] del paso
+            $table->foreignId('template_step_id')->constrained('template_steps')->cascadeOnDelete();
+            $table->unsignedSmallInteger('field_index'); // índice del campo dentro de fields[] del paso
             $table->text('value')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'plantilla_paso_id', 'campo_index'], 'plantilla_respuestas_unique');
+            $table->unique(['user_id', 'template_step_id', 'field_index'], 'template_answers_unique');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plantilla_respuestas');
+        Schema::dropIfExists('template_answers');
     }
 };

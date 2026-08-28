@@ -4,19 +4,22 @@ namespace App\Domain\ObjecionCero\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PlantillaPaso extends Model
 {
-    protected $table = 'plantilla_pasos';
+    use SoftDeletes;
 
-    protected $fillable = ['paso', 'campos', 'orden'];
+    protected $table = 'template_steps';
+
+    protected $fillable = ['title', 'fields', 'sort_order'];
 
     protected $casts = [
-        'campos' => 'array',
+        'fields' => 'array',
     ];
 
     public function respuestas(): HasMany
     {
-        return $this->hasMany(PlantillaRespuesta::class);
+        return $this->hasMany(PlantillaRespuesta::class, 'template_step_id');
     }
 }

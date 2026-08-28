@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreguntaGrupo extends Model
 {
-    protected $table = 'pregunta_grupos';
+    protected $table = 'question_groups';
 
-    protected $fillable = ['titulo', 'items', 'orden'];
+    protected $fillable = ['title', 'items', 'sort_order'];
 
     protected $casts = [
         'items' => 'array',

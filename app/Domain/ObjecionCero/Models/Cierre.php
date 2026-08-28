@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cierre extends Model
 {
-    protected $table = 'cierres';
+    protected $table = 'closings';
 
-    protected $fillable = ['objecion', 'nombre', 'script', 'usar', 'no_usar', 'orden'];
+    protected $fillable = ['objection', 'name', 'script', 'usage', 'avoid', 'sort_order'];
 }

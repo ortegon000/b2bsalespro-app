@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PlantillaRespuesta extends Model
 {
-    protected $table = 'plantilla_respuestas';
+    protected $table = 'template_answers';
 
-    protected $fillable = ['user_id', 'plantilla_paso_id', 'campo_index', 'value'];
+    protected $fillable = ['user_id', 'template_step_id', 'field_index', 'value'];
 
     public function user(): BelongsTo
     {
@@ -19,6 +19,6 @@ class PlantillaRespuesta extends Model
 
     public function paso(): BelongsTo
     {
-        return $this->belongsTo(PlantillaPaso::class, 'plantilla_paso_id');
+        return $this->belongsTo(PlantillaPaso::class, 'template_step_id');
     }
 }

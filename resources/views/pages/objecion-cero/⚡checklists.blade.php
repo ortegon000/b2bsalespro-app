@@ -11,7 +11,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Checklists')] class extends Comp
     #[Computed]
     public function checklists()
     {
-        return Checklist::orderBy('orden')->get();
+        return Checklist::orderBy('sort_order')->get();
     }
 
     #[Computed]
@@ -57,13 +57,13 @@ new #[Layout('layouts.objecion-cero')] #[Title('Checklists')] class extends Comp
     @foreach ($this->checklists as $cl)
         <div style="margin-bottom:36px;background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden">
             <div style="padding:22px 26px;border-bottom:1px solid rgba(255,255,255,.07)">
-                <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;color:#fff">{{ $cl->titulo }}</div>
-                @if ($cl->sub)
-                    <div style="font-size:13.5px;color:#8b95a3;margin-top:5px">{{ $cl->sub }}</div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;color:#fff">{{ $cl->title }}</div>
+                @if ($cl->subtitle)
+                    <div style="font-size:13.5px;color:#8b95a3;margin-top:5px">{{ $cl->subtitle }}</div>
                 @endif
             </div>
             <div style="padding:8px 26px 20px">
-                @foreach ($cl->bloques as $bi => $b)
+                @foreach ($cl->blocks as $bi => $b)
                     <div style="padding:16px 0">
                         <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.80 0.13 82);margin-bottom:10px">{{ $b['h'] }}</div>
                         @foreach ($b['items'] as $ii => $item)
@@ -83,8 +83,8 @@ new #[Layout('layouts.objecion-cero')] #[Title('Checklists')] class extends Comp
                     </div>
                 @endforeach
             </div>
-            @if ($cl->nota)
-                <div style="padding:14px 26px;background:oklch(0.72 0.14 78 / .07);border-top:1px solid oklch(0.72 0.14 78 / .18);font-size:13px;line-height:1.55;color:#c3ccd6">{{ $cl->nota }}</div>
+            @if ($cl->note)
+                <div style="padding:14px 26px;background:oklch(0.72 0.14 78 / .07);border-top:1px solid oklch(0.72 0.14 78 / .18);font-size:13px;line-height:1.55;color:#c3ccd6">{{ $cl->note }}</div>
             @endif
         </div>
     @endforeach

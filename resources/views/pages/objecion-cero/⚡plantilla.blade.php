@@ -13,20 +13,20 @@ new #[Layout('layouts.objecion-cero')] #[Title('Plantilla personal')] class exte
     public function mount(): void
     {
         foreach (PlantillaRespuesta::where('user_id', auth()->id())->get() as $r) {
-            $this->valores[$r->plantilla_paso_id][$r->campo_index] = $r->value;
+            $this->valores[$r->template_step_id][$r->field_index] = $r->value;
         }
     }
 
     #[Computed]
     public function pasos()
     {
-        return PlantillaPaso::orderBy('orden')->get();
+        return PlantillaPaso::orderBy('sort_order')->get();
     }
 
     public function guardar(int $pasoId, int $campoIndex): void
     {
         PlantillaRespuesta::updateOrCreate(
-            ['user_id' => auth()->id(), 'plantilla_paso_id' => $pasoId, 'campo_index' => $campoIndex],
+            ['user_id' => auth()->id(), 'template_step_id' => $pasoId, 'field_index' => $campoIndex],
             ['value' => $this->valores[$pasoId][$campoIndex] ?? ''],
         );
     }
@@ -39,9 +39,9 @@ new #[Layout('layouts.objecion-cero')] #[Title('Plantilla personal')] class exte
 
     @foreach ($this->pasos as $p)
         <div style="margin-bottom:26px">
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:oklch(0.80 0.13 82);margin-bottom:14px">Paso {{ $p->paso }}</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:oklch(0.80 0.13 82);margin-bottom:14px">Paso {{ $p->title }}</div>
             <div style="display:flex;flex-direction:column;gap:14px">
-                @foreach ($p->campos as $fi => $campo)
+                @foreach ($p->fields as $fi => $campo)
                     <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:16px 18px">
                         <label style="display:block;font-size:13px;font-weight:600;color:#e7ebf0;margin-bottom:9px">{{ $campo['label'] }}</label>
                         <textarea

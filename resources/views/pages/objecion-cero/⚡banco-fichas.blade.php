@@ -140,7 +140,7 @@ new #[Title('Banco de fichas · Objeción Cero')] class extends Component {
     </div>
 
     @if ($this->ficha)
-    <div x-teleport="body">
+    @teleport('body')
     <div class="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-zinc-900/80 p-4 pt-10" wire:click.self="close">
         <flux:card class="w-full max-w-2xl bg-white! dark:bg-zinc-900!">
             <div class="mb-4 flex items-start justify-between">
@@ -217,6 +217,6 @@ new #[Title('Banco de fichas · Objeción Cero')] class extends Component {
             </div>
         </flux:card>
     </div>
-    </div>
+    @endteleport
     @endif
 </div>

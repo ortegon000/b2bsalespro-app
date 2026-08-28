@@ -161,7 +161,7 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Features::registration(), // cerrado durante la beta: las cuentas se crean a mano (ver docs/beta-onboarding.md)
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::twoFactorAuthentication([

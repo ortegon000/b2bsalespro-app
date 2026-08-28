@@ -130,6 +130,8 @@
 
 </div>
 
+<livewire:objecion-cero-feedback />
+
 @livewireScripts
 </body>
 </html>

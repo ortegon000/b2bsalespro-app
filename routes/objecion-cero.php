@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Middleware\LogObjecionCeroView;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->prefix(config('objecion-cero.route_prefix'))->name('objecion-cero.')->group(function () {
+Route::middleware(['auth', LogObjecionCeroView::class])->prefix(config('objecion-cero.route_prefix'))->name('objecion-cero.')->group(function () {
     Route::livewire('/', 'pages::objecion-cero.inicio')->name('inicio');
     Route::livewire('banco', 'pages::objecion-cero.banco-fichas')->name('banco');
     Route::livewire('preguntas', 'pages::objecion-cero.preguntas')->name('preguntas');

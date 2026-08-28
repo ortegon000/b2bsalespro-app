@@ -2,6 +2,7 @@
 
 use App\Domain\ObjecionCero\Enums\TipoObjecion;
 use App\Domain\ObjecionCero\Models\Categoria;
+use App\Domain\ObjecionCero\Models\ContentView;
 use App\Domain\ObjecionCero\Models\Ficha;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -74,6 +75,10 @@ new #[Layout('layouts.objecion-cero')] #[Title('Banco de fichas')] class extends
     public function open(int $numero): void
     {
         $this->fichaId = Ficha::where('number', $numero)->value('id');
+
+        if ($this->fichaId) {
+            ContentView::log('banco', 'ficha', $this->fichaId);
+        }
     }
 
     public function close(): void

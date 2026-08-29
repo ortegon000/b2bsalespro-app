@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PlantillaRespuesta extends Model
 {
-    protected $table = 'template_answers';
+    protected $table = 'oc_template_answers';
 
     protected $fillable = ['user_id', 'template_step_id', 'field_index', 'value'];
 

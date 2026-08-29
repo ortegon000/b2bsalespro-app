@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Frase extends Model
 {
-    protected $table = 'phrases';
+    protected $table = 'oc_phrases';
 
     protected $fillable = ['title', 'items', 'sort_order'];
 

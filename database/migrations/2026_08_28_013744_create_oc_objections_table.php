@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('objections', function (Blueprint $table) {
+        Schema::create('oc_objections', function (Blueprint $table) {
             $table->id();
             $table->unsignedSmallInteger('number')->unique();
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('oc_categories')->cascadeOnDelete();
             $table->string('type'); // real | duda | excusa — ver Enums\TipoObjecion
             $table->string('objection');
             $table->text('confirm');
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('objections');
+        Schema::dropIfExists('oc_objections');
     }
 };

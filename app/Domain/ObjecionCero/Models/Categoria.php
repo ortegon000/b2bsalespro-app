@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Categoria extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'oc_categories';
 
     protected $fillable = ['slug', 'label', 'icon'];
 

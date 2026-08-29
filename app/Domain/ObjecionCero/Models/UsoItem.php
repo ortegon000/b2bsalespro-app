@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UsoItem extends Model
 {
-    protected $table = 'usage_items';
+    protected $table = 'oc_usage_items';
 
     protected $fillable = ['title', 'description', 'sort_order'];
 }

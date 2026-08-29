@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ChecklistProgress extends Model
 {
-    protected $table = 'checklist_progress';
+    protected $table = 'oc_checklist_progress';
 
     protected $fillable = ['user_id', 'checklist_id', 'item_key', 'checked_at'];
 

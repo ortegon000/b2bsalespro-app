@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usage_items', function (Blueprint $table) {
+        Schema::create('oc_question_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->string('title'); // Precio, Confianza, Competencia, Urgencia, Autoridad, Tiempo
+            $table->json('items'); // array de preguntas del grupo (20 c/u)
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usage_items');
+        Schema::dropIfExists('oc_question_groups');
     }
 };

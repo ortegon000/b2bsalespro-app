@@ -10,7 +10,7 @@ class Checklist extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'checklists';
+    protected $table = 'oc_checklists';
 
     protected $fillable = ['slug', 'title', 'subtitle', 'note', 'blocks', 'sort_order'];
 

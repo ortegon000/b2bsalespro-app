@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checklists', function (Blueprint $table) {
+        Schema::create('oc_phrases', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique(); // antes | durante | despues
             $table->string('title');
-            $table->string('subtitle')->nullable();
-            $table->text('note')->nullable();
-            $table->json('blocks'); // [{h: string, items: string[]}]
+            $table->json('items'); // array de frases del grupo
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checklists');
+        Schema::dropIfExists('oc_phrases');
     }
 };

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phrases', function (Blueprint $table) {
+        Schema::create('oc_closings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->json('items'); // array de frases del grupo
+            $table->string('objection');
+            $table->string('name');
+            $table->text('script');
+            $table->text('usage');
+            $table->text('avoid');
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phrases');
+        Schema::dropIfExists('oc_closings');
     }
 };

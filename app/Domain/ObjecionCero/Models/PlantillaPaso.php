@@ -10,7 +10,7 @@ class PlantillaPaso extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'template_steps';
+    protected $table = 'oc_template_steps';
 
     protected $fillable = ['title', 'fields', 'sort_order'];
 

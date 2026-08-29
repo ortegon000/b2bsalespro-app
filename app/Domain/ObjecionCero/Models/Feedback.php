@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Feedback extends Model
 {
-    protected $table = 'feedback';
+    protected $table = 'oc_feedback';
 
     protected $fillable = ['user_id', 'page', 'message'];
 

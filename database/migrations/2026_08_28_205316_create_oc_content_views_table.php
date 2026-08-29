@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('oc_content_views', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('page')->nullable();
-            $table->text('message');
+            $table->string('section');
+            $table->string('viewable_type')->nullable();
+            $table->unsignedBigInteger('viewable_id')->nullable();
             $table->timestamps();
+
+            $table->index(['section', 'created_at']);
+            $table->index(['viewable_type', 'viewable_id']);
         });
     }
 
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('oc_content_views');
     }
 };

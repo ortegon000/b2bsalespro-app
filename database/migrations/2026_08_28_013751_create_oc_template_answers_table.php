@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checklist_progress', function (Blueprint $table) {
+        Schema::create('oc_template_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('checklist_id')->constrained('checklists')->cascadeOnDelete();
-            $table->string('item_key'); // "{bloqueIndex}-{itemIndex}" dentro del checklist
-            $table->timestamp('checked_at')->nullable();
+            $table->foreignId('template_step_id')->constrained('oc_template_steps')->cascadeOnDelete();
+            $table->unsignedSmallInteger('field_index'); // índice del campo dentro de fields[] del paso
+            $table->text('value')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'checklist_id', 'item_key']);
+            $table->unique(['user_id', 'template_step_id', 'field_index'], 'template_answers_unique');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checklist_progress');
+        Schema::dropIfExists('oc_template_answers');
     }
 };

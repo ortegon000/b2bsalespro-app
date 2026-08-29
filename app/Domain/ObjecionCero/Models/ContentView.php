@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ContentView extends Model
 {
-    protected $table = 'content_views';
+    protected $table = 'oc_content_views';
 
     protected $fillable = ['user_id', 'section', 'viewable_type', 'viewable_id'];
 

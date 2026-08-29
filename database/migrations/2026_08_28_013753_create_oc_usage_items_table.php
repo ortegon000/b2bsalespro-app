@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('closings', function (Blueprint $table) {
+        Schema::create('oc_usage_items', function (Blueprint $table) {
             $table->id();
-            $table->string('objection');
-            $table->string('name');
-            $table->text('script');
-            $table->text('usage');
-            $table->text('avoid');
+            $table->string('title');
+            $table->text('description');
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();
         });
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('closings');
+        Schema::dropIfExists('oc_usage_items');
     }
 };

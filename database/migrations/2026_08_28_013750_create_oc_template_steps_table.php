@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('template_steps', function (Blueprint $table) {
+        Schema::create('oc_template_steps', function (Blueprint $table) {
             $table->id();
             $table->string('title'); // "1 · Tu identidad comercial"
             $table->json('fields'); // [{label: string, ej: string}]
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('template_steps');
+        Schema::dropIfExists('oc_template_steps');
     }
 };

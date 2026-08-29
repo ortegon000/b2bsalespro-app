@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whatsapp_scripts', function (Blueprint $table) {
+        Schema::create('oc_feedback', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->json('messages'); // [{who: c|t, t: string}]
-            $table->unsignedSmallInteger('sort_order')->default(0);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('page')->nullable();
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('whatsapp_scripts');
+        Schema::dropIfExists('oc_feedback');
     }
 };

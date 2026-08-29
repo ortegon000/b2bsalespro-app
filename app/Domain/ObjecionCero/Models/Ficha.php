@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ficha extends Model
 {
-    protected $table = 'objections';
+    protected $table = 'oc_objections';
 
     protected $fillable = [
         'number', 'category_id', 'type', 'objection', 'confirm', 'meaning',

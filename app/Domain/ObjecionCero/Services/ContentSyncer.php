@@ -22,6 +22,9 @@ use App\Domain\ObjecionCero\Models\WhatsappScript;
  */
 class ContentSyncer
 {
+    /**
+     * @param  array<string, mixed>  $data
+     */
     public function sync(array $data): void
     {
         $categoriaIds = $this->syncCategorias($data['CATS']);
@@ -35,7 +38,10 @@ class ContentSyncer
         $this->syncUso($data['USO']);
     }
 
-    /** @return array<string,int> slug => id */
+    /**
+     * @param  array<int, array<string, mixed>>  $cats
+     * @return array<string,int> slug => id
+     */
     private function syncCategorias(array $cats): array
     {
         $ids = [];
@@ -51,6 +57,10 @@ class ContentSyncer
         return $ids;
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $fichas
+     * @param  array<string, int>  $categoriaIds
+     */
     private function syncFichas(array $fichas, array $categoriaIds): void
     {
         $numeros = [];
@@ -78,6 +88,9 @@ class ContentSyncer
         Ficha::whereNotIn('number', $numeros)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $cierres
+     */
     private function syncCierres(array $cierres): void
     {
         $nombres = [];
@@ -98,6 +111,9 @@ class ContentSyncer
         Cierre::whereNotIn('name', $nombres)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $frases
+     */
     private function syncFrases(array $frases): void
     {
         $titulos = [];
@@ -112,6 +128,9 @@ class ContentSyncer
         Frase::whereNotIn('title', $titulos)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $scripts
+     */
     private function syncWhatsapp(array $scripts): void
     {
         $titulos = [];
@@ -126,6 +145,9 @@ class ContentSyncer
         WhatsappScript::whereNotIn('title', $titulos)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $checklists
+     */
     private function syncChecklists(array $checklists): void
     {
         $slugs = [];
@@ -145,6 +167,9 @@ class ContentSyncer
         Checklist::whereNotIn('slug', $slugs)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $pasos
+     */
     private function syncPlantilla(array $pasos): void
     {
         $titulosPaso = [];
@@ -158,6 +183,9 @@ class ContentSyncer
         PlantillaPaso::whereNotIn('title', $titulosPaso)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $grupos
+     */
     private function syncPreguntas(array $grupos): void
     {
         $titulos = [];
@@ -172,6 +200,9 @@ class ContentSyncer
         PreguntaGrupo::whereNotIn('title', $titulos)->delete();
     }
 
+    /**
+     * @param  array<int, array<string, mixed>>  $items
+     */
     private function syncUso(array $items): void
     {
         $titulos = [];

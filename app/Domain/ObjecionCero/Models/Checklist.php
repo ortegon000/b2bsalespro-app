@@ -18,6 +18,9 @@ class Checklist extends Model
         'blocks' => 'array',
     ];
 
+    /**
+     * @return HasMany<ChecklistProgress, $this>
+     */
     public function progreso(): HasMany
     {
         return $this->hasMany(ChecklistProgress::class);

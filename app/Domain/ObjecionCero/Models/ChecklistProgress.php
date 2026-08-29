@@ -16,11 +16,17 @@ class ChecklistProgress extends Model
         'checked_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsTo<Checklist, $this>
+     */
     public function checklist(): BelongsTo
     {
         return $this->belongsTo(Checklist::class);

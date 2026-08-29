@@ -22,6 +22,9 @@ class Ficha extends Model
         'branches' => 'array',
     ];
 
+    /**
+     * @return BelongsTo<Categoria, $this>
+     */
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class, 'category_id');

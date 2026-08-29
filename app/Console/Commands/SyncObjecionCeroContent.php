@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Domain\ObjecionCero\Services\ContentSyncer;
 use Illuminate\Console\Command;
+use RuntimeException;
 
 class SyncObjecionCeroContent extends Command
 {
@@ -13,10 +14,14 @@ class SyncObjecionCeroContent extends Command
 
     public function handle(ContentSyncer $syncer): int
     {
-        $data = json_decode(
-            file_get_contents(database_path('seeders/data/objecion-cero.json')),
-            associative: true,
-        );
+        $path = database_path('seeders/data/objecion-cero.json');
+        $json = file_get_contents($path);
+
+        if ($json === false) {
+            throw new RuntimeException("No se pudo leer el archivo de contenido: {$path}");
+        }
+
+        $data = json_decode($json, associative: true);
 
         $syncer->sync($data);
 

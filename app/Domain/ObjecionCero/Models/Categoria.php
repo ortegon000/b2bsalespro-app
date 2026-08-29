@@ -11,6 +11,9 @@ class Categoria extends Model
 
     protected $fillable = ['slug', 'label', 'icon'];
 
+    /**
+     * @return HasMany<Ficha, $this>
+     */
     public function fichas(): HasMany
     {
         return $this->hasMany(Ficha::class, 'category_id');

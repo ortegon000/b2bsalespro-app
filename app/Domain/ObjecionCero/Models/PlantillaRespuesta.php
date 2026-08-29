@@ -12,11 +12,17 @@ class PlantillaRespuesta extends Model
 
     protected $fillable = ['user_id', 'template_step_id', 'field_index', 'value'];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsTo<PlantillaPaso, $this>
+     */
     public function paso(): BelongsTo
     {
         return $this->belongsTo(PlantillaPaso::class, 'template_step_id');

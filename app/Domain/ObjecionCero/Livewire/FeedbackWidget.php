@@ -3,6 +3,7 @@
 namespace App\Domain\ObjecionCero\Livewire;
 
 use App\Domain\ObjecionCero\Models\Feedback;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class FeedbackWidget extends Component
@@ -42,7 +43,7 @@ class FeedbackWidget extends Component
         $this->sent = true;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.objecion-cero.feedback-widget');
     }

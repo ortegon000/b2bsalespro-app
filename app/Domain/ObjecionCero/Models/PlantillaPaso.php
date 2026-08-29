@@ -18,6 +18,9 @@ class PlantillaPaso extends Model
         'fields' => 'array',
     ];
 
+    /**
+     * @return HasMany<PlantillaRespuesta, $this>
+     */
     public function respuestas(): HasMany
     {
         return $this->hasMany(PlantillaRespuesta::class, 'template_step_id');

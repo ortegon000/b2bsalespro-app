@@ -1,4 +1,4 @@
-# Kit de lanzamiento de la beta (Fase 1 de `TODO's.md`)
+# Kit de lanzamiento de la beta (Fase 1 de [`objecion-cero-beta-todo.md`](objecion-cero-beta-todo.md))
 
 Contenido listo para usar en la Fase 1 ("Preparar la beta"). Lo que falta en cada punto
 requiere una decisión o un dato que solo el usuario tiene (fecha real, lista de contactos

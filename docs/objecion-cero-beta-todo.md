@@ -20,7 +20,7 @@ Detalle completo del análisis en la memoria del proyecto (carpeta memory/ del u
    que llega por invitación. Resuelto cerrando el registro público (`/register` ahora 404,
    `Features::registration()` comentado en `config/fortify.php`) para que solo entre gente
    invitada durante la beta, y documentando el flujo de alta manual en
-   [`docs/beta-onboarding.md`](docs/beta-onboarding.md).
+   [`beta-onboarding.md`](beta-onboarding.md).
 4. [x] Revisar volumen/calidad de contenido actual (~30 fichas, 15 cierres, etc.) — decidir
    si es suficiente para sentirse "completo" en la beta o si vale la pena sumar fichas antes
    de lanzar. **Decisión: es suficiente, no bloquear el lanzamiento por esto.** Conteo real:
@@ -41,7 +41,7 @@ Detalle completo del análisis en la memoria del proyecto (carpeta memory/ del u
 
 ## Fase 1 — Preparar la beta
 
-Borradores listos en [`docs/beta-launch-kit.md`](docs/beta-launch-kit.md): mensaje de
+Borradores listos en [`beta-launch-kit.md`](beta-launch-kit.md): mensaje de
 invitación, propuesta de fecha de corte y las 3 encuestas cortas ya redactadas
 pregunta por pregunta. Lo que sigue marcado como pendiente necesita un dato o una
 decisión que solo el usuario tiene — no se puede generar desde el código.
@@ -68,7 +68,7 @@ código, y enviar invitaciones reales requiere que el usuario lo confirme explí
 Sigue pendiente en su totalidad hasta que arranque el lanzamiento real:
 
 - [ ] Invitar primero a 10-12 personas (no las 50 de golpe). Alta manual documentada en
-  [`docs/beta-onboarding.md`](docs/beta-onboarding.md).
+  [`beta-onboarding.md`](beta-onboarding.md).
 - [ ] Correr 1-2 semanas, revisar uso real + feedback temprano, corregir lo obvio.
 - [ ] Abrir el resto (35-40) una vez corregidos los problemas evidentes.
 

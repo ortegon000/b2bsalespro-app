@@ -1,7 +1,7 @@
 # Onboarding de la beta gratuita (25-50 usuarios)
 
 Contexto: Objeción Cero se está regalando a un grupo controlado de vendedores/managers
-para recibir feedback antes de cobrar (ver `TODO's.md` en la raíz del proyecto para el
+para recibir feedback antes de cobrar (ver [`objecion-cero-beta-todo.md`](objecion-cero-beta-todo.md) para el
 plan completo por fases).
 
 ## El registro público está cerrado a propósito
@@ -47,7 +47,7 @@ construir eso ahora sería trabajo prematuro para 25-50 personas). El flujo es m
    - En producción, confirmar que el `MAIL_*` de `.env` esté configurado antes de
      invitar al primer lote.
 
-## Buenas prácticas para el lanzamiento (resumen — detalle completo en `TODO's.md`)
+## Buenas prácticas para el lanzamiento (resumen — detalle completo en [`objecion-cero-beta-todo.md`](objecion-cero-beta-todo.md))
 
 - Invitar primero a 10-12 personas, no las 25-50 de golpe.
 - Avisarles la fecha de corte del acceso gratuito.

@@ -100,6 +100,31 @@ Lo que sí queda listo es cómo se va a medir cuando llegue el momento:
 - [ ] Con esos tres datos, decidir precio de lanzamiento (referencia: $39-49 con el mínimo
   indispensable, según sesión de pago único del consejo).
 
+## Gaps de utilidad real (más allá del MVP de beta)
+
+Análisis del 2026-08-29, dejando el cobro fuera a propósito — foco en si el producto
+resuelve valor real, no en cómo cobrarlo. Ninguno de estos está resuelto por la Fase 0
+(ese MVP cubre fricción de acceso/uso, no estas brechas de fondo). No se marcan como
+tareas todavía porque antes hace falta la señal de la beta (Fase 1-3) para saber cuáles
+importan de verdad:
+
+1. No hay mecanismo de práctica, solo de consulta. Fichas, cierres y scripts son texto
+   para leer; no hay quiz, repetición espaciada ni roleplay que fuerce a interiorizar la
+   respuesta.
+2. El progreso registrado (`oc_checklist_progress`, `oc_content_views`) no se le
+   devuelve a nadie. No hay pantalla "esto ya dominas / esto te falta" — es la señal de
+   vida del producto, desperdiciada.
+3. Catálogo congelado: no hay panel para agregar contenido ni forma de que el usuario
+   aporte una objeción nueva que le surgió y no está en el banco.
+4. Cero personalización: no distingue industria, tipo de producto ni el patrón de
+   objeciones específico de cada vendedor.
+5. Si el comprador termina siendo el manager de ventas (no el vendedor individual),
+   falta por completo la capa de equipo: cuentas de organización y un dashboard de qué
+   objeciones le cuestan cerrar a su gente.
+6. Nada de esto está validado con un usuario real todavía — construir cualquiera de los
+   puntos anteriores antes de correr la beta es apostar a ciegas sobre cuál le importa a
+   alguien.
+
 ## Notas de verificación (no asumir, revisar código)
 
 - El 2FA/passkeys **no son obligatorios** — son features opcionales de Fortify

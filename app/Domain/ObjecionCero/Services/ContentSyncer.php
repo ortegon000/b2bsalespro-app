@@ -72,6 +72,7 @@ class ContentSyncer
                     'category_id' => $categoriaIds[$f['cat']],
                     'type' => $f['tipo'],
                     'objection' => $f['obj'],
+                    'search_aliases' => $f['aliases'] ?? [],
                     'confirm' => $f['confirmar'],
                     'meaning' => $f['significa'],
                     'worst_case' => $f['peor'] ?? [],

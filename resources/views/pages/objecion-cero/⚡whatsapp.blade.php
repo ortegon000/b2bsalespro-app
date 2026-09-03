@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\ObjecionCero\Models\WhatsappScript;
+use App\Domain\ObjecionCero\Services\SearchText;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -18,16 +19,14 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
             return $scripts;
         }
 
-        $needle = mb_strtolower($this->query);
-
         return $scripts
-            ->filter(function (WhatsappScript $w) use ($needle) {
-                if (str_contains(mb_strtolower($w->title), $needle)) {
+            ->filter(function (WhatsappScript $w) {
+                if (SearchText::matches($this->query, $w->title)) {
                     return true;
                 }
 
                 foreach ($w->messages as $m) {
-                    if (str_contains(mb_strtolower($m['t']), $needle)) {
+                    if (SearchText::matches($this->query, $m['t'])) {
                         return true;
                     }
                 }
@@ -41,6 +40,13 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
     public function total(): int
     {
         return WhatsappScript::count();
+    }
+
+    public function conversationText(WhatsappScript $script): string
+    {
+        return collect($script->messages)
+            ->map(fn (array $message) => ($message['who'] === 't' ? 'Tú' : 'Cliente').': '.$message['t'])
+            ->implode("\n\n");
     }
 }; ?>
 
@@ -61,9 +67,12 @@ new #[Layout('layouts.objecion-cero')] #[Title('Scripts de WhatsApp')] class ext
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
         @forelse ($this->scripts as $i => $w)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden">
-                <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:#0b0f16">
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:oklch(0.80 0.13 82);letter-spacing:.06em">CONVERSACIÓN {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                    <div style="font-size:13.5px;font-weight:600;color:#fff;margin-top:4px;line-height:1.3">{{ $w->title }}</div>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:#0b0f16">
+                    <div style="min-width:0">
+                        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:oklch(0.80 0.13 82);letter-spacing:.06em">CONVERSACIÓN {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <div style="font-size:13.5px;font-weight:600;color:#fff;margin-top:4px;line-height:1.3">{{ $w->title }}</div>
+                    </div>
+                    <x-objecion-cero.copy-button :text="$this->conversationText($w)" label="Copiar conversación" />
                 </div>
                 <div style="padding:16px 16px;display:flex;flex-direction:column;gap:7px;background:#10151d">
                     @foreach ($w->messages as $m)

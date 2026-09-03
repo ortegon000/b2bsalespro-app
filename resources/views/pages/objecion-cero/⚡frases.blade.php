@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\ObjecionCero\Models\Frase;
+use App\Domain\ObjecionCero\Services\SearchText;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -18,17 +19,15 @@ new #[Layout('layouts.objecion-cero')] #[Title('100 frases')] class extends Comp
             return $grupos;
         }
 
-        $needle = mb_strtolower($this->query);
-
         return $grupos
-            ->map(function (Frase $g) use ($needle) {
-                $matchesTitle = str_contains(mb_strtolower($g->title), $needle);
+            ->map(function (Frase $g) {
+                $matchesTitle = SearchText::matches($this->query, $g->title);
 
                 $items = $matchesTitle
                     ? $g->items
                     : array_values(array_filter(
                         $g->items,
-                        fn ($frase) => str_contains(mb_strtolower($frase), $needle)
+                        fn ($frase) => SearchText::matches($this->query, $frase)
                     ));
 
                 if ($items === []) {

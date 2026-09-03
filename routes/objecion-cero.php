@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ObjecionCero\PlantillaExportController;
 use App\Http\Middleware\LogObjecionCeroView;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,7 @@ Route::middleware(['auth', LogObjecionCeroView::class])->prefix(config('objecion
     Route::livewire('cierres', 'pages::objecion-cero.cierres')->name('cierres');
     Route::livewire('whatsapp', 'pages::objecion-cero.whatsapp')->name('whatsapp');
     Route::livewire('checklists', 'pages::objecion-cero.checklists')->name('checklists');
+    Route::get('plantilla/exportar', PlantillaExportController::class)->name('plantilla.exportar');
     Route::livewire('plantilla', 'pages::objecion-cero.plantilla')->name('plantilla');
     Route::livewire('como-usar', 'pages::objecion-cero.como-usar')->name('como-usar');
 });

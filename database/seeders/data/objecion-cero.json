@@ -273,6 +273,14 @@
       "cat": "precio",
       "tipo": "real",
       "obj": "Está muy caro",
+      "aliases": [
+        "Se me hace muy caro",
+        "El precio es demasiado alto",
+        "Está fuera de mi presupuesto",
+        "No vale lo que cuesta",
+        "Esperaba algo más barato",
+        "Sale muy caro"
+      ],
       "confirmar": "Pregunta \"¿Caro respecto a qué?\" Si responde con datos, es real.",
       "significa": "Todavía no percibe que el valor supere el precio; el problema no es la cifra, es la comparación mental que está haciendo.",
       "peor": [
@@ -321,6 +329,14 @@
       "cat": "precio",
       "tipo": "real",
       "obj": "No tengo presupuesto",
+      "aliases": [
+        "No hay presupuesto",
+        "No tenemos dinero para esto",
+        "Esto no está presupuestado",
+        "No tengo una partida disponible",
+        "El presupuesto ya está asignado",
+        "Ahorita no puedo pagarlo"
+      ],
       "confirmar": "Si menciona cifras o fechas de presupuesto, es real. Si es vago, excusa.",
       "significa": "El dinero existe, pero está asignado a otras cosas; no le has dado una razón para reasignarlo.",
       "peor": [
@@ -361,6 +377,14 @@
       "cat": "precio",
       "tipo": "real",
       "obj": "¿Qué descuento me haces?",
+      "aliases": [
+        "Me puedes mejorar el precio",
+        "Cuál es tu mejor precio",
+        "Hazme un descuento",
+        "Puedes bajarle al precio",
+        "Qué precio me dejas",
+        "Dame un mejor precio"
+      ],
       "confirmar": "Ya decidió comprar. Está negociando.",
       "significa": "Ya decidió comprar; ahora quiere sentir que ganó algo en la negociación.",
       "peor": [
@@ -401,6 +425,14 @@
       "cat": "precio",
       "tipo": "duda",
       "obj": "Otro proveedor me lo da más barato",
+      "aliases": [
+        "Me cotizaron más barato",
+        "Tengo una cotización menor",
+        "Otro me da mejor precio",
+        "La competencia cobra menos",
+        "Encontré una opción más barata",
+        "Tu precio es más alto que el de otro"
+      ],
       "confirmar": "Si te lo dice, es porque prefiere trabajar contigo. Busca justificación.",
       "significa": "Prefiere trabajar contigo, pero necesita que le justifiques la diferencia; si no, ya habría firmado con el otro.",
       "peor": [
@@ -441,6 +473,14 @@
       "cat": "precio",
       "tipo": "duda",
       "obj": "Es más de lo que esperaba pagar",
+      "aliases": [
+        "Pensaba gastar menos",
+        "No esperaba que costara tanto",
+        "Se sale de lo que tenía pensado",
+        "Mi presupuesto era menor",
+        "Calculé un precio más bajo",
+        "Es más dinero del que contemplaba"
+      ],
       "confirmar": "Problema de expectativa, no de dinero.",
       "significa": "Su expectativa se formó sin información real del mercado; el problema es la referencia, no tu precio.",
       "peor": [
@@ -481,6 +521,14 @@
       "cat": "precio",
       "tipo": "excusa",
       "obj": "Prefiero esperar a que baje el precio",
+      "aliases": [
+        "Voy a esperar una oferta",
+        "Mejor cuando esté más barato",
+        "Quiero esperar a que bajen los precios",
+        "Tal vez después haya descuento",
+        "No quiero comprar con este precio",
+        "Esperaré una promoción"
+      ],
       "confirmar": "Casi nadie monitorea precios de verdad. Falta urgencia.",
       "significa": "No siente urgencia; esperar le parece gratis porque nadie le ha mostrado lo que cuesta cada mes sin decidir.",
       "peor": [
@@ -521,6 +569,14 @@
       "cat": "tiempo",
       "tipo": "excusa",
       "obj": "Déjame pensarlo",
+      "aliases": [
+        "Lo voy a pensar",
+        "Necesito pensarlo bien",
+        "Dame tiempo para analizarlo",
+        "Lo reviso y te aviso",
+        "No quiero decidir ahora",
+        "Quiero dormirlo"
+      ],
       "confirmar": "Si no dice QUÉ va a pensar, oculta la objeción real.",
       "significa": "Hay una objeción específica que no te ha dicho, y \"pensarlo\" es la forma educada de no decírtela.",
       "peor": [
@@ -561,6 +617,14 @@
       "cat": "tiempo",
       "tipo": "duda",
       "obj": "Ahora no es buen momento",
+      "aliases": [
+        "No tengo tiempo",
+        "Ahorita no puedo verlo",
+        "Estamos demasiado ocupados",
+        "Este no es el momento",
+        "Tengo otras cosas encima",
+        "Mejor hablamos después"
+      ],
       "confirmar": "Si describe el motivo (auditoría, obra, cierre fiscal), es duda. Si no, excusa.",
       "significa": "Su atención está en otra prioridad y percibe tu propuesta como una carga adicional, no como un alivio.",
       "peor": [
@@ -601,6 +665,14 @@
       "cat": "tiempo",
       "tipo": "excusa",
       "obj": "Llámame el próximo mes",
+      "aliases": [
+        "Búscame el mes que viene",
+        "Hablamos el próximo mes",
+        "Márcame después",
+        "Retomemos esto en unas semanas",
+        "Ahorita no pero luego sí",
+        "Contáctame más adelante"
+      ],
       "confirmar": "Si fuera real, agendaría día y hora contigo.",
       "significa": "Quiere terminar esta conversación sin conflicto; el \"próximo mes\" es una puerta de salida, no una cita.",
       "peor": [
@@ -641,6 +713,14 @@
       "cat": "tiempo",
       "tipo": "real",
       "obj": "No tengo prisa con esto",
+      "aliases": [
+        "Esto puede esperar",
+        "No es urgente",
+        "Tenemos tiempo para decidir",
+        "No necesito resolverlo ahora",
+        "Podemos verlo con calma",
+        "No hay ninguna prisa"
+      ],
       "confirmar": "Falta de urgencia genuina. Trabaja el costo de esperar.",
       "significa": "No percibe ningún costo por esperar; para él, decidir hoy o en seis meses da exactamente lo mismo.",
       "peor": [
@@ -681,6 +761,14 @@
       "cat": "tiempo",
       "tipo": "excusa",
       "obj": "Lo retomamos el próximo año",
+      "aliases": [
+        "Lo vemos el año que viene",
+        "Hablemos el siguiente año",
+        "Este año ya no",
+        "Déjalo para el próximo ejercicio",
+        "Retomemos cuando empiece el año",
+        "Ya no alcanzamos este año"
+      ],
       "confirmar": "Horizonte indefinido = no hay intención.",
       "significa": "Te está archivando con elegancia; un horizonte tan lejano y redondo casi nunca corresponde a un plan real.",
       "peor": [
@@ -721,6 +809,14 @@
       "cat": "confianza",
       "tipo": "real",
       "obj": "No conozco su empresa",
+      "aliases": [
+        "Nunca había escuchado de ustedes",
+        "No los conozco",
+        "Quiénes son ustedes",
+        "No tengo referencias de su empresa",
+        "Su marca no me suena",
+        "Cómo sé que son confiables"
+      ],
       "confirmar": "Legítima. Se resuelve con prueba social.",
       "significa": "Necesita evidencia de que otros ya confiaron en ti y les fue bien; no es rechazo, es prudencia.",
       "peor": [
@@ -761,6 +857,14 @@
       "cat": "confianza",
       "tipo": "duda",
       "obj": "¿Y si no funciona?",
+      "aliases": [
+        "Qué pasa si falla",
+        "Cómo sé que va a funcionar",
+        "No estoy seguro de que funcione",
+        "Y si no da resultados",
+        "Qué garantía tengo",
+        "Me preocupa que no sirva"
+      ],
       "confirmar": "Miedo al riesgo. Pide certeza, no información.",
       "significa": "Quiere comprar, pero le aterra equivocarse; no necesita más información, necesita reducir el riesgo de la decisión.",
       "peor": [
@@ -801,6 +905,14 @@
       "cat": "confianza",
       "tipo": "real",
       "obj": "Ya tuve una mala experiencia con algo así",
+      "aliases": [
+        "Ya me fue mal con esto",
+        "Un proveedor anterior me quedó mal",
+        "Ya nos fallaron una vez",
+        "Tuvimos problemas con algo parecido",
+        "No quiero repetir la mala experiencia",
+        "La última vez no funcionó"
+      ],
       "confirmar": "Herida previa. Requiere diferenciación explícita.",
       "significa": "Alguien más rompió su confianza y ahora tú pagas la fianza; necesita ver con claridad por qué esta vez será diferente.",
       "peor": [
@@ -841,6 +953,14 @@
       "cat": "confianza",
       "tipo": "excusa",
       "obj": "Mándame la información por correo",
+      "aliases": [
+        "Envíame la presentación",
+        "Pásame la información",
+        "Mándame un correo",
+        "Déjame revisar la propuesta",
+        "Envíame el brochure",
+        "Compárteme los datos y yo te aviso"
+      ],
       "confirmar": "Forma educada de terminar la conversación.",
       "significa": "Quiere colgar sin conflicto; el correo que pide tiene altas probabilidades de no abrirse jamás.",
       "peor": [
@@ -881,6 +1001,14 @@
       "cat": "confianza",
       "tipo": "duda",
       "obj": "Suena demasiado bueno para ser verdad",
+      "aliases": [
+        "No me lo creo",
+        "Parece demasiado bueno",
+        "Eso suena imposible",
+        "Seguro hay letra pequeña",
+        "Dónde está el truco",
+        "No puede ser tan fácil"
+      ],
       "confirmar": "Interés alto + desconfianza. Muy recuperable.",
       "significa": "Está muy interesado, pero su experiencia le dice que las ofertas perfectas esconden letra chica; busca el truco.",
       "peor": [
@@ -921,6 +1049,14 @@
       "cat": "autoridad",
       "tipo": "real",
       "obj": "Tengo que consultarlo con mi socio / mi pareja",
+      "aliases": [
+        "Lo tengo que ver con mi jefe",
+        "Debo hablarlo con mi socio",
+        "Necesito consultarlo con mi pareja",
+        "No puedo decidirlo solo",
+        "Primero tengo que preguntarle a alguien",
+        "Lo tengo que revisar con mi equipo"
+      ],
       "confirmar": "Si acepta agendar reunión con el socio, es real.",
       "significa": "O es verdad y necesitas llegar a esa segunda persona, o es un escudo para no decirte que no; tu trabajo es distinguirlo ya.",
       "peor": [
@@ -961,6 +1097,14 @@
       "cat": "autoridad",
       "tipo": "real",
       "obj": "Yo no soy quien decide",
+      "aliases": [
+        "La decisión no depende de mí",
+        "Yo no tengo la última palabra",
+        "Mi jefe es quien decide",
+        "No tengo autoridad para aprobarlo",
+        "Solo estoy recabando información",
+        "Otra persona toma la decisión"
+      ],
       "confirmar": "Información valiosa: pide acceso al decisor.",
       "significa": "Te acaba de dar el dato más valioso de la reunión: estás hablando con un influenciador, y el decisor está en otro lado.",
       "peor": [
@@ -1001,6 +1145,14 @@
       "cat": "autoridad",
       "tipo": "real",
       "obj": "Lo tiene que aprobar dirección / el comité",
+      "aliases": [
+        "Necesito aprobación de dirección",
+        "Debe pasar por el comité",
+        "Lo tiene que autorizar mi jefe",
+        "Falta la aprobación interna",
+        "Compras tiene que aprobarlo",
+        "No puedo firmarlo sin autorización"
+      ],
       "confirmar": "Proceso B2B normal. Conviértete en aliado interno.",
       "significa": "Hay un proceso formal de decisión; tu venta ahora depende de qué tan bien equipes a tu contacto para ese proceso.",
       "peor": [
@@ -1041,6 +1193,14 @@
       "cat": "autoridad",
       "tipo": "duda",
       "obj": "Déjame presentarlo internamente y te aviso",
+      "aliases": [
+        "Voy a presentarlo al equipo",
+        "Déjame compartirlo internamente",
+        "Lo revisamos en la junta",
+        "Tengo que preparar el caso interno",
+        "Lo platico con los demás y regreso",
+        "Primero debo venderlo dentro de la empresa"
+      ],
       "confirmar": "Teme no saber defenderlo. Dale las armas.",
       "significa": "Le interesa, pero teme no saber defender tu propuesta ante los suyos; si lo dejas solo, la presentación interna diluirá tu venta.",
       "peor": [
@@ -1081,6 +1241,14 @@
       "cat": "competencia",
       "tipo": "real",
       "obj": "Ya trabajamos con otro proveedor",
+      "aliases": [
+        "Ya tengo proveedor",
+        "Estamos contentos con nuestro proveedor actual",
+        "Ya hay alguien que nos atiende",
+        "Tenemos un contrato vigente",
+        "No queremos cambiar de proveedor",
+        "Nuestro proveedor ya cubre eso"
+      ],
       "confirmar": "Statu quo. No ataques al proveedor: abre una rendija.",
       "significa": "Cambiar le representa esfuerzo y riesgo; no necesita que su proveedor sea malo, necesita una razón concreta para abrir la puerta.",
       "peor": [
@@ -1121,6 +1289,14 @@
       "cat": "competencia",
       "tipo": "real",
       "obj": "Estoy comparando otras opciones",
+      "aliases": [
+        "Estoy viendo otras propuestas",
+        "Tengo varias cotizaciones",
+        "Aún estoy evaluando proveedores",
+        "Quiero comparar antes de decidir",
+        "Estoy revisando alternativas",
+        "Todavía no elijo una opción"
+      ],
       "confirmar": "Proceso de compra activo. Excelente señal.",
       "significa": "Está en proceso activo de compra —excelente noticia—; tu misión es definir los criterios con los que comparará.",
       "peor": [
@@ -1161,6 +1337,14 @@
       "cat": "competencia",
       "tipo": "duda",
       "obj": "Tu competencia me ofrece más",
+      "aliases": [
+        "Otro proveedor incluye más cosas",
+        "La competencia tiene una mejor oferta",
+        "Con ellos recibo más por el mismo precio",
+        "Tu propuesta incluye menos",
+        "La otra opción me da más beneficios",
+        "El competidor tiene mejores condiciones"
+      ],
       "confirmar": "Quiere que le demuestres por qué tú.",
       "significa": "Sigue en tu mesa a pesar de esa oferta \"superior\": quiere que le des la razón para elegirte, o está negociando contigo.",
       "peor": [
@@ -1201,6 +1385,14 @@
       "cat": "competencia",
       "tipo": "duda",
       "obj": "Eso lo podemos hacer internamente",
+      "aliases": [
+        "Mi equipo puede hacerlo",
+        "No necesitamos contratarlo fuera",
+        "Lo resolvemos nosotros",
+        "Tenemos gente interna para eso",
+        "Podemos desarrollarlo en casa",
+        "Prefiero asignarlo a mi equipo"
+      ],
       "confirmar": "Subestima el costo real de hacerlo solo.",
       "significa": "Solo está viendo el costo de contratarte, no el costo completo de hacerlo él: tiempo, errores, distracción y resultado inferior.",
       "peor": [
@@ -1241,6 +1433,14 @@
       "cat": "competencia",
       "tipo": "duda",
       "obj": "Un conocido me lo hace más barato",
+      "aliases": [
+        "Tengo un amigo que cobra menos",
+        "Un familiar puede hacerlo",
+        "Conozco a alguien más barato",
+        "Mi contacto me da mejor precio",
+        "Alguien de confianza ya me cotizó",
+        "Me lo puede hacer un conocido"
+      ],
       "confirmar": "Compara precio, no resultado ni respaldo.",
       "significa": "Está comparando solo el precio de ejecución, sin ver el precio del riesgo: sin contrato, sin garantía y sin a quién reclamar.",
       "peor": [
@@ -1281,6 +1481,14 @@
       "cat": "necesidad",
       "tipo": "excusa",
       "obj": "No lo necesito",
+      "aliases": [
+        "No necesito esto",
+        "Esto no me hace falta",
+        "No veo la necesidad",
+        "Podemos vivir sin esto",
+        "No es algo que requiramos",
+        "No me interesa porque no lo necesito"
+      ],
       "confirmar": "Si escuchó menos de 2 minutos, es excusa. Si escuchó todo, puede ser real.",
       "significa": "O rechaza en automático sin haberte escuchado, o le presentaste características cuando él necesitaba escuchar problemas resueltos.",
       "peor": [
@@ -1321,6 +1529,14 @@
       "cat": "necesidad",
       "tipo": "duda",
       "obj": "Así estamos bien",
+      "aliases": [
+        "Estamos bien como estamos",
+        "Lo actual nos funciona",
+        "No queremos cambiar nada",
+        "Hasta ahora no hemos tenido problemas",
+        "Prefiero dejarlo como está",
+        "Con lo que tenemos es suficiente"
+      ],
       "confirmar": "Comodidad. No ve el costo de no cambiar.",
       "significa": "La comodidad del presente le impide ver el costo de no cambiar; \"bien\" significa \"acostumbrado\", no \"óptimo\".",
       "peor": [
@@ -1361,6 +1577,14 @@
       "cat": "necesidad",
       "tipo": "real",
       "obj": "No es prioridad en este momento",
+      "aliases": [
+        "Tenemos otras prioridades",
+        "Esto no es urgente ahora",
+        "Hay cosas más importantes",
+        "No está dentro de nuestras prioridades",
+        "Lo veremos cuando terminemos otros proyectos",
+        "Ahorita estamos enfocados en otra cosa"
+      ],
       "confirmar": "Compite contra otros proyectos. Cuantifica el costo de posponer.",
       "significa": "Tu proyecto compite contra otros proyectos por los mismos recursos, y hoy va perdiendo; necesitas cambiar su posición en la fila.",
       "peor": [
@@ -1401,6 +1625,14 @@
       "cat": "necesidad",
       "tipo": "real",
       "obj": "No veo claro qué gano con esto",
+      "aliases": [
+        "Qué beneficio obtengo",
+        "No entiendo el valor",
+        "Qué me aporta esto",
+        "No veo el retorno de inversión",
+        "Qué cambia si lo compro",
+        "No me queda claro para qué sirve"
+      ],
       "confirmar": "Fallo de comunicación tuyo. Reformula en resultados.",
       "significa": "Le hablaste de características y procesos, pero nunca tradujiste nada a su dinero, su tiempo o su tranquilidad; el fallo es de comunicación, y es tuyo.",
       "peor": [
@@ -1441,6 +1673,14 @@
       "cat": "necesidad",
       "tipo": "real",
       "obj": "Ya lo intentamos antes y no funcionó",
+      "aliases": [
+        "Ya probamos esto y falló",
+        "Lo hicimos antes sin resultados",
+        "Ya intentamos algo parecido",
+        "Esa solución no nos funcionó",
+        "No quiero volver a intentar lo mismo",
+        "La vez pasada no dio resultado"
+      ],
       "confirmar": "Experiencia previa. Diferénciate del intento anterior.",
       "significa": "Tiene una cicatriz de un intento anterior y asume que el resultado se repetirá; debes demostrar que el intento falló, no la solución.",
       "peor": [

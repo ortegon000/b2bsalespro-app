@@ -4,6 +4,7 @@ use App\Domain\ObjecionCero\Enums\TipoObjecion;
 use App\Domain\ObjecionCero\Models\Categoria;
 use App\Domain\ObjecionCero\Models\ContentView;
 use App\Domain\ObjecionCero\Models\Ficha;
+use App\Domain\ObjecionCero\Services\SearchText;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -33,17 +34,21 @@ new #[Layout('layouts.objecion-cero')] #[Title('Banco de fichas')] class extends
     #[Computed]
     public function fichas()
     {
-        return Ficha::query()
+        $fichas = Ficha::query()
             ->with('categoria')
             ->when($this->catFilter, fn ($q) => $q->where('category_id', $this->catFilter))
             ->when($this->tipoFilter, fn ($q) => $q->where('type', $this->tipoFilter))
-            ->when($this->query, fn ($q) => $q->where(function ($q) {
-                $q->where('objection', 'like', "%{$this->query}%")
-                    ->orWhere('meaning', 'like', "%{$this->query}%")
-                    ->orWhere('tip', 'like', "%{$this->query}%");
-            }))
             ->orderBy('number')
             ->get();
+
+        return $fichas
+            ->filter(fn (Ficha $ficha) => SearchText::matches($this->query, ...[
+                $ficha->objection,
+                ...($ficha->search_aliases ?? []),
+                $ficha->meaning,
+                $ficha->tip,
+            ]))
+            ->values();
     }
 
     #[Computed]
@@ -84,6 +89,13 @@ new #[Layout('layouts.objecion-cero')] #[Title('Banco de fichas')] class extends
     public function close(): void
     {
         $this->fichaId = null;
+    }
+
+    public function dialogueText(Ficha $ficha): string
+    {
+        return collect($ficha->dialogue)
+            ->map(fn (array $message) => ($message['who'] === 't' ? 'Tú' : 'Cliente').': '.$message['t'])
+            ->implode("\n\n");
     }
 }; ?>
 
@@ -178,7 +190,10 @@ new #[Layout('layouts.objecion-cero')] #[Title('Banco de fichas')] class extends
 
                 @if (!empty($this->ficha->dialogue))
                     <div style="border-left:3px solid oklch(0.55 0.11 155);background:oklch(0.55 0.11 155 / .08);border-radius:0 9px 9px 0;padding:17px 20px;margin-bottom:24px">
-                        <div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:oklch(0.78 0.12 155);text-transform:uppercase;margin-bottom:14px">✓ Respuesta recomendada</div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
+                            <div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:oklch(0.78 0.12 155);text-transform:uppercase">✓ Respuesta recomendada</div>
+                            <x-objecion-cero.copy-button :text="$this->dialogueText($this->ficha)" label="Copiar diálogo" />
+                        </div>
                         @foreach ($this->ficha->dialogue as $m)
                             @php $you = $m['who'] === 't'; @endphp
                             <div style="display:flex;gap:12px;margin-bottom:12px">

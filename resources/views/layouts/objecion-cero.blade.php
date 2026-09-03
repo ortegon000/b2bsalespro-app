@@ -23,6 +23,9 @@
         ::-webkit-scrollbar-track{background:transparent}
         input::placeholder,textarea::placeholder{color:#5a6472}
         button{font-family:inherit}
+        .oc-copy-button:focus-visible,.oc-action-button:focus-visible{outline:2px solid oklch(0.80 0.13 82);outline-offset:3px}
+        .oc-copy-button:hover,.oc-action-secondary:hover{background:#232e3d!important}
+        .oc-action-button:disabled{cursor:wait;opacity:.7}
         @keyframes ocfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
         @keyframes ocdrawer{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
         @keyframes ocback{from{opacity:0}to{opacity:1}}

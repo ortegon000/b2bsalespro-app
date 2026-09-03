@@ -11,12 +11,13 @@ class Ficha extends Model
     protected $table = 'oc_objections';
 
     protected $fillable = [
-        'number', 'category_id', 'type', 'objection', 'confirm', 'meaning',
+        'number', 'category_id', 'type', 'objection', 'search_aliases', 'confirm', 'meaning',
         'worst_case', 'dialogue', 'question', 'closing', 'error', 'tip', 'branches',
     ];
 
     protected $casts = [
         'type' => TipoObjecion::class,
+        'search_aliases' => 'array',
         'worst_case' => 'array',
         'dialogue' => 'array',
         'branches' => 'array',

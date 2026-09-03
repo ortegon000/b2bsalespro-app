@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\ObjecionCero\Models\Cierre;
+use App\Domain\ObjecionCero\Services\SearchText;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -13,13 +14,15 @@ new #[Layout('layouts.objecion-cero')] #[Title('Selector de cierres')] class ext
     public function cierres()
     {
         return Cierre::query()
-            ->when($this->query, fn ($q) => $q->where(function ($q) {
-                $q->where('objection', 'like', "%{$this->query}%")
-                    ->orWhere('name', 'like', "%{$this->query}%")
-                    ->orWhere('script', 'like', "%{$this->query}%");
-            }))
             ->orderBy('sort_order')
-            ->get();
+            ->get()
+            ->filter(fn (Cierre $cierre) => SearchText::matches(
+                $this->query,
+                $cierre->objection,
+                $cierre->name,
+                $cierre->script,
+            ))
+            ->values();
     }
 }; ?>
 

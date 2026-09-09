@@ -8,6 +8,7 @@ Route::get('/', fn () => redirect()->route('login'))->name('home');
 
 Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::livewire('admin/feedback', 'pages::admin.feedback')->name('admin.feedback');
 });
 
 require __DIR__.'/settings.php';

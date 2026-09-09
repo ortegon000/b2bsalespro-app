@@ -21,6 +21,12 @@
                     <flux:sidebar.item icon="shield-check" :href="route('objecion-cero.inicio')" :current="request()->routeIs('objecion-cero.*')" wire:navigate>
                         Objeción Cero
                     </flux:sidebar.item>
+
+                    @if (auth()->user()->is_admin)
+                        <flux:sidebar.item icon="chat-bubble-left-right" :href="route('admin.feedback')" :current="request()->routeIs('admin.feedback')" wire:navigate>
+                            Feedback
+                        </flux:sidebar.item>
+                    @endif
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

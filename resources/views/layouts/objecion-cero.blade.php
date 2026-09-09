@@ -34,7 +34,7 @@
         @media (max-width:860px){
             .oc-shell{flex-direction:column}
             .oc-topbar{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;padding:14px 18px;background:#0b0f16;border-bottom:1px solid rgba(255,255,255,.07)}
-            .oc-sidebar{position:fixed!important;top:0;left:0;z-index:41;width:82vw!important;max-width:320px;transform:translateX(-100%);transition:transform .22s ease}
+            .oc-sidebar{position:fixed!important;top:0;left:0;z-index:70;width:82vw!important;max-width:320px;transform:translateX(-100%);transition:transform .22s ease}
             .oc-sidebar.oc-sidebar-open{transform:translateX(0)}
             .oc-main{height:auto!important}
             .oc-main-inner{padding:0 18px 60px!important}
@@ -57,7 +57,7 @@
     </div>
 
     {{-- MOBILE BACKDROP --}}
-    <div x-cloak x-show="navOpen" @click="navOpen = false" style="position:fixed;inset:0;background:rgba(6,9,14,.6);z-index:40"></div>
+    <div x-cloak x-show="navOpen" @click="navOpen = false" style="position:fixed;inset:0;background:rgba(6,9,14,.6);z-index:65"></div>
 
     {{-- SIDEBAR --}}
     <aside class="oc-sidebar" :class="{ 'oc-sidebar-open': navOpen }" style="width:266px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;background:#0b0f16;border-right:1px solid rgba(255,255,255,.07);padding:26px 16px 22px;display:flex;flex-direction:column">

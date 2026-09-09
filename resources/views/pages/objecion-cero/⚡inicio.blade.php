@@ -67,7 +67,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Inicio')] class extends Componen
     </div>
 
     <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;color:#fff;margin:56px 0 20px;letter-spacing:-.01em">Los tres tipos de objeción</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div class="oc-tipos-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
         @foreach ($this->tipos as $t)
             <div style="background:#141a24;border:1px solid rgba(255,255,255,.07);border-top:3px solid {{ $t->dotColor() }};border-radius:11px;padding:20px 22px">
                 <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:20px;background:{{ $t->bgColor() }};color:{{ $t->textColor() }};font:700 12px 'IBM Plex Sans';text-transform:uppercase;letter-spacing:.05em"><span style="width:8px;height:8px;border-radius:50%;background:{{ $t->dotColor() }};display:inline-block"></span>{{ $t->short() }}</div>

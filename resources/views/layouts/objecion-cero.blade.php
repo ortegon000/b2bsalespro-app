@@ -37,8 +37,9 @@
             .oc-sidebar{position:fixed!important;top:0;left:0;z-index:70;width:82vw!important;max-width:320px;transform:translateX(-100%);transition:transform .22s ease}
             .oc-sidebar.oc-sidebar-open{transform:translateX(0)}
             .oc-main{height:auto!important}
-            .oc-main-inner{padding:0 18px 60px!important}
+            .oc-main-inner{padding:0 18px 100px!important}
             .oc-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+            .oc-tipos-grid{grid-template-columns:1fr!important}
         }
         @media (max-width:520px){
             .oc-main-inner{padding:0 16px 50px!important}

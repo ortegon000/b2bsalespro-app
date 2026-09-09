@@ -38,6 +38,42 @@ it('finds banco records by natural language aliases with extra punctuation', fun
         ->assertDontSee('Necesito consultarlo');
 });
 
+it('finds banco records when query words have intervening text', function () {
+    $categoria = Categoria::create([
+        'slug' => 'precio',
+        'label' => 'Precio',
+    ]);
+
+    Ficha::create([
+        'number' => 1,
+        'category_id' => $categoria->id,
+        'type' => 'real',
+        'objection' => 'Está muy caro',
+        'search_aliases' => ['Alto costo'],
+        'confirm' => 'Confirmar',
+        'meaning' => 'El precio supera la expectativa',
+    ]);
+
+    Ficha::create([
+        'number' => 2,
+        'category_id' => $categoria->id,
+        'type' => 'duda',
+        'objection' => 'Necesito consultarlo',
+        'confirm' => 'Confirmar',
+        'meaning' => 'Hay otra persona involucrada',
+    ]);
+
+    Livewire::test('pages::objecion-cero.banco-fichas')
+        ->set('query', 'esta caro')
+        ->assertSee('Está muy caro')
+        ->assertDontSee('Necesito consultarlo');
+
+    Livewire::test('pages::objecion-cero.banco-fichas')
+        ->set('query', 'alto costo')
+        ->assertSee('Está muy caro')
+        ->assertDontSee('Necesito consultarlo');
+});
+
 it('finds cierres without accents and with extra punctuation', function () {
     Cierre::create([
         'objection' => 'Falta una decisión',

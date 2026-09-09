@@ -47,7 +47,7 @@ new #[Layout('layouts.objecion-cero')] #[Title('Inicio')] class extends Componen
         </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;margin-top:40px">
+    <div class="oc-stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;margin-top:40px">
         @foreach ($this->stats as $s)
             <div style="background:#0f1319;padding:24px 22px">
                 <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;color:#fff;line-height:1">{{ $s['k'] }}</div>

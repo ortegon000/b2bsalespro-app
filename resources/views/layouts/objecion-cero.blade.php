@@ -38,6 +38,7 @@
             .oc-sidebar.oc-sidebar-open{transform:translateX(0)}
             .oc-main{height:auto!important}
             .oc-main-inner{padding:0 18px 60px!important}
+            .oc-stats-grid{grid-template-columns:repeat(2,1fr)!important}
         }
         @media (max-width:520px){
             .oc-main-inner{padding:0 16px 50px!important}

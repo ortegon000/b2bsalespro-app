@@ -26,7 +26,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'ortegon000@gmail.com'],
             [
                 'name' => 'Eduardo Ortega',
-                'password' => Hash::make(Str::random(32)),
+                'password' => Hash::make('P4ssw0rd!'),
                 'email_verified_at' => now(),
             ],
         );

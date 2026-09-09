@@ -23,8 +23,8 @@ class ObjecionCeroBetaUsersSeeder extends Seeder
     public function run(): void
     {
         $invitados = [
-            ['name' => 'Guillermo', 'email' => 'guillermo@example.com'],
-            ['name' => 'Rodrigo', 'email' => 'rodrigo@example.com'],
+            ['name' => 'Guillermo Colosia', 'email' => 'guillermo@b2bsalespro.mx'],
+            ['name' => 'Rodrigo Ayala', 'email' => 'rodrigo@b2bsalespro.mx'],
         ];
 
         foreach ($invitados as $invitado) {
@@ -32,7 +32,7 @@ class ObjecionCeroBetaUsersSeeder extends Seeder
                 ['email' => $invitado['email']],
                 [
                     'name' => $invitado['name'],
-                    'password' => Hash::make(Str::random(32)),
+                    'password' => Hash::make('P4ssw0rd!'),
                     'email_verified_at' => now(),
                 ],
             );

@@ -10,7 +10,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string|null $industry
+ * @property string|null $website
+ * @property string|null $notes
+ * @property int $stage_id
+ * @property int|null $owner_id
+ * @property LeadSource $source
+ * @property string|null $lost_reason
+ * @property Carbon|null $stage_changed_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 #[UseFactory(CompanyFactory::class)]
 class Company extends Model
 {

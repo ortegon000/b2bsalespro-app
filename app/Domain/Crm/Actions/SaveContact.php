@@ -12,7 +12,7 @@ class SaveContact
      * Crea o actualiza un contacto de la empresa, garantizando un solo contacto
      * principal: el primero que se agrega lo es, y marcar otro le quita la marca al anterior.
      *
-     * @param  array{name: string, email: string, phone?: ?string, job_title?: ?string, is_primary?: bool}  $data
+     * @param  array{name?: string, email?: string, phone?: ?string, job_title?: ?string, is_primary?: bool}  $data
      */
     public function handle(Company $company, array $data, ?Contact $contact = null): Contact
     {
@@ -20,13 +20,16 @@ class SaveContact
             $contact ??= new Contact(['company_id' => $company->id]);
 
             $isFirst = ! $company->contacts()->whereKeyNot($contact->getKey())->exists();
-            $data['is_primary'] = $isFirst || ($data['is_primary'] ?? false);
+            $current = $contact->exists && $contact->is_primary;
+            $data['is_primary'] = $isFirst || ($data['is_primary'] ?? $current);
 
             if ($data['is_primary']) {
                 $company->contacts()->whereKeyNot($contact->getKey())->update(['is_primary' => false]);
             }
 
-            $contact->fill($data)->save();
+            $contact->fill($data);
+            $contact->company_id = $company->id;
+            $contact->save();
 
             return $contact;
         });

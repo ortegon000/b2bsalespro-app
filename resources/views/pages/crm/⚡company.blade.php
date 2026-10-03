@@ -157,7 +157,10 @@ new #[Title('Empresa')] class extends Component {
     <section class="flex flex-col gap-3">
         <div class="flex items-center justify-between gap-3">
             <flux:heading size="lg">Contactos</flux:heading>
-            <flux:button size="sm" icon="plus" wire:click="newContact">Agregar contacto</flux:button>
+            <div class="flex gap-2">
+                <flux:button size="sm" icon="arrow-up-tray" :href="route('crm.companies.contacts.import', $company)" wire:navigate>Importar CSV</flux:button>
+                <flux:button size="sm" icon="plus" wire:click="newContact">Agregar contacto</flux:button>
+            </div>
         </div>
 
         @forelse ($contacts as $contact)

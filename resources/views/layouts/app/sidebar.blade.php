@@ -22,6 +22,12 @@
                         Objeción Cero
                     </flux:sidebar.item>
 
+                    @can('access-crm')
+                        <flux:sidebar.item icon="funnel" :href="route('crm.pipeline')" :current="request()->routeIs('crm.*')" wire:navigate>
+                            CRM
+                        </flux:sidebar.item>
+                    @endcan
+
                     @if (auth()->user()->is_admin)
                         <flux:sidebar.item icon="chat-bubble-left-right" :href="route('admin.feedback')" :current="request()->routeIs('admin.feedback')" wire:navigate>
                             Feedback

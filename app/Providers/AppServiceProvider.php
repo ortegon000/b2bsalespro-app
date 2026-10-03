@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Domain\Crm\Models\TeamMember;
 use App\Domain\ObjecionCero\Livewire\FeedbackWidget;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Livewire;
@@ -28,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
         Livewire::component('objecion-cero-feedback', FeedbackWidget::class);
+
+        // El CRM es solo para el equipo: los clientes de Objeción Cero también son User.
+        Gate::define('access-crm', fn (User $user): bool => TeamMember::where('user_id', $user->id)->exists());
     }
 
     /**

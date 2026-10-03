@@ -13,3 +13,4 @@ Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(functio
 
 require __DIR__.'/settings.php';
 require __DIR__.'/objecion-cero.php';
+require __DIR__.'/crm.php';

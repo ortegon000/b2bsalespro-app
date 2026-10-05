@@ -2,7 +2,7 @@
 
 Documento vivo para continuar el trabajo en otras conversaciones o con otros LLM. Léelo completo antes de tocar código y **actualiza las secciones "Estado" y "Lo que ya existe" al terminar cada fase**.
 
-Última actualización: 2026-10-05 (6A: infraestructura de correos Blade lista; faltan los correos 2–30) · rama `feat/crm` (nada subido al remoto por decisión del usuario).
+Última actualización: 2026-10-05 (6A: infraestructura de correos Blade lista; faltan los correos 2–30) · **integrado en `master` y subido a `origin/master` el 2026-10-05**; la rama de trabajo `feat/crm` ya no existe.
 
 ---
 
@@ -84,10 +84,10 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 | 6D | Conectar las entradas de leads (formulario, landing, WhatsApp/n8n) con ejemplos | ⏳ |
 | 6E | Migrar a quienes van a medias en n8n/Google Sheets | ⏳ |
 | 6F | Reportes comerciales (origen, tiempo por etapa, pérdidas) | ⏳ |
-| 6G | Revisión, PR hacia `master` y salida a producción | ⏳ |
+| 6G | Revisión y salida a producción (el código ya está en `master`) | ⏳ |
 | — | Backlog sin fecha (sección 5) | ⏳ |
 
-Historial de commits de la rama: `git log --oneline feat/crm` (convención `feat:` / `fix:` / `docs:` / `chore:` en español).
+Historial: `git log --oneline master` (el trabajo del CRM son los commits posteriores a `298df4a`) (convención `feat:` / `fix:` / `docs:` / `chore:` en español).
 
 Suite al cerrar la infraestructura 6A: 274 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
 
@@ -228,8 +228,8 @@ Importador CSV de **suscripciones en curso** (columnas: email, curso, día en qu
 ### 6F. Reportes comerciales
 Origen de leads que más convierte, tiempo promedio por etapa, empresas perdidas y por qué (`lost_reason`), tasa de propuesta → aceptado, rendimiento por responsable. Consultas sobre datos que ya existen (`stage_changed_at`, `source`, `lost_reason`); un historial de cambios de etapa (tabla nueva) permitiría medir tiempos reales.
 
-### 6G. Revisión, PR y producción
-Revisar el conjunto de la rama (`git log --oneline master..feat/crm`), abrir el PR hacia `master` (**el usuario pidió no subir ramas por ahora**: confirmar antes), y dejar en el servidor: variables, worker de cola supervisado, scheduler (cron), copias de seguridad de la BD y `APP_URL` público (para imágenes y enlaces de baja).
+### 6G. Revisión y producción
+El CRM ya está integrado en `master` (fast-forward, historial lineal) y subido; no hay PR pendiente. Falta revisar el conjunto con calma si se quiere, y dejar en el servidor: variables, worker de cola supervisado, scheduler (cron), copias de seguridad de la BD y `APP_URL` público (para imágenes y enlaces de baja).
 
 ### Backlog sin fecha
 - Alertas o resumen cuando suban los rebotes/bajas o falle una racha de envíos.
@@ -303,7 +303,7 @@ Este repo tiene `CLAUDE.md` / `AGENTS.md` con las reglas de Laravel Boost; las m
 
 ## 9. Cómo continuar
 
-1. `git checkout feat/crm`, leer este archivo y correr `php artisan test --compact tests/Feature/Crm`.
+1. `git checkout master && git pull`, crear una rama corta para el trabajo (`git checkout -b feat/<tema>`), leer este archivo y correr `php artisan test --compact tests/Feature/Crm`.
 2. Tomar el siguiente punto de la sección 5: **6A** (convertir los correos 2–30 a vistas Blade en cuanto el usuario pase su contenido; el flujo está en esa sección) y, con eso listo, **6B** (piloto real).
 3. Implementar con tests, Pint y PHPStan; verificar en el navegador cuando haya cambios de interfaz.
 4. Actualizar las secciones **3 (Estado)**, **4 (Lo que ya existe)** y **5/6** de este archivo y hacer commit con mensaje `feat:` / `fix:` en español.

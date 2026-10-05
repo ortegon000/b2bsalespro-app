@@ -2,7 +2,7 @@
 
 Documento vivo para continuar el trabajo en otras conversaciones o con otros LLM. Léelo completo antes de tocar código y **actualiza las secciones "Estado" y "Lo que ya existe" al terminar cada fase**.
 
-Última actualización: 2026-10-05 (hoja de ruta: correos como Blade → piloto → portada) · rama `feat/crm` (nada subido al remoto por decisión del usuario).
+Última actualización: 2026-10-05 (6A: infraestructura de correos Blade lista; faltan los correos 2–30) · rama `feat/crm` (nada subido al remoto por decisión del usuario).
 
 ---
 
@@ -40,7 +40,8 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 - **La tarjeta del kanban es la empresa**, no la persona. Las personas son contactos de la empresa.
 - **Tablas y código en inglés**, prefijo `crm_` en tablas. Textos de interfaz en español.
 - **Correo único por contacto** (`crm_contacts.email`, único global). Hoy cada trabajador pertenece a una sola empresa.
-- **Los correos de la secuencia serán vistas Blade del repo, no plantillas de Brevo** (decisión del usuario, 2026-10-05): no hace falta un editor dentro del CRM, se edita el Blade. Se envían por la **API de Brevo con `htmlContent`** (no por SMTP) para seguir recibiendo el `message-id` y con él las métricas. **Hasta que se implemente la fase 6A, el código sigue enviando por `brevo_template_id`**; ver 6A para la transición.
+- **Los correos de la secuencia serán vistas Blade del repo, no plantillas de Brevo** (decisión del usuario, 2026-10-05): no hace falta un editor dentro del CRM, se edita el Blade. Se envían por la **API de Brevo con `htmlContent`** (no por SMTP) para seguir recibiendo el `message-id` y con él las métricas. **Transición**: los días que ya tienen vista salen como HTML propio; los que no, siguen saliendo por su `brevo_template_id`. Cuando los 30 tengan vista se retira la plantilla de Brevo (ver 6A).
+- **Respuestas del usuario para 6A (2026-10-05)**: los 30 correos comparten **siempre el mismo diseño** y solo cambia el texto; **la única imagen es el logo** (se descartó la foto de Pexels del día 1; no hay imagen por correo); remitente **`cursos@b2bsalespro.mx`** (ya verificado en Brevo, nombre «B2B Sales Pro»); el usuario **pasará el contenido de los correos 2–30**.
 - **Descartado**: editor de plantillas dentro del CRM y orden manual de tarjetas dentro de una columna del kanban (hoy se ordenan por antigüedad en la etapa; «orden manual» = arrastrar una tarjeta arriba/abajo dentro de su columna para priorizarla, lo que exigiría guardar una posición por tarjeta; las etiquetas de tareas vencidas ya cumplen esa función). Se retoma solo si el usuario lo pide.
 - **Zona horaria del negocio: `America/Mexico_City`** (`config('crm.timezone')`). Las fechas se guardan en UTC y se muestran/programan en esa zona. **No se cambió `app.timezone`** (sigue UTC) para no afectar Objeción Cero.
 - **Hora de envío: 12:00 pm** en esa zona (`config('crm.send_hour')`).
@@ -77,7 +78,7 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 | 5a | Newsletter: sumar a quienes toman un curso a la lista `newsletter` de Brevo y enviar/programar campañas | ✅ **código y tests listos; falta configurar Brevo real (sección 6)** |
 | 5b | Tareas y recordatorios por empresa (+ resumen diario por correo) y actividades con fecha pasada | ✅ |
 | 5c | Métricas de entrega (entregado/abierto/clic) de la secuencia y de las campañas | ✅ **falta activar los eventos en el webhook de Brevo (sección 6)** |
-| 6A | **Correos como Blade con personalización**: layout + 30 vistas, vista previa, prueba a uno mismo, enlace de baja | ⏳ **SIGUIENTE** |
+| 6A | **Correos como Blade con personalización**: layout, vista previa, prueba a uno mismo, enlace de baja, envío por HTML | 🟡 **infraestructura y día 1 listos; faltan las vistas de los días 2–30 (las pasa el usuario)** |
 | 6B | Piloto real: un curso de una persona con Brevo configurado | ⏳ |
 | 6C | Portada del CRM (resumen de empresas, tareas, refuerzos y envíos) | ⏳ |
 | 6D | Conectar las entradas de leads (formulario, landing, WhatsApp/n8n) con ejemplos | ⏳ |
@@ -88,7 +89,7 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 
 Historial de commits de la rama: `git log --oneline feat/crm` (convención `feat:` / `fix:` / `docs:` / `chore:` en español).
 
-Suite al cerrar la Fase 5c: 250 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
+Suite al cerrar la infraestructura 6A: 274 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
 
 ---
 
@@ -122,13 +123,14 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 ### Código (`app/Domain/Crm/`)
 - `Models/`: `TeamMember`, `Stage`, `Company`, `Contact`, `Activity`, `Sequence`, `SequenceStep`, `Course`, `Subscription`, `Send`, `NewsletterCampaign`, `Task` (con `#[UseFactory]`, `$fillable`, `casts()` y docblocks `@property`; factories en `database/factories/Crm/`). **Todo campo que se escriba con `update()`/`create()` debe estar en `$fillable`** (un olvido con `unsubscribed_at`/`bounced_at` casi deja a un contacto dado de baja recibiendo correos; hay tests).
 - `Enums/`: `TeamRole`, `StageType`, `LeadSource`, `ActivityType`, `CourseModality`, `SubscriptionStatus`, `SendStatus` (todos con `label()` en español).
-- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `ImportCompanies`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`, `SyncNewsletter`, `CreateNewsletterCampaign`, `SendTaskDigest`, `RecordSendEvent`, `SyncCampaignStats`.
-- `Services/`: `CsvReader` (lectura/escritura genérica de CSV: BOM, Windows-1252, `,` o `;`, alias de encabezados, 500 filas), `ContactCsv` y `CompanyCsv` (plantilla y clasificación por fila de cada importador), `SendMetrics` (resumen y tasas de `crm_sends`), `BrevoClient` (con `Http`: envío por plantilla, lista del newsletter por nombre con caché de 1 h, alta/actualización de contactos y campañas; `BrevoException` con `retryable`).
+- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `ImportCompanies`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`, `SyncNewsletter`, `CreateNewsletterCampaign`, `SendTaskDigest`, `RecordSendEvent`, `SyncCampaignStats`, `SendTestEmail`, `UnsubscribeContact`.
+- `Services/`: `CsvReader` (lectura/escritura genérica de CSV: BOM, Windows-1252, `,` o `;`, alias de encabezados, 500 filas), `ContactCsv` y `CompanyCsv` (plantilla y clasificación por fila de cada importador), `SendMetrics` (resumen y tasas de `crm_sends`), `ReinforcementEmail` (render de los correos Blade), `BrevoClient` (con `Http`: envío por plantilla, lista del newsletter por nombre con caché de 1 h, alta/actualización de contactos y campañas; `BrevoException` con `retryable`).
 - `Jobs/SendReinforcementEmail`, `Jobs/SyncContactToNewsletter`, `Exceptions/BrevoException`, `Notifications/TaskDigest`.
 - Comandos (`app/Console/Commands`, programados en `routes/console.php`): `crm:dispatch-sends` **cada minuto** (`withoutOverlapping`), `crm:send-task-digest` **lunes a viernes 08:00 México** y `crm:sync-campaign-stats` **cada hora**.
 
 ### Rutas
-- Web (`routes/crm.php`, prefijo `crm`, nombres `crm.*`): `pipeline`, `companies.{create,show,edit}`, `companies.import` y `companies.template` (importación de empresas), `companies.contacts.import` (acepta `?curso={id}`), `companies.courses.create`, `courses.{show,edit}`, `sequences.edit`, `newsletter`, `tasks`, `contacts.template` (descarga).
+- Web (`routes/crm.php`, prefijo `crm`, nombres `crm.*`): `pipeline`, `companies.{create,show,edit}`, `companies.import` y `companies.template` (importación de empresas), `companies.contacts.import` (acepta `?curso={id}`), `companies.courses.create`, `courses.{show,edit}`, `sequences.edit`, `sequences.preview`, `newsletter`, `tasks`, `contacts.template` (descarga).
+- Públicas firmadas (en `routes/crm.php`, fuera del grupo con `can:access-crm`): `crm.unsubscribe.show` y `crm.unsubscribe.destroy` (prefijo `crm/baja`).
 - API (`routes/crm-api.php`, prefijo `api/crm`, cargada desde `bootstrap/app.php` con `then:`): `POST leads` (`crm.leads.store`) y `POST brevo/webhook` (`crm.brevo.webhook`). Ambas protegidas por `EnsureValidCrmToken:<clave de config>` (Bearer; si el token no está configurado, rechaza todo).
 - Páginas Livewire SFC en `resources/views/pages/crm/⚡*.blade.php`: `pipeline`, `company`, `company-form`, `companies-import`, `contacts-import`, `course`, `course-form`, `sequence`, `newsletter`, `tasks`.
 
@@ -138,9 +140,18 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 3. La secuencia (`/crm/sequences/{id}`, enlace «Secuencia de refuerzo» en el pipeline) necesita **30 IDs de plantilla de Brevo** (hay una caja para pegar la lista, uno por línea). Sin plantillas completas no se puede activar.
 4. «Activar refuerzo» + fecha del día 1: se crea una `Subscription` por inscrito que pueda recibir correo y 30 `Send` a las 12:00 `America/Mexico_City`. Si el inicio es hoy y ya pasó la hora, esos días quedan `skipped`.
 5. Cada minuto, `crm:dispatch-sends` reclama atómicamente (`pending → queued`) hasta 200 envíos vencidos de suscripciones activas y encola `SendReinforcementEmail`. El job manda la plantilla por la API de Brevo con 3 intentos (backoff 60 s / 300 s); errores 4xx → `failed` sin reintentar; 429/5xx/red → reintenta. Si el contacto se dio de baja o la suscripción se pausó, cancela el envío.
-6. *(Vigente hasta la fase 6A; después las variables son de Blade y esto deja de importar.)* Parámetros que recibe cada plantilla de Brevo (`{{ params.X }}`): `NOMBRE` (primer nombre), `NOMBRE_COMPLETO`, `EMPRESA`, `CURSO`, `DIA`. **Confirmar con las plantillas reales; si usan otros nombres, cambiar solo `SendReinforcementEmail::handle()`.**
+6. *(Solo para los días que todavía no tienen vista; los días con vista usan las variables de Blade de la sección «Correos de la secuencia».)* Parámetros que recibe cada plantilla de Brevo (`{{ params.X }}`): `NOMBRE` (primer nombre), `NOMBRE_COMPLETO`, `EMPRESA`, `CURSO`, `DIA`. **Confirmar con las plantillas reales; si usan otros nombres, cambiar solo `SendReinforcementEmail::handle()`.**
 7. Webhook de Brevo: `unsubscribed` y `spam` → baja; `hard_bounce`, `blocked` e `invalid_email` → rebote; el resto se ignora. Marca el contacto, pone sus suscripciones en `unsubscribed|bounced` y cancela sus envíos `pending|queued|skipped`.
 8. La ficha del curso muestra por persona: estado, `enviados/30`, omitidos y fallidos, con **Pausar/Reanudar**, **Enviar anteriores**, **Reintentar** y, para todo el grupo, **Enviar anteriores a todos**.
+
+### Correos de la secuencia (Blade)
+- **Vistas** en `resources/views/emails/crm/reinforcement/`: `layout.blade.php` (armazón del diseño original: banda `#020617` con el logo, contenedor de 600 px, título `rgb(255,101,103)`, pie con enlace de baja; logo en `config('crm.email_logo_url')`) y una vista por día `dia-NN.blade.php` (hoy solo `dia-01`). Cada día extiende el layout y define `@section('asunto', …)`, `titulo`, `preheader` (opcional) y `contenido` (HTML simple: `<p>`, `<h3>`, `<ol>`, `<strong>`; los estilos los pone el layout).
+- **Variables** en las vistas: `$nombre`, `$nombreCompleto`, `$empresa`, `$curso`, `$dia`, `$total`, `$siguiente` (null el último día), `$bajaUrl`. Todo se escapa con `{{ }}`.
+- **`ReinforcementEmail`** (`Services/`): `exists($day)`, `availableDays()`, `render($day, $data)` → `{subject, html}` (el asunto sale del `<title>` del layout), `sampleData()`, `dataFor(Subscription, $total)`, `unsubscribeUrl(Subscription)`.
+- **Envío** (`SendReinforcementEmail`): si el día tiene vista → `BrevoClient::sendHtml()` (`POST /smtp/email` con `sender` de `config('crm.brevo.sender_*')`, `subject`, `htmlContent`, `tags` `crm-refuerzo` y `dia-N`, y encabezados `List-Unsubscribe` + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`); si no, `sendTemplate()` con el `brevo_template_id`; si no hay ni una ni otra, el envío queda `failed` con un mensaje claro. Las métricas siguen igual (se guarda el `messageId`).
+- **`Sequence::isReady()`**: todos los días tienen vista **o** plantilla de Brevo.
+- **Pantalla de la secuencia** (`/crm/sequences/{id}`): por día, si tiene «Correo propio», «Plantilla de Brevo» o «Sin correo», su asunto, **Vista previa** (`crm.sequences.preview`, HTML con datos de ejemplo, abre en otra pestaña), **Enviarme prueba** (`SendTestEmail`: manda el día al correo de quien lo pide, asunto con «[PRUEBA]», sin crear envíos) y el ID de plantilla (solo para días sin vista) más las métricas por día.
+- **Baja con un clic**: rutas públicas **firmadas** `crm.unsubscribe.show` (GET: página de confirmación, **no da de baja**) y `crm.unsubscribe.destroy` (POST: da de baja; sin CSRF —`crm/baja/*` está excluida en `bootstrap/app.php`— porque la protege la firma). `UnsubscribeContact` (acción compartida con el webhook de Brevo) marca `unsubscribed_at`, pone las suscripciones en `unsubscribed` y cancela los envíos pendientes; es idempotente.
 
 ### Newsletter (`/crm/newsletter`)
 - Muestra cuántos contactos están en la lista (`newsletter_synced_at`) y cuántos están **pendientes**, con «Sincronizar pendientes» (también «Sumar al newsletter» en la ficha de un curso impartido).
@@ -187,28 +198,18 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 
 Orden recomendado: **6A → 6B → 6C**, luego D, E, F y G según prioridad. 6A destraba todo lo demás porque el usuario ya tiene el diseño y el texto del primer correo.
 
-### 6A. Correos como Blade con personalización (SIGUIENTE)
+### 6A. Correos como Blade con personalización (EN CURSO: faltan los días 2–30)
 
-**Material de partida**: `docs/crm-email-referencia-dia-01.html` es el HTML real del día 1 («Actividad 1 de 30»), exportado de Brevo. Estructura: banda superior `#020617` con el logo (160 px), contenedor blanco de 600 px, título centrado en `rgb(255,101,103)` 28 px, saludo y texto, imagen redondeada de 570 px, subtítulo H3, lista numerada y cierre «Nos vemos en el correo #2». Fuente Arial, texto `#3b3f44` 16 px, enlaces `#0092ff`. Hoy **no usa variables** (dice «¡Hola !» porque falta el nombre) y **no trae enlace de baja**; la imagen es una foto de Pexels enlazada desde su sitio.
+**Hecho**: layout, `dia-01`, render, envío por HTML con baja con un clic, vista previa, prueba a uno mismo y transición con plantillas de Brevo (ver «Correos de la secuencia (Blade)» en la sección 4). El HTML original del día 1 está en `docs/crm-email-referencia-dia-01.html`.
 
-**Diseño propuesto**
-1. **Layout común** `resources/views/emails/crm/reinforcement/layout.blade.php` con todo el armazón del HTML de referencia (estilos, banda con logo, contenedor, pie con enlace de baja) y `@yield` para título, asunto y cuerpo. **Un layout + 30 archivos cortos** `dia-01.blade.php` … `dia-30.blade.php` que solo traen el contenido de ese día (el usuario ya confirmó que se edita el Blade; no hay editor).
-2. **Variables disponibles** en todas las vistas: `$nombre` (primer nombre), `$nombreCompleto`, `$empresa`, `$curso`, `$dia`, `$total` (cantidad de pasos de la secuencia), `$siguiente` (día + 1, o null en el último), `$bajaUrl` (enlace firmado). Ej.: `¡Hola {{ $nombre }}!`, `día {{ $dia }} de {{ $total }}`, `Nos vemos en el correo #{{ $siguiente }}`.
-3. **Asunto por día**: definirlo en la propia vista con `@section('asunto', 'Actividad 1 de 30: Define tu Norte')` y leerlo con `renderSections()['asunto']`.
-4. **Servicio de render** `App\Domain\Crm\Services\ReinforcementEmail` (`exists(int $day)`, `render(int $day, array $data): array{subject, html}`), el único lugar que conoce el nombre de las vistas.
-5. **Envío**: `BrevoClient::sendHtml(string $subject, string $html, string $email, string $name, array $tags = [], array $headers = []): string` → `POST /smtp/email` con `sender` (`CRM_BREVO_SENDER_NAME` / `CRM_BREVO_SENDER_EMAIL` en `config/crm.php`; **el remitente debe estar verificado en Brevo**), `subject`, `htmlContent`, `to`, `tags` (`crm-refuerzo`, `dia-N`) y `headers` con `List-Unsubscribe` y `List-Unsubscribe-Post: List-Unsubscribe=One-Click`. Devuelve el `messageId` (las métricas siguen funcionando igual).
-6. **Transición**: `SendReinforcementEmail` usa la vista del día si `ReinforcementEmail::exists($day)`; si no, cae al `brevo_template_id` actual. `Sequence::isReady()` pasa a considerar «tiene vista **o** plantilla». Cuando los 30 días tengan vista se puede retirar la columna `brevo_template_id` y su pantalla de pegado de IDs en una limpieza posterior.
-7. **Pantalla de la secuencia** (`/crm/sequences/{id}`): por día, si hay vista o no, su asunto, **«Vista previa»** (ruta `crm/sequences/{sequence}/days/{day}/preview`, renderiza en un `iframe srcdoc` con datos de ejemplo) y **«Enviarme una prueba»** (acción `SendTestEmail`: manda el día N al correo del usuario con el asunto prefijado «[PRUEBA]»; no crea `crm_sends`). Las columnas de métricas por día se conservan.
-8. **Baja con un clic**: rutas públicas firmadas (`URL::signedRoute`). **GET** muestra una página «¿Quieres dejar de recibir estos correos?» con un botón; **POST** confirma y marca `unsubscribed_at`, cancela envíos pendientes y deja la suscripción en `unsubscribed` (reutilizar la lógica de `RecordBrevoEvent` en una acción compartida `UnsubscribeContact`). Un GET **nunca** da de baja (los escáneres de correo siguen enlaces). El POST sin confirmación solo responde al encabezado `List-Unsubscribe-Post`.
-9. **Imágenes**: alojarlas en `public/images/emails/` y referenciarlas con URL absoluta (`asset()`; requiere `APP_URL` público en producción). No enlazar a sitios de terceros. El logo actual está en la CDN de Brevo y puede seguir ahí o moverse.
+**Falta**: crear `dia-02.blade.php` … `dia-30.blade.php` con el contenido que pase el usuario (texto o el HTML de Brevo de cada día).
+- **Cómo convertir un día**: copiar `dia-01.blade.php`; cambiar `asunto` (patrón: `Actividad {$dia} de {$total}: <título>`), `titulo`, `preheader` y el `contenido`. Pasar el HTML de Brevo a HTML simple: quitar `style`/`class`/`<div>`/tablas, dejar `<p>`, `<h3>`, `<ol>`/`<ul>`, `<strong>`, `<a href>`; los `<p><br></p>` vacíos sobran (el layout ya separa párrafos). Reemplazar lo personal por variables (`¡Hola {{ $nombre }}!`, `día {{ $dia }} de {{ $total }}`) y el cierre por `@if ($siguiente) … #{{ $siguiente }} @endif`.
+- **Reglas** que el test `every day with a view renders a complete email` ya exige a cada vista: asunto no vacío, sin `{{`/`@yield`/`@section` sin resolver, **una sola imagen** (el logo; sin imágenes de terceros como Pexels) y el nombre y el enlace de baja presentes.
+- **Al terminar cada tanda**: revisar cada día con «Vista previa» y «Enviarme prueba» en `/crm/sequences/1`; ese día deja de usar su plantilla de Brevo en cuanto exista su vista.
+- **Cuando existan los 30**: limpieza posterior (retirar `brevo_template_id`, la caja de pegado de IDs y el envío por `sendTemplate`), actualizar tests y esta sección.
+- **Si algún día necesita algo distinto del diseño** (un botón, otra imagen), agregarlo como pieza opcional del layout en vez de HTML suelto en la vista.
 
-**Pruebas (Pest)**: que cada vista existente renderice sin errores con datos de ejemplo, sin `{{`/`@` sin resolver y con asunto no vacío; que se sustituyan las variables; que el pie incluya el enlace de baja firmado; que el payload a Brevo lleve `htmlContent`, `subject`, `sender`, `tags` y los encabezados `List-Unsubscribe`; que sin vista se use `templateId` (transición); acceso a la vista previa (403 fuera del equipo); la prueba va al usuario y no crea `crm_sends`; baja: firma inválida → 403, GET no da de baja, POST sí, cancela pendientes.
-
-**Preguntas abiertas para el usuario** (preguntar antes de empezar):
-1. ¿Los 30 correos comparten siempre el mismo diseño (banda, imagen superior, tipografía) y solo cambia el texto, o hay variantes (con botón, sin imagen)?
-2. ¿Pasa el contenido de los correos 2–30, o se arranca con el día 1 y el usuario pega el texto de los demás en cada archivo? (El implementador convierte el HTML de Brevo a vistas.)
-3. ¿Qué remitente (nombre y correo) y está verificado en Brevo?
-4. ¿Cada correo lleva su propia imagen superior?
+**Pendiente de decidir con el usuario**: si el logo se queda en la CDN de Brevo o se aloja en el repo (`public/images/emails/`, requiere `APP_URL` público en producción).
 
 ### 6B. Piloto real
 Con 6A listo y las claves en el `.env` (sección 6): un curso con **una sola persona (el propio usuario)**, fecha de inicio hoy o mañana; revisar llegada, variables, enlace de baja, métricas por el webhook y que no haya duplicados. Probar también una campaña del newsletter a una lista chica. Solo después, el primer grupo real.
@@ -245,12 +246,13 @@ Nada de esto está configurado en el `.env` local del usuario todavía.
    - `CRM_INTAKE_TOKEN`: token largo y aleatorio para `POST /api/crm/leads`.
    - `BREVO_API_KEY`: clave de la API de Brevo (sin ella los envíos fallan con «Falta configurar BREVO_API_KEY» y se pueden reintentar después).
    - `CRM_BREVO_WEBHOOK_TOKEN`: token largo y aleatorio para el webhook.
-   - `CRM_BREVO_SENDER_NAME` y `CRM_BREVO_SENDER_EMAIL` *(a partir de la fase 6A)*: remitente de los correos de la secuencia; **debe estar verificado en Brevo**.
+   - `CRM_BREVO_SENDER_NAME` y `CRM_BREVO_SENDER_EMAIL`: remitente de los correos con vista propia (por defecto «B2B Sales Pro» y `cursos@b2bsalespro.mx`, ya verificado en Brevo).
+   - `CRM_EMAIL_LOGO_URL` (opcional): URL del logo de los correos.
    - `CRM_BREVO_NEWSLETTER_LIST`: nombre de la lista (por defecto `newsletter`). **La lista debe existir en Brevo** (Contactos → Listas).
 2. **Worker de cola**: `QUEUE_CONNECTION=database`, así que debe haber un `php artisan queue:work` corriendo (en local, `composer run dev` o equivalente; en producción, un proceso supervisado).
 3. **Scheduler**: debe correr `php artisan schedule:work` (local) o el cron `* * * * * php artisan schedule:run` (producción); sin él no se encolan los envíos ni sale el resumen diario de tareas.
 4. **Webhook en Brevo**: URL `https://<dominio>/api/crm/brevo/webhook` con encabezado `Authorization: Bearer <CRM_BREVO_WEBHOOK_TOKEN>` y los eventos hard bounce, blocked, spam, unsubscribed e invalid email (bajas/rebotes) **más delivered, opened, unique opened y click (métricas)**; son transaccionales y, para las campañas, unsubscribe y hard bounce del webhook de marketing (si la interfaz de Brevo no permite encabezados, crear el webhook por su API).
-5. **Plantillas**: *(hasta la fase 6A)* en `/crm/sequences/{id}` pegar los 30 IDs de plantilla, en orden de día. Después de 6A el contenido son las vistas Blade del repo.
+5. **Contenido de la secuencia**: los días con vista salen con el Blade del repo; para los días que aún no la tienen, pegar su ID de plantilla de Brevo en `/crm/sequences/{id}`. **Enviarme prueba** de un día confirma que el remitente y la clave de Brevo funcionan antes de activar nada.
    **Correo del resumen de tareas**: usa el mailer de Laravel (`MAIL_*`); en producción apuntarlo al SMTP de Brevo u otro proveedor.
 6. **Primera prueba**: con la clave real, abrir `/crm/newsletter` (debe mostrar la lista y los pendientes), sumar un contacto tuyo y mandar una campaña de prueba a una lista chica antes de usar la real.
 7. **Primera prueba del refuerzo**: un curso con 1 inscrito (tu propio correo) y fecha de inicio hoy o mañana; revisar la llegada, los parámetros y que no haya duplicados.
@@ -279,6 +281,9 @@ Este repo tiene `CLAUDE.md` / `AGENTS.md` con las reglas de Laravel Boost; las m
 - `db:seed` en producción pide confirmación interactiva; por eso el test del `CrmDemoSeeder` lo llama directo.
 - Pint reordena imports: no conformarse con `sed` (en macOS falla con saltos de línea); usar Python/Edit y correr Pint.
 - Al escribir fechas con Carbon en una zona distinta de UTC, convertir a `->utc()` antes de guardar: Eloquent formatea con la zona de la instancia, no con la de la app.
+- **Los enlaces de baja están firmados con el esquema y el host**: en local (sitio por `http://`) una URL generada con `APP_URL=https://…` da 403; en producción (todo `https`) no hay problema. Para probar en local, generarla con `URL::forceScheme('http')`.
+- Un `abort(404)` dentro de una acción de Livewire se ve en `Livewire::test` como `->assertStatus(404)`, no como excepción.
+- Los test de `ReinforcementEmailTest` usan el día 100 como «día sin vista»: no crear una vista `dia-100`.
 - Pulsar «Llenar los días» y «Guardar» en la página de secuencia con milisegundos de diferencia (automatización) puede perder el relleno por orden de peticiones; una persona no lo nota.
 
 ---
@@ -296,6 +301,6 @@ Este repo tiene `CLAUDE.md` / `AGENTS.md` con las reglas de Laravel Boost; las m
 ## 9. Cómo continuar
 
 1. `git checkout feat/crm`, leer este archivo y correr `php artisan test --compact tests/Feature/Crm`.
-2. Tomar el siguiente punto de la sección 5 (**6A**) y hacerle al usuario las preguntas abiertas de esa fase antes de escribir código.
+2. Tomar el siguiente punto de la sección 5: **6A** (convertir los correos 2–30 a vistas Blade en cuanto el usuario pase su contenido; el flujo está en esa sección) y, con eso listo, **6B** (piloto real).
 3. Implementar con tests, Pint y PHPStan; verificar en el navegador cuando haya cambios de interfaz.
 4. Actualizar las secciones **3 (Estado)**, **4 (Lo que ya existe)** y **5/6** de este archivo y hacer commit con mensaje `feat:` / `fix:` en español.

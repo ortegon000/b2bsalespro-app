@@ -28,7 +28,7 @@ class ActivateReinforcement
         }
 
         if ($course->sequence === null || ! $course->sequence->isReady()) {
-            $this->fail('La secuencia no está lista: todos sus días necesitan una plantilla de Brevo.');
+            $this->fail('La secuencia no está lista: todos sus días necesitan un correo (vista) o una plantilla de Brevo.');
         }
 
         if ($start->lt(CarbonImmutable::now(config('crm.timezone'))->startOfDay())) {

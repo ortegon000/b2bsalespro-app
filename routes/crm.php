@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Crm\CompanyTemplateController;
 use App\Http\Controllers\Crm\ContactTemplateController;
+use App\Http\Controllers\Crm\ReinforcementPreviewController;
+use App\Http\Controllers\Crm\UnsubscribeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'can:access-crm'])->prefix('crm')->name('crm.')->group(function () {
@@ -17,6 +19,13 @@ Route::middleware(['auth', 'verified', 'can:access-crm'])->prefix('crm')->name('
     Route::livewire('courses/{course}', 'pages::crm.course')->name('courses.show');
     Route::livewire('courses/{course}/edit', 'pages::crm.course-form')->name('courses.edit');
     Route::livewire('sequences/{sequence}', 'pages::crm.sequence')->name('sequences.edit');
+    Route::get('sequences/{sequence}/days/{day}/preview', ReinforcementPreviewController::class)->whereNumber('day')->name('sequences.preview');
     Route::livewire('newsletter', 'pages::crm.newsletter')->name('newsletter');
     Route::livewire('tasks', 'pages::crm.tasks')->name('tasks');
+});
+
+// Baja con un clic desde los correos de refuerzo: pública, protegida por la firma de la URL.
+Route::middleware('signed')->prefix('crm/baja')->name('crm.unsubscribe.')->group(function () {
+    Route::get('{subscription}', [UnsubscribeController::class, 'show'])->name('show');
+    Route::post('{subscription}', [UnsubscribeController::class, 'destroy'])->name('destroy');
 });

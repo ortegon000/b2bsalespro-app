@@ -39,6 +39,33 @@ class BrevoClient
     }
 
     /**
+     * Envía un correo con HTML propio (renderizado por el CRM) desde el remitente configurado y
+     * devuelve el messageId. `$headers` admite, p. ej., `List-Unsubscribe`.
+     *
+     * @param  list<string>  $tags
+     * @param  array<string, string>  $headers
+     */
+    public function sendHtml(string $subject, string $html, string $email, string $name, array $tags = [], array $headers = []): string
+    {
+        $payload = [
+            'sender' => ['name' => config('crm.brevo.sender_name'), 'email' => config('crm.brevo.sender_email')],
+            'to' => [['email' => $email, 'name' => $name]],
+            'subject' => $subject,
+            'htmlContent' => $html,
+        ];
+
+        if ($tags !== []) {
+            $payload['tags'] = $tags;
+        }
+
+        if ($headers !== []) {
+            $payload['headers'] = $headers;
+        }
+
+        return (string) $this->request('post', '/smtp/email', $payload)->json('messageId');
+    }
+
+    /**
      * ID de la lista del newsletter en Brevo, buscada por nombre (sin importar mayúsculas).
      * Se guarda en caché una hora; si la lista no existe no se cachea nada.
      */

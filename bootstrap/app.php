@@ -16,7 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // La baja con un clic la protege la firma de la URL; los clientes de correo no envían token CSRF.
+        $middleware->validateCsrfTokens(except: ['crm/baja/*']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

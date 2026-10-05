@@ -2,6 +2,7 @@
 
 namespace App\Domain\Crm\Models;
 
+use App\Domain\Crm\Services\ReinforcementEmail;
 use Database\Factories\Crm\SequenceFactory;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,10 +35,15 @@ class Sequence extends Model
     }
 
     /**
-     * Una secuencia solo se puede programar cuando todos sus pasos tienen plantilla de Brevo.
+     * Una secuencia solo se puede programar cuando todos sus días tienen correo: una vista Blade
+     * propia o, mientras dure la transición, una plantilla de Brevo.
      */
     public function isReady(): bool
     {
-        return $this->steps()->exists() && ! $this->steps()->whereNull('brevo_template_id')->exists();
+        $steps = $this->steps()->get();
+        $emails = app(ReinforcementEmail::class);
+
+        return $steps->isNotEmpty()
+            && $steps->every(fn (SequenceStep $step) => $step->brevo_template_id !== null || $emails->exists($step->day));
     }
 }

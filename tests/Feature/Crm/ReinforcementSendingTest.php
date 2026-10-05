@@ -12,6 +12,7 @@ use App\Domain\Crm\Models\Send;
 use App\Domain\Crm\Models\SequenceStep;
 use App\Domain\Crm\Models\Subscription;
 use App\Domain\Crm\Services\BrevoClient;
+use App\Domain\Crm\Services\ReinforcementEmail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 
@@ -38,7 +39,7 @@ test('the job sends the brevo template with the contact data and records the mes
     Http::fake(['api.brevo.com/*' => Http::response(['messageId' => '<abc@brevo>'], 201)]);
     $send = queuedSend();
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     Http::assertSent(fn ($request) => $request->url() === 'https://api.brevo.com/v3/smtp/email'
         && $request->hasHeader('api-key', 'test-key')
@@ -58,7 +59,7 @@ test('a permanent brevo error marks the send as failed without retrying', functi
     Http::fake(['api.brevo.com/*' => Http::response(['message' => 'Template not found'], 400)]);
     $send = queuedSend();
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     expect($send->fresh()->status)->toBe(SendStatus::Failed)
         ->and($send->fresh()->error)->toContain('400')->toContain('Template not found');
@@ -69,7 +70,7 @@ test('a temporary brevo error is retried and only fails when attempts run out', 
     $send = queuedSend();
     $job = new SendReinforcementEmail($send->id);
 
-    expect(fn () => $job->handle(app(BrevoClient::class)))->toThrow(BrevoException::class);
+    expect(fn () => $job->handle(app(BrevoClient::class), app(ReinforcementEmail::class)))->toThrow(BrevoException::class);
     expect($send->fresh()->status)->toBe(SendStatus::Queued);
 
     $job->failed(new BrevoException('Brevo respondió '.$status));
@@ -83,7 +84,7 @@ test('a missing api key fails the send with a clear message', function () {
     Http::fake();
     $send = queuedSend();
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     Http::assertNothingSent();
     expect($send->fresh()->error)->toContain('BREVO_API_KEY');
@@ -93,7 +94,7 @@ test('the job never sends something that is not queued', function (SendStatus $s
     Http::fake();
     $send = queuedSend(['status' => $status]);
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     Http::assertNothingSent();
     expect($send->fresh()->status)->toBe($status);
@@ -103,7 +104,7 @@ test('the job cancels the send when the contact can no longer receive email', fu
     Http::fake();
     $send = queuedSend(contact: [$column => now()]);
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     Http::assertNothingSent();
     expect($send->fresh()->status)->toBe(SendStatus::Cancelled);
@@ -114,7 +115,7 @@ test('the job cancels the send when the subscription is paused', function () {
     $send = queuedSend();
     $send->subscription->update(['status' => SubscriptionStatus::Paused]);
 
-    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class));
+    (new SendReinforcementEmail($send->id))->handle(app(BrevoClient::class), app(ReinforcementEmail::class));
 
     expect($send->fresh()->status)->toBe(SendStatus::Cancelled);
 });

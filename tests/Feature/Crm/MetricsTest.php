@@ -60,6 +60,21 @@ describe('delivery events', function () {
             ->and($send->opens_count)->toBe(0);
     });
 
+    test('event names are accepted in snake_case and camelCase, and proxy opens are ignored', function (string $event, bool $applies) {
+        $send = sentSend();
+
+        expect(app(RecordSendEvent::class)->handle($event, '<202610@smtp-relay.mailin.fr>'))->toBe($applies);
+    })->with([
+        'unique_opened' => ['unique_opened', true],
+        'uniqueOpened' => ['uniqueOpened', true],
+        'opened' => ['opened', true],
+        'delivered' => ['delivered', true],
+        'click' => ['click', true],
+        'proxyOpen' => ['proxyOpen', false],
+        'uniqueProxyOpen' => ['uniqueProxyOpen', false],
+        'proxy_open' => ['proxy_open', false],
+    ]);
+
     test('the message id matches with or without angle brackets', function (string $given) {
         $send = sentSend();
 

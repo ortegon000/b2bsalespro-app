@@ -177,6 +177,21 @@ test('blocking events mark the contact as unsubscribed or bounced', function (st
     ['invalid_email', 'bounced_at', SubscriptionStatus::Bounced],
 ]);
 
+test('blocking events are understood however brevo spells them', function (string $event, string $column) {
+    $subscription = Subscription::factory()->create();
+
+    app(RecordBrevoEvent::class)->handle($event, $subscription->contact->email);
+
+    expect($subscription->contact->fresh()->{$column})->not->toBeNull();
+})->with([
+    ['hardBounce', 'bounced_at'],
+    ['hard_bounce', 'bounced_at'],
+    ['invalid', 'bounced_at'],
+    ['invalid_email', 'bounced_at'],
+    ['unsubscribed', 'unsubscribed_at'],
+    ['unsubscribe', 'unsubscribed_at'],
+]);
+
 test('harmless events and unknown emails change nothing', function (string $event, ?string $email) {
     $subscription = Subscription::factory()->create();
     $send = Send::factory()->for($subscription)->create();

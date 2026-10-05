@@ -11,6 +11,8 @@ class RecordBrevoEvent
 
     /**
      * Eventos de Brevo que dejan de permitir envíos al correo y la baja que representan.
+     * Las claves van normalizadas (ver normalize()): Brevo los escribe de varias formas
+     * (`hard_bounce` / `hardBounce`, `invalid_email` / `invalid`, `unsubscribe` / `unsubscribed`).
      *
      * @var array<string, 'unsubscribed'|'bounced'>
      */
@@ -18,10 +20,10 @@ class RecordBrevoEvent
         'unsubscribed' => 'unsubscribed',
         'unsubscribe' => 'unsubscribed',
         'spam' => 'unsubscribed',
-        'hard_bounce' => 'bounced',
-        'hardBounce' => 'bounced',
+        'hardbounce' => 'bounced',
         'blocked' => 'bounced',
-        'invalid_email' => 'bounced',
+        'invalidemail' => 'bounced',
+        'invalid' => 'bounced',
     ];
 
     /**
@@ -32,7 +34,7 @@ class RecordBrevoEvent
      */
     public function handle(string $event, string $email): bool
     {
-        $reason = self::BLOCKING_EVENTS[$event] ?? null;
+        $reason = self::BLOCKING_EVENTS[$this->normalize($event)] ?? null;
         $contact = Contact::where('email', $email)->first();
 
         if ($reason === null || $contact === null) {
@@ -45,5 +47,13 @@ class RecordBrevoEvent
         );
 
         return true;
+    }
+
+    /**
+     * Minúsculas y sin guiones bajos: `hard_bounce` y `hardBounce` son el mismo evento.
+     */
+    private function normalize(string $event): string
+    {
+        return str_replace(['_', '-', ' '], '', mb_strtolower($event));
     }
 }

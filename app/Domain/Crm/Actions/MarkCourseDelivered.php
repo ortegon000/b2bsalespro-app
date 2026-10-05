@@ -8,11 +8,11 @@ use App\Domain\Crm\Models\Stage;
 
 class MarkCourseDelivered
 {
-    public function __construct(private MoveCompanyToStage $moveCompanyToStage) {}
+    public function __construct(private MoveCompanyToStage $moveCompanyToStage, private SyncNewsletter $syncNewsletter) {}
 
     /**
      * Marca el curso como impartido y, si la empresa sigue en una etapa abierta,
-     * la pasa a la primera etapa ganada del pipeline.
+     * la pasa a la primera etapa ganada del pipeline. Sus inscritos se suman a la lista del newsletter.
      */
     public function handle(Course $course): Course
     {
@@ -27,6 +27,8 @@ class MarkCourseDelivered
                 $this->moveCompanyToStage->handle($company, $won);
             }
         }
+
+        $this->syncNewsletter->handle($course);
 
         return $course;
     }

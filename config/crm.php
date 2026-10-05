@@ -44,6 +44,7 @@ return [
     | api_key: clave de la API de Brevo (envío transaccional por plantilla).
     | webhook_token: token Bearer que Brevo envía en su webhook de eventos
     | (rebotes, bajas, quejas) hacia POST /api/crm/brevo/webhook.
+    | newsletter_list: nombre de la lista de Brevo a la que se suman quienes tomaron un curso.
     |
     */
 
@@ -51,6 +52,7 @@ return [
         'base_url' => 'https://api.brevo.com/v3',
         'api_key' => env('BREVO_API_KEY'),
         'webhook_token' => env('CRM_BREVO_WEBHOOK_TOKEN'),
+        'newsletter_list' => env('CRM_BREVO_NEWSLETTER_LIST', 'newsletter'),
     ],
 
 ];

@@ -7,7 +7,7 @@ use App\Domain\Crm\Models\Course;
 
 class EnrollContacts
 {
-    public function __construct(private ScheduleSubscription $scheduleSubscription) {}
+    public function __construct(private ScheduleSubscription $scheduleSubscription, private SyncNewsletter $syncNewsletter) {}
 
     /**
      * Inscribe contactos de la empresa del curso. Si el refuerzo ya está activo, los programa
@@ -31,6 +31,10 @@ class EnrollContacts
             foreach ($contacts->filter->canReceiveEmail() as $contact) {
                 $this->scheduleSubscription->handle($course, $contact);
             }
+        }
+
+        if ($course->delivered_at !== null) {
+            $this->syncNewsletter->handle($course, $contacts->modelKeys());
         }
 
         return $contacts->count();

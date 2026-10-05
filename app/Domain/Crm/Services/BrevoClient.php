@@ -3,22 +3,110 @@
 namespace App\Domain\Crm\Services;
 
 use App\Domain\Crm\Exceptions\BrevoException;
+use Carbon\CarbonInterface;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Cliente mínimo de la API transaccional de Brevo.
+ * Cliente mínimo de la API de Brevo: envío transaccional por plantilla, la lista del newsletter
+ * y campañas.
+ *
+ * @throws BrevoException con `retryable` en true para errores temporales (red, 429, 5xx)
  */
 class BrevoClient
 {
+    public function isConfigured(): bool
+    {
+        return filled(config('crm.brevo.api_key'));
+    }
+
     /**
      * Envía una plantilla de Brevo a un destinatario y devuelve el messageId.
      *
      * @param  array<string, string|int|null>  $params  Variables disponibles en la plantilla como {{ params.NOMBRE }}
-     *
-     * @throws BrevoException con `retryable` en true para errores temporales (red, 429, 5xx)
      */
     public function sendTemplate(int $templateId, string $email, string $name, array $params = []): string
+    {
+        $response = $this->request('post', '/smtp/email', [
+            'templateId' => $templateId,
+            'to' => [['email' => $email, 'name' => $name]],
+            'params' => $params,
+        ]);
+
+        return (string) $response->json('messageId');
+    }
+
+    /**
+     * ID de la lista del newsletter en Brevo, buscada por nombre (sin importar mayúsculas).
+     * Se guarda en caché una hora; si la lista no existe no se cachea nada.
+     */
+    public function newsletterListId(): int
+    {
+        $name = (string) config('crm.brevo.newsletter_list');
+
+        return Cache::remember('crm.brevo.list-id.'.mb_strtolower($name), 3600, function () use ($name): int {
+            $offset = 0;
+
+            do {
+                $json = $this->request('get', '/contacts/lists', ['limit' => 50, 'offset' => $offset])->json();
+
+                foreach ($json['lists'] ?? [] as $list) {
+                    if (mb_strtolower((string) ($list['name'] ?? '')) === mb_strtolower($name)) {
+                        return (int) $list['id'];
+                    }
+                }
+
+                $offset += 50;
+            } while ($offset < (int) ($json['count'] ?? 0));
+
+            throw new BrevoException("No existe la lista \"{$name}\" en Brevo. Créala en Brevo (Contactos → Listas) y vuelve a intentar.");
+        });
+    }
+
+    /**
+     * Crea el contacto en Brevo o lo actualiza si ya existe, y lo suma a la lista.
+     */
+    public function upsertContact(string $email, string $firstName, string $lastName, int $listId): void
+    {
+        $this->request('post', '/contacts', [
+            'email' => $email,
+            'attributes' => ['FIRSTNAME' => $firstName, 'LASTNAME' => $lastName],
+            'listIds' => [$listId],
+            'updateEnabled' => true,
+        ]);
+    }
+
+    /**
+     * Crea una campaña de email a partir de una plantilla para una lista y devuelve su ID.
+     * Con `$scheduledAt` Brevo la deja programada; sin él hay que llamar a sendCampaignNow().
+     */
+    public function createCampaign(string $name, int $templateId, int $listId, ?CarbonInterface $scheduledAt = null): int
+    {
+        $payload = [
+            'name' => $name,
+            'templateId' => $templateId,
+            'recipients' => ['listIds' => [$listId]],
+        ];
+
+        if ($scheduledAt !== null) {
+            $payload['scheduledAt'] = $scheduledAt->toIso8601String();
+        }
+
+        return (int) $this->request('post', '/emailCampaigns', $payload)->json('id');
+    }
+
+    public function sendCampaignNow(int $campaignId): void
+    {
+        $this->request('post', "/emailCampaigns/{$campaignId}/sendNow");
+    }
+
+    /**
+     * @param  'get'|'post'  $method
+     * @param  array<string, mixed>  $data  Query string en GET, cuerpo JSON en POST
+     */
+    private function request(string $method, string $path, array $data = []): Response
     {
         $apiKey = config('crm.brevo.api_key');
 
@@ -27,19 +115,15 @@ class BrevoClient
         }
 
         try {
-            $response = Http::withHeaders(['api-key' => $apiKey, 'accept' => 'application/json'])
-                ->timeout(15)
-                ->post(config('crm.brevo.base_url').'/smtp/email', [
-                    'templateId' => $templateId,
-                    'to' => [['email' => $email, 'name' => $name]],
-                    'params' => $params,
-                ]);
+            $pending = Http::withHeaders(['api-key' => $apiKey, 'accept' => 'application/json'])->timeout(15);
+            $url = config('crm.brevo.base_url').$path;
+            $response = $method === 'get' ? $pending->get($url, $data) : $pending->post($url, $data);
         } catch (ConnectionException $exception) {
             throw new BrevoException('No se pudo conectar con Brevo: '.$exception->getMessage(), retryable: true);
         }
 
         if ($response->successful()) {
-            return (string) $response->json('messageId');
+            return $response;
         }
 
         $status = $response->status();

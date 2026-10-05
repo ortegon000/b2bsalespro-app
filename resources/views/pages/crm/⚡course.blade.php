@@ -7,6 +7,7 @@ use App\Domain\Crm\Actions\PauseSubscription;
 use App\Domain\Crm\Actions\ResumeSubscription;
 use App\Domain\Crm\Actions\RetryFailedSends;
 use App\Domain\Crm\Actions\SendMissedEmails;
+use App\Domain\Crm\Actions\SyncNewsletter;
 use App\Domain\Crm\Enums\SendStatus;
 use App\Domain\Crm\Enums\SubscriptionStatus;
 use App\Domain\Crm\Models\Course;
@@ -36,6 +37,16 @@ new #[Title('Curso')] class extends Component {
 
         $this->course->refresh();
         Flux::toast(variant: 'success', text: 'Curso marcado como impartido.');
+    }
+
+    public function syncNewsletter(SyncNewsletter $syncNewsletter): void
+    {
+        $count = $syncNewsletter->handle($this->course);
+
+        Flux::toast(
+            variant: $count > 0 ? 'success' : 'warning',
+            text: $count > 0 ? "{$count} contactos se están sumando al newsletter." : 'No hay contactos pendientes (o Brevo no está configurado).',
+        );
     }
 
     public function openEnroll(): void
@@ -157,6 +168,9 @@ new #[Title('Curso')] class extends Component {
         <div class="flex flex-wrap gap-2">
             <flux:button icon="arrow-left" :href="route('crm.companies.show', $course->company)" wire:navigate>Empresa</flux:button>
             <flux:button icon="pencil-square" :href="route('crm.courses.edit', $course)" wire:navigate>Editar</flux:button>
+            @if ($course->delivered_at)
+                <flux:button icon="newspaper" wire:click="syncNewsletter">Sumar al newsletter</flux:button>
+            @endif
             @unless ($course->delivered_at)
                 <flux:button icon="check" wire:click="markDelivered" wire:confirm="¿Marcar el curso como impartido? Si la empresa sigue en una etapa abierta, pasará a la primera etapa ganada.">Marcar impartido</flux:button>
             @endunless

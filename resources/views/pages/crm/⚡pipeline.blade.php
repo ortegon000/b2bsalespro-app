@@ -55,6 +55,7 @@ new #[Title('Pipeline')] class extends Component {
             @if ($this->sequence)
                 <flux:button icon="envelope" :href="route('crm.sequences.edit', $this->sequence)" wire:navigate>Secuencia de refuerzo</flux:button>
             @endif
+            <flux:button icon="newspaper" :href="route('crm.newsletter')" wire:navigate>Newsletter</flux:button>
             <flux:button icon="arrow-up-tray" :href="route('crm.companies.import')" wire:navigate>Importar empresas</flux:button>
             <flux:button variant="primary" icon="plus" :href="route('crm.companies.create')" wire:navigate>Nueva empresa</flux:button>
         </div>

@@ -15,8 +15,10 @@ class RecordBrevoEvent
      */
     private const array BLOCKING_EVENTS = [
         'unsubscribed' => 'unsubscribed',
+        'unsubscribe' => 'unsubscribed',
         'spam' => 'unsubscribed',
         'hard_bounce' => 'bounced',
+        'hardBounce' => 'bounced',
         'blocked' => 'bounced',
         'invalid_email' => 'bounced',
     ];

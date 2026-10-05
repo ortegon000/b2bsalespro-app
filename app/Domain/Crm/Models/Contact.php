@@ -23,6 +23,7 @@ use Illuminate\Support\Carbon;
  * @property bool $is_primary
  * @property Carbon|null $unsubscribed_at
  * @property Carbon|null $bounced_at
+ * @property Carbon|null $newsletter_synced_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
@@ -36,7 +37,7 @@ class Contact extends Model
 
     protected $fillable = [
         'company_id', 'user_id', 'name', 'email', 'phone', 'job_title', 'is_primary',
-        'unsubscribed_at', 'bounced_at',
+        'unsubscribed_at', 'bounced_at', 'newsletter_synced_at',
     ];
 
     /**
@@ -48,6 +49,7 @@ class Contact extends Model
             'is_primary' => 'boolean',
             'unsubscribed_at' => 'datetime',
             'bounced_at' => 'datetime',
+            'newsletter_synced_at' => 'datetime',
         ];
     }
 

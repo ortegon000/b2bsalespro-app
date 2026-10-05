@@ -6,14 +6,13 @@ use App\Domain\Crm\Models\Company;
 use App\Domain\Crm\Models\Contact;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use SplTempFileObject;
 
 /**
  * Plantilla y lectura del CSV para importar los contactos de una empresa.
  */
 class ContactCsv
 {
-    public const int MAX_ROWS = 500;
+    public function __construct(private CsvReader $reader) {}
 
     /**
      * Columnas de la plantilla, en el orden en que se descargan.
@@ -31,8 +30,8 @@ class ContactCsv
         'nombre' => 'name', 'name' => 'name',
         'email' => 'email', 'correo' => 'email', 'correo electronico' => 'email',
         'telefono' => 'phone', 'celular' => 'phone', 'phone' => 'phone',
-        'puesto' => 'job_title', 'cargo' => 'job_title', 'job_title' => 'job_title',
-        'principal' => 'is_primary', 'is_primary' => 'is_primary',
+        'puesto' => 'job_title', 'cargo' => 'job_title', 'job title' => 'job_title',
+        'principal' => 'is_primary', 'is primary' => 'is_primary',
     ];
 
     public function template(): string
@@ -43,21 +42,7 @@ class ContactCsv
             ['Carlos Pérez', 'carlos.perez@empresa.com', '', 'Gerente de ventas', 'si'],
         ];
 
-        $file = new SplTempFileObject;
-
-        foreach ($rows as $row) {
-            $file->fputcsv($row, ',', '"', '');
-        }
-
-        $file->rewind();
-        $csv = '';
-
-        foreach ($file as $line) {
-            $csv .= $line;
-        }
-
-        // BOM para que Excel abra los acentos correctamente.
-        return "\xEF\xBB\xBF".$csv;
+        return $this->reader->write($rows);
     }
 
     /**
@@ -73,107 +58,37 @@ class ContactCsv
      */
     public function parse(string $contents, Company $company): array
     {
-        $contents = preg_replace('/^\xEF\xBB\xBF/', '', $contents) ?? $contents;
+        $read = $this->reader->read(
+            $contents,
+            self::HEADER_ALIASES,
+            ['name', 'email'],
+            'El archivo debe tener al menos las columnas "nombre" y "email". Descarga la plantilla para ver el formato.',
+        );
 
-        if (! mb_check_encoding($contents, 'UTF-8')) {
-            $contents = mb_convert_encoding($contents, 'UTF-8', 'Windows-1252');
+        if ($read['error'] !== null) {
+            return ['error' => $read['error'], 'rows' => []];
         }
 
-        $firstLine = strtok($contents, "\r\n") ?: '';
-        $delimiter = substr_count($firstLine, ';') > substr_count($firstLine, ',') ? ';' : ',';
-
-        $file = new SplTempFileObject;
-        $file->fwrite($contents);
-        $file->rewind();
-        $file->setCsvControl($delimiter, '"', '');
-
-        $columns = $this->mapHeaders($this->cleanRecord($file->fgetcsv()) ?? []);
-
-        if (! in_array('name', $columns, true) || ! in_array('email', $columns, true)) {
-            return ['error' => 'El archivo debe tener al menos las columnas "nombre" y "email". Descarga la plantilla para ver el formato.', 'rows' => []];
-        }
-
-        $raw = [];
-        $line = 1;
-
-        while (! $file->eof()) {
-            $values = $this->cleanRecord($file->fgetcsv());
-            $line++;
-
-            if ($values === null) {
-                continue;
-            }
-
-            if (count($raw) >= self::MAX_ROWS) {
-                return ['error' => 'El archivo tiene más de '.self::MAX_ROWS.' filas. Divídelo en varios archivos.', 'rows' => []];
-            }
-
-            $raw[] = ['line' => $line, 'data' => $this->rowData($columns, $values)];
-        }
+        $raw = array_map(fn (array $row) => ['line' => $row['line'], 'data' => $this->rowData($row['cells'])], $read['rows']);
 
         return ['error' => null, 'rows' => $this->classify($raw, $company)];
     }
 
     /**
-     * @param  list<?string>  $headers
-     * @return list<?string>
-     */
-    private function mapHeaders(array $headers): array
-    {
-        return array_map(
-            fn (?string $header): ?string => self::HEADER_ALIASES[Str::of((string) $header)->ascii()->lower()->trim()->toString()] ?? null,
-            $headers,
-        );
-    }
-
-    /**
-     * @param  list<?string>  $columns
-     * @param  list<?string>  $values
+     * @param  array<string, string>  $cells
      * @return array{name: string, email: string, phone: ?string, job_title: ?string, is_primary: ?bool}
      */
-    private function rowData(array $columns, array $values): array
+    private function rowData(array $cells): array
     {
-        $name = '';
-        $email = '';
-        $phone = null;
-        $jobTitle = null;
-        $isPrimary = null;
+        $isPrimary = $cells['is_primary'] ?? '';
 
-        foreach ($columns as $index => $field) {
-            $value = trim((string) ($values[$index] ?? ''));
-
-            if ($field === null || $value === '') {
-                continue;
-            }
-
-            match ($field) {
-                'name' => $name = $value,
-                'email' => $email = Str::lower($value),
-                'phone' => $phone = $value,
-                'job_title' => $jobTitle = $value,
-                'is_primary' => $isPrimary = in_array(Str::of($value)->ascii()->lower()->toString(), ['si', 's', 'yes', 'y', '1', 'true', 'x'], true),
-                default => null,
-            };
-        }
-
-        return ['name' => $name, 'email' => $email, 'phone' => $phone, 'job_title' => $jobTitle, 'is_primary' => $isPrimary];
-    }
-
-    /**
-     * Devuelve el registro como lista de celdas, o null si la línea está vacía.
-     *
-     * @param  array<int, mixed>|false  $record
-     * @return list<?string>|null
-     */
-    private function cleanRecord(array|false $record): ?array
-    {
-        if ($record === false) {
-            return null;
-        }
-
-        $cells = array_map(fn ($cell) => is_string($cell) ? $cell : null, array_values($record));
-
-        return count(array_filter($cells, fn (?string $cell) => trim((string) $cell) !== '')) === 0 ? null : $cells;
+        return [
+            'name' => $cells['name'] ?? '',
+            'email' => Str::lower($cells['email'] ?? ''),
+            'phone' => ($cells['phone'] ?? '') ?: null,
+            'job_title' => ($cells['job_title'] ?? '') ?: null,
+            'is_primary' => $isPrimary === '' ? null : in_array($this->reader->normalize($isPrimary), ['si', 's', 'yes', 'y', '1', 'true', 'x'], true),
+        ];
     }
 
     /**

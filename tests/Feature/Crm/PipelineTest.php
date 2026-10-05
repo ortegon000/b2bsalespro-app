@@ -3,6 +3,8 @@
 use App\Domain\Crm\Enums\StageType;
 use App\Domain\Crm\Models\Company;
 use App\Domain\Crm\Models\Contact;
+use App\Domain\Crm\Models\Sequence;
+use App\Domain\Crm\Models\SequenceStep;
 use App\Domain\Crm\Models\Stage;
 use App\Domain\Crm\Models\TeamMember;
 use App\Models\User;
@@ -42,7 +44,7 @@ test('the sidebar link to the crm is only shown to team members', function () {
     $this->get(route('admin.feedback'))->assertSee(route('crm.pipeline'));
 });
 
-test('the seeder creates the default stages once and makes app admins crm admins', function () {
+test('the seeder creates the default stages and the 30-day sequence once and makes app admins crm admins', function () {
     $admin = User::factory()->create(['is_admin' => true]);
     $client = User::factory()->create(['is_admin' => false]);
 
@@ -52,6 +54,8 @@ test('the seeder creates the default stages once and makes app admins crm admins
     expect(Stage::count())->toBe(7)
         ->and(Stage::where('type', StageType::Won)->count())->toBe(1)
         ->and(Stage::orderBy('position')->first()->slug)->toBe('new')
+        ->and(Sequence::count())->toBe(1)
+        ->and(SequenceStep::count())->toBe(30)
         ->and(TeamMember::where('user_id', $admin->id)->count())->toBe(1)
         ->and(TeamMember::where('user_id', $client->id)->exists())->toBeFalse();
 });

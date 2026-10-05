@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Domain\Crm\Enums\StageType;
 use App\Domain\Crm\Enums\TeamRole;
+use App\Domain\Crm\Models\Sequence;
+use App\Domain\Crm\Models\SequenceStep;
 use App\Domain\Crm\Models\Stage;
 use App\Domain\Crm\Models\TeamMember;
 use App\Models\User;
@@ -27,7 +29,7 @@ class CrmSeeder extends Seeder
     ];
 
     /**
-     * Seed the CRM's default stages and make the app admins CRM admins.
+     * Seed the CRM's default stages and reinforcement sequence, and make the app admins CRM admins.
      */
     public function run(): void
     {
@@ -36,6 +38,13 @@ class CrmSeeder extends Seeder
                 ['slug' => $stage['slug']],
                 ['name' => $stage['name'], 'type' => $stage['type'], 'position' => $position + 1],
             );
+        }
+
+        // Secuencia de refuerzo de 30 días. Las plantillas de Brevo se asignan desde el CRM.
+        $sequence = Sequence::firstOrCreate(['name' => 'Refuerzo de 30 días']);
+
+        foreach (range(1, 30) as $day) {
+            SequenceStep::firstOrCreate(['sequence_id' => $sequence->id, 'day' => $day]);
         }
 
         User::where('is_admin', true)->each(

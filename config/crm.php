@@ -64,11 +64,14 @@ return [
     | Logo de los correos
     |--------------------------------------------------------------------------
     |
-    | URL pública del logo que aparece en la banda superior de los correos de la
-    | secuencia. Hoy vive en la CDN de Brevo; puede apuntar a un archivo propio.
+    | URL pública del logo (versión blanca, para la banda oscura) de los correos de la
+    | secuencia. Por defecto es public/img/logo_white.png servido desde APP_URL, así que
+    | solo carga en los clientes de correo cuando el CRM está en un dominio público. En
+    | local (.test) se puede apuntar a otra URL con CRM_EMAIL_LOGO_URL para ver el logo
+    | en las pruebas.
     |
     */
 
-    'email_logo_url' => env('CRM_EMAIL_LOGO_URL', 'https://img.mailinblue.com/6145380/images/content_library/original/689c11e89ae4e583f6688aab.png'),
+    'email_logo_url' => env('CRM_EMAIL_LOGO_URL', rtrim((string) env('APP_URL', 'http://localhost'), '/').'/img/logo_white.png'),
 
 ];

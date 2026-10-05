@@ -316,6 +316,18 @@ describe('preview and test email', function () {
             ->assertSee('Actividad 1 de 2', false);
     });
 
+    test('the preview loads the logo from the site being used, while the real email keeps the public url', function () {
+        config(['app.url' => 'https://crm.example.com', 'crm.email_logo_url' => 'https://crm.example.com/img/logo_white.png']);
+
+        $this->get(route('crm.sequences.preview', [$this->sequence, 1]))
+            ->assertSee(asset('img/logo_white.png'), false)
+            ->assertDontSee('https://crm.example.com/img/logo_white.png', false);
+
+        $emails = app(ReinforcementEmail::class);
+
+        expect($emails->render(1, $emails->sampleData(30))['html'])->toContain('https://crm.example.com/img/logo_white.png');
+    });
+
     test('the preview is closed to users outside the crm team', function () {
         $this->actingAs(User::factory()->create());
 
@@ -365,4 +377,9 @@ describe('preview and test email', function () {
 
         Http::assertNothingSent();
     });
+});
+
+test('the default email logo is the white version served from the app and the file exists', function () {
+    expect(config('crm.email_logo_url'))->toBe(rtrim(config('app.url'), '/').'/img/logo_white.png')
+        ->and(public_path('img/logo_white.png'))->toBeFile();
 });

@@ -11,3 +11,5 @@ Artisan::command('inspire', function () {
 Schedule::command('crm:dispatch-sends')->everyMinute()->withoutOverlapping();
 
 Schedule::command('crm:send-task-digest')->weekdays()->dailyAt('08:00')->timezone(config('crm.timezone'));
+
+Schedule::command('crm:sync-campaign-stats')->hourly()->withoutOverlapping();

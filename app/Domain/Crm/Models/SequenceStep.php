@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -26,6 +27,14 @@ class SequenceStep extends Model
     protected $table = 'crm_sequence_steps';
 
     protected $fillable = ['sequence_id', 'day', 'brevo_template_id'];
+
+    /**
+     * @return HasMany<Send, $this>
+     */
+    public function sends(): HasMany
+    {
+        return $this->hasMany(Send::class, 'sequence_step_id');
+    }
 
     /**
      * @return BelongsTo<Sequence, $this>

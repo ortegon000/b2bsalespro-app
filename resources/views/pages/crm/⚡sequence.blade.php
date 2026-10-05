@@ -1,7 +1,10 @@
 <?php
 
+use App\Domain\Crm\Enums\SendStatus;
 use App\Domain\Crm\Models\Sequence;
+use App\Domain\Crm\Services\SendMetrics;
 use Flux\Flux;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -38,6 +41,31 @@ new #[Title('Secuencia de refuerzo')] class extends Component {
         $this->reset('pasted');
     }
 
+    /**
+     * Resultados de cada día de la secuencia, sumando todos los cursos.
+     *
+     * @return array<int, array{sent: int, opened_rate: ?int, clicked_rate: ?int}>
+     */
+    #[Computed]
+    public function results(): array
+    {
+        $metrics = app(SendMetrics::class);
+
+        return $this->sequence->steps()
+            ->withCount([
+                'sends as sent_count' => fn ($query) => $query->where('status', SendStatus::Sent),
+                'sends as opened_count' => fn ($query) => $query->whereNotNull('opened_at'),
+                'sends as clicked_count' => fn ($query) => $query->whereNotNull('clicked_at'),
+            ])
+            ->get()
+            ->mapWithKeys(fn ($step) => [$step->day => [
+                'sent' => $step->sent_count,
+                'opened_rate' => $metrics->rate($step->opened_count, $step->sent_count),
+                'clicked_rate' => $metrics->rate($step->clicked_count, $step->sent_count),
+            ]])
+            ->all();
+    }
+
     public function save(): void
     {
         $this->validate([
@@ -68,12 +96,17 @@ new #[Title('Secuencia de refuerzo')] class extends Component {
     </form>
 
     <form wire:submit="save" class="flex flex-col gap-4">
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+        <div class="grid grid-cols-2 items-start gap-3 sm:grid-cols-3 md:grid-cols-5">
             @foreach ($sequence->steps as $step)
                 <flux:field wire:key="step-{{ $step->day }}">
                     <flux:label>Día {{ $step->day }}</flux:label>
                     <flux:input wire:model="templates.{{ $step->day }}" type="number" min="1" inputmode="numeric" />
                     <flux:error name="templates.{{ $step->day }}" />
+                    @if (($this->results[$step->day]['sent'] ?? 0) > 0)
+                        <flux:text size="sm" class="text-zinc-500 dark:text-zinc-400">
+                            {{ $this->results[$step->day]['sent'] }} env. · {{ $this->results[$step->day]['opened_rate'] }}% abiertos · {{ $this->results[$step->day]['clicked_rate'] }}% clics
+                        </flux:text>
+                    @endif
                 </flux:field>
             @endforeach
         </div>

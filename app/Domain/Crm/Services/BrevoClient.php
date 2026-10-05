@@ -97,6 +97,27 @@ class BrevoClient
         return (int) $this->request('post', '/emailCampaigns', $payload)->json('id');
     }
 
+    /**
+     * Estadísticas globales de una campaña, normalizadas. `opened` son aperturas únicas y
+     * `clicked` las personas que hicieron clic.
+     *
+     * @return array{sent: int, delivered: int, opened: int, clicked: int, unsubscribed: int, bounced: int, complaints: int}
+     */
+    public function campaignStats(int $campaignId): array
+    {
+        $stats = $this->request('get', "/emailCampaigns/{$campaignId}", ['statistics' => 'globalStats'])->json('statistics.globalStats') ?? [];
+
+        return [
+            'sent' => (int) ($stats['sent'] ?? 0),
+            'delivered' => (int) ($stats['delivered'] ?? 0),
+            'opened' => (int) ($stats['uniqueViews'] ?? 0),
+            'clicked' => (int) ($stats['clickers'] ?? 0),
+            'unsubscribed' => (int) ($stats['unsubscriptions'] ?? 0),
+            'bounced' => (int) ($stats['hardBounces'] ?? 0) + (int) ($stats['softBounces'] ?? 0),
+            'complaints' => (int) ($stats['complaints'] ?? 0),
+        ];
+    }
+
     public function sendCampaignNow(int $campaignId): void
     {
         $this->request('post', "/emailCampaigns/{$campaignId}/sendNow");

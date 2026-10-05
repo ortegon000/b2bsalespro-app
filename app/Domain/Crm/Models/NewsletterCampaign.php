@@ -16,6 +16,8 @@ use Illuminate\Support\Carbon;
  * @property int $brevo_template_id
  * @property int $brevo_campaign_id
  * @property Carbon|null $scheduled_for
+ * @property array{sent: int, delivered: int, opened: int, clicked: int, unsubscribed: int, bounced: int, complaints: int}|null $stats
+ * @property Carbon|null $stats_synced_at
  * @property int|null $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -28,7 +30,7 @@ class NewsletterCampaign extends Model
 
     protected $table = 'crm_newsletter_campaigns';
 
-    protected $fillable = ['name', 'brevo_template_id', 'brevo_campaign_id', 'scheduled_for', 'user_id'];
+    protected $fillable = ['name', 'brevo_template_id', 'brevo_campaign_id', 'scheduled_for', 'user_id', 'stats', 'stats_synced_at'];
 
     /**
      * @return array<string, string>
@@ -37,6 +39,8 @@ class NewsletterCampaign extends Model
     {
         return [
             'scheduled_for' => 'datetime',
+            'stats' => 'array',
+            'stats_synced_at' => 'datetime',
         ];
     }
 

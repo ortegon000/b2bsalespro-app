@@ -17,6 +17,11 @@ use Illuminate\Support\Carbon;
  * @property Carbon $scheduled_for
  * @property SendStatus $status
  * @property Carbon|null $sent_at
+ * @property Carbon|null $delivered_at
+ * @property Carbon|null $opened_at
+ * @property Carbon|null $clicked_at
+ * @property int $opens_count
+ * @property int $clicks_count
  * @property string|null $brevo_message_id
  * @property string|null $error
  * @property Carbon|null $created_at
@@ -32,6 +37,7 @@ class Send extends Model
 
     protected $fillable = [
         'subscription_id', 'sequence_step_id', 'scheduled_for', 'status', 'sent_at', 'brevo_message_id', 'error',
+        'delivered_at', 'opened_at', 'clicked_at', 'opens_count', 'clicks_count',
     ];
 
     /**
@@ -43,6 +49,9 @@ class Send extends Model
             'status' => SendStatus::class,
             'scheduled_for' => 'datetime',
             'sent_at' => 'datetime',
+            'delivered_at' => 'datetime',
+            'opened_at' => 'datetime',
+            'clicked_at' => 'datetime',
         ];
     }
 

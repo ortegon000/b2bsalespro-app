@@ -11,7 +11,9 @@ use App\Domain\Crm\Actions\SyncNewsletter;
 use App\Domain\Crm\Enums\SendStatus;
 use App\Domain\Crm\Enums\SubscriptionStatus;
 use App\Domain\Crm\Models\Course;
+use App\Domain\Crm\Models\Send;
 use App\Domain\Crm\Models\Subscription;
+use App\Domain\Crm\Services\SendMetrics;
 use Carbon\CarbonImmutable;
 use Flux\Flux;
 use Livewire\Attributes\Title;
@@ -126,7 +128,7 @@ new #[Title('Curso')] class extends Component {
         $retryFailedSends->handle($this->course->subscriptions()->findOrFail($subscriptionId));
     }
 
-    public function with(): array
+    public function with(SendMetrics $sendMetrics): array
     {
         $contacts = $this->course->contacts()->orderBy('name')->get();
 
@@ -136,14 +138,24 @@ new #[Title('Curso')] class extends Component {
                 'sends as sent_count' => fn ($query) => $query->where('status', SendStatus::Sent),
                 'sends as skipped_count' => fn ($query) => $query->where('status', SendStatus::Skipped),
                 'sends as failed_count' => fn ($query) => $query->where('status', SendStatus::Failed),
+                'sends as opened_count' => fn ($query) => $query->whereNotNull('opened_at'),
+                'sends as clicked_count' => fn ($query) => $query->whereNotNull('clicked_at'),
             ])
             ->get()
             ->keyBy('contact_id');
 
         $enrolledIds = $contacts->modelKeys();
 
+        $metrics = $sendMetrics->summary(Send::query()->whereRelation('subscription', 'course_id', $this->course->id));
+        $metrics += [
+            'delivered_rate' => $sendMetrics->rate($metrics['delivered'], $metrics['sent']),
+            'opened_rate' => $sendMetrics->rate($metrics['opened'], $metrics['sent']),
+            'clicked_rate' => $sendMetrics->rate($metrics['clicked'], $metrics['sent']),
+        ];
+
         return [
             'contacts' => $contacts,
+            'metrics' => $metrics,
             'subscriptions' => $subscriptions,
             'available' => $this->course->company->contacts()->whereNotIn('id', $enrolledIds)->orderBy('name')->get(),
             'sequenceReady' => $this->course->sequence?->isReady() ?? false,
@@ -196,6 +208,29 @@ new #[Title('Curso')] class extends Component {
         @endif
     @endunless
 
+    @if ($course->isReinforcementActive() && $metrics['sent'] > 0)
+        <section class="flex flex-col gap-3">
+            <flux:heading size="lg">Resultados del refuerzo</flux:heading>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                @foreach ([
+                    ['Enviados', $metrics['sent'], null],
+                    ['Entregados', $metrics['delivered'], $metrics['delivered_rate']],
+                    ['Abiertos', $metrics['opened'], $metrics['opened_rate']],
+                    ['Con clic', $metrics['clicked'], $metrics['clicked_rate']],
+                ] as [$label, $count, $rate])
+                    <div class="rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
+                        <flux:text size="sm" class="text-zinc-500 dark:text-zinc-400">{{ $label }}</flux:text>
+                        <div class="text-2xl font-semibold">{{ $count }}@if ($rate !== null)<span class="ms-1 text-sm font-normal text-zinc-500 dark:text-zinc-400">{{ $rate }}%</span>@endif</div>
+                    </div>
+                @endforeach
+            </div>
+            <flux:text size="sm" class="text-zinc-500 dark:text-zinc-400">
+                Porcentajes sobre los correos enviados. Las aperturas pueden estar infladas por la protección de privacidad de Apple Mail; el clic es la señal más confiable.
+                @if ($metrics['failed'] > 0) {{ $metrics['failed'] }} envíos fallaron: puedes reintentarlos por persona. @endif
+            </flux:text>
+        </section>
+    @endif
+
     <section class="flex flex-col gap-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
             <flux:heading size="lg">Inscritos ({{ $contacts->count() }})</flux:heading>
@@ -219,6 +254,7 @@ new #[Title('Curso')] class extends Component {
                         <div class="mt-2 flex flex-wrap items-center gap-2">
                             <flux:badge size="sm" :color="match ($subscription->status) { SubscriptionStatus::Active => 'green', SubscriptionStatus::Paused => 'amber', default => 'red' }">{{ $subscription->status->label() }}</flux:badge>
                             <flux:text size="sm">{{ $subscription->sent_count }}/{{ $subscription->total_count }} enviados</flux:text>
+                            @if ($subscription->sent_count)<flux:text size="sm" class="text-zinc-500 dark:text-zinc-400">· {{ trans_choice('{1} :count abierto|[0,*] :count abiertos', $subscription->opened_count) }} · {{ trans_choice('{1} :count clic|[0,*] :count clics', $subscription->clicked_count) }}</flux:text>@endif
                             @if ($subscription->skipped_count)<flux:badge size="sm" color="amber">{{ $subscription->skipped_count }} omitidos</flux:badge>@endif
                             @if ($subscription->failed_count)<flux:badge size="sm" color="red">{{ $subscription->failed_count }} fallidos</flux:badge>@endif
                         </div>

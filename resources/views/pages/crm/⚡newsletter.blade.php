@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\Crm\Actions\CreateNewsletterCampaign;
+use App\Domain\Crm\Actions\SyncCampaignStats;
 use App\Domain\Crm\Actions\SyncNewsletter;
 use App\Domain\Crm\Exceptions\BrevoException;
 use App\Domain\Crm\Models\Contact;
@@ -25,6 +26,16 @@ new #[Title('Newsletter')] class extends Component {
         Flux::toast(
             variant: $count > 0 ? 'success' : 'warning',
             text: $count > 0 ? "{$count} contactos se están sumando a la lista." : 'No hay contactos pendientes (o Brevo no está configurado).',
+        );
+    }
+
+    public function refreshStats(SyncCampaignStats $syncCampaignStats, ?int $campaignId = null): void
+    {
+        $updated = $syncCampaignStats->handle($campaignId ? NewsletterCampaign::findOrFail($campaignId) : null);
+
+        Flux::toast(
+            variant: $updated > 0 ? 'success' : 'warning',
+            text: $updated > 0 ? trans_choice('{1} 1 campaña actualizada|[2,*] :count campañas actualizadas', $updated) : 'No se pudo actualizar (¿Brevo está configurado?).',
         );
     }
 
@@ -117,7 +128,12 @@ new #[Title('Newsletter')] class extends Component {
     </section>
 
     <section class="flex flex-col gap-3">
-        <flux:heading size="lg">Campañas</flux:heading>
+        <div class="flex flex-wrap items-center justify-between gap-3">
+            <flux:heading size="lg">Campañas</flux:heading>
+            @if ($campaigns->isNotEmpty())
+                <flux:button size="sm" icon="arrow-path" wire:click="refreshStats" :disabled="! $configured">Actualizar métricas</flux:button>
+            @endif
+        </div>
 
         @forelse ($campaigns as $campaign)
             <div class="flex flex-wrap items-start justify-between gap-2 rounded-lg border border-zinc-200 p-3 dark:border-zinc-700" wire:key="campaign-{{ $campaign->id }}">
@@ -127,6 +143,18 @@ new #[Title('Newsletter')] class extends Component {
                         Plantilla {{ $campaign->brevo_template_id }} · Campaña {{ $campaign->brevo_campaign_id }}@if ($campaign->author) · {{ $campaign->author->name }}@endif
                     </flux:text>
                 </div>
+                @if ($campaign->stats)
+                    @php($stats = $campaign->stats)
+                    <div class="flex w-full flex-wrap gap-x-4 gap-y-1 text-sm text-zinc-600 dark:text-zinc-300">
+                        <span>{{ $stats['sent'] }} enviados</span>
+                        <span>{{ $stats['delivered'] }} entregados</span>
+                        <span>{{ $stats['opened'] }} abiertos{{ $stats['delivered'] > 0 ? ' ('.round($stats['opened'] / $stats['delivered'] * 100).'%)' : '' }}</span>
+                        <span>{{ $stats['clicked'] }} con clic{{ $stats['delivered'] > 0 ? ' ('.round($stats['clicked'] / $stats['delivered'] * 100).'%)' : '' }}</span>
+                        <span>{{ $stats['unsubscribed'] }} bajas</span>
+                        <span>{{ $stats['bounced'] }} rebotes</span>
+                        <span class="text-zinc-500">actualizado {{ $campaign->stats_synced_at?->diffForHumans() }}</span>
+                    </div>
+                @endif
                 <div class="flex shrink-0 flex-col items-end gap-1">
                     <flux:badge size="sm" :color="$campaign->scheduled_for ? 'blue' : 'green'">
                         {{ $campaign->scheduled_for ? 'Programada '.$campaign->scheduled_for->timezone(config('crm.timezone'))->format('d/m/Y H:i') : 'Enviada' }}

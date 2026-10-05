@@ -5,7 +5,8 @@
       - asunto     (obligatoria) asunto del correo
       - titulo     título grande y centrado del cuerpo
       - preheader  (opcional) texto de vista previa en la bandeja
-      - contenido  cuerpo del correo (usa <p>, <h3>, <ol>, <strong>… sin estilos en línea)
+      - contenido  cuerpo del correo (usa <p>, <h3>, <ol>, <strong>… sin estilos en línea).
+                   Una imagen se agrega con @include('emails.crm.reinforcement.imagen', ['archivo' => 'dia-NN.jpg', 'alt' => '…']).
 
     Variables disponibles: $nombre, $nombreCompleto, $empresa, $curso, $dia, $total, $siguiente, $bajaUrl.
 --}}

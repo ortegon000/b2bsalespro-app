@@ -19,12 +19,14 @@ class ReinforcementPreviewController extends Controller
         $total = $sequence->steps()->count();
         $html = $emails->render($day, $emails->sampleData($total))['html'];
 
-        // El correo real lleva la URL pública del logo (APP_URL); en la vista previa se usa la del
-        // sitio desde el que se mira, para que cargue también en local (.test por http).
-        $logo = (string) config('crm.email_logo_url');
+        // El correo real lleva las URL públicas del logo y las imágenes (APP_URL); en la vista previa
+        // se usan las del sitio desde el que se mira, para que carguen también en local (.test por http).
+        foreach (['crm.email_logo_url' => 'img/logo_white.png', 'crm.email_images_url' => 'img/actividades'] as $key => $path) {
+            $url = (string) config($key);
 
-        if (str_ends_with($logo, '/img/logo_white.png')) {
-            $html = str_replace($logo, asset('img/logo_white.png'), $html);
+            if (str_ends_with($url, '/'.$path)) {
+                $html = str_replace($url, asset($path), $html);
+            }
         }
 
         return response($html);

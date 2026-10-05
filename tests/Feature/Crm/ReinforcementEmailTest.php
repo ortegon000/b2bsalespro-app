@@ -84,8 +84,21 @@ describe('views', function () {
             ->and($mail['html'])->not->toContain('{{')
             ->and($mail['html'])->not->toContain('@yield')
             ->and($mail['html'])->not->toContain('@section')
-            ->and($mail['html'])->not->toContain('pexels')
-            ->and(substr_count($mail['html'], '<img'))->toBe(1);
+            ->and($mail['html'])->not->toContain('pexels');
+
+        // Solo el logo y las imágenes propias de la actividad (nada de sitios de terceros), y que existan.
+        preg_match_all('/<img[^>]+src="([^"]+)"/', $mail['html'], $images);
+
+        foreach ($images[1] as $src) {
+            $isLogo = $src === config('crm.email_logo_url');
+            $isOwn = str_starts_with($src, config('crm.email_images_url').'/');
+
+            expect($isLogo || $isOwn)->toBeTrue("Imagen no permitida: {$src}");
+
+            if ($isOwn) {
+                expect(public_path('img/actividades/'.basename($src)))->toBeFile();
+            }
+        }
     })->with(fn () => emailDays());
 
     test('day one keeps the content of the original email and fills the variables', function () {
@@ -97,7 +110,13 @@ describe('views', function () {
             ->and($mail['html'])->toContain('día 1 de 30')
             ->and($mail['html'])->toContain('La Misión de Hoy: Define tu Norte')
             ->and($mail['html'])->toContain('DEFINIDA:')
-            ->and($mail['html'])->toContain('Nos vemos en el correo #2.');
+            ->and($mail['html'])->toContain('Nos vemos en el correo #2.')
+            ->and($mail['html'])->toContain(config('crm.email_images_url').'/dia-01.jpg')
+            ->and($mail['html'])->toContain('define cuánto quieres ganar');
+
+        // La imagen va entre la presentación y la misión de hoy, como en el correo original.
+        expect(strpos($mail['html'], 'dia-01.jpg'))->toBeGreaterThan(strpos($mail['html'], 'la inversión valdrá la pena'))
+            ->and(strpos($mail['html'], 'dia-01.jpg'))->toBeLessThan(strpos($mail['html'], 'La Misión de Hoy'));
     });
 
     test('the last day has no "see you in the next email" line and values are escaped', function () {
@@ -317,15 +336,22 @@ describe('preview and test email', function () {
     });
 
     test('the preview loads the logo from the site being used, while the real email keeps the public url', function () {
-        config(['app.url' => 'https://crm.example.com', 'crm.email_logo_url' => 'https://crm.example.com/img/logo_white.png']);
+        config([
+            'app.url' => 'https://crm.example.com',
+            'crm.email_logo_url' => 'https://crm.example.com/img/logo_white.png',
+            'crm.email_images_url' => 'https://crm.example.com/img/actividades',
+        ]);
 
         $this->get(route('crm.sequences.preview', [$this->sequence, 1]))
             ->assertSee(asset('img/logo_white.png'), false)
-            ->assertDontSee('https://crm.example.com/img/logo_white.png', false);
+            ->assertSee(asset('img/actividades/dia-01.jpg'), false)
+            ->assertDontSee('https://crm.example.com/img', false);
 
         $emails = app(ReinforcementEmail::class);
+        $html = $emails->render(1, $emails->sampleData(30))['html'];
 
-        expect($emails->render(1, $emails->sampleData(30))['html'])->toContain('https://crm.example.com/img/logo_white.png');
+        expect($html)->toContain('https://crm.example.com/img/logo_white.png')
+            ->and($html)->toContain('https://crm.example.com/img/actividades/dia-01.jpg');
     });
 
     test('the preview is closed to users outside the crm team', function () {
@@ -379,7 +405,7 @@ describe('preview and test email', function () {
     });
 });
 
-test('the default email logo is the white version served from the app and the file exists', function () {
-    expect(config('crm.email_logo_url'))->toBe(rtrim(config('app.url'), '/').'/img/logo_white.png')
-        ->and(public_path('img/logo_white.png'))->toBeFile();
+test('the logo and the activity images the emails point to exist in public/', function () {
+    expect(public_path('img/logo_white.png'))->toBeFile()
+        ->and(public_path('img/actividades/dia-01.jpg'))->toBeFile();
 });

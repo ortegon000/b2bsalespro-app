@@ -74,4 +74,18 @@ return [
 
     'email_logo_url' => env('CRM_EMAIL_LOGO_URL', rtrim((string) env('APP_URL', 'http://localhost'), '/').'/img/logo_white.png'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Imágenes de las actividades
+    |--------------------------------------------------------------------------
+    |
+    | URL base de las imágenes de los correos de la secuencia (public/img/actividades,
+    | una por día: dia-01.jpg … dia-30.jpg). Igual que el logo, solo cargan en los
+    | clientes de correo si el CRM está en un dominio público; en local se puede
+    | apuntar a otra URL con CRM_EMAIL_IMAGES_URL.
+    |
+    */
+
+    'email_images_url' => env('CRM_EMAIL_IMAGES_URL', rtrim((string) env('APP_URL', 'http://localhost'), '/').'/img/actividades'),
+
 ];

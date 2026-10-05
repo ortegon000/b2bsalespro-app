@@ -10,6 +10,8 @@
     <p>Durante el próximo mes, te enviaremos una actividad diaria diseñada para transformar lo que aprendiste en el curso con el equipo de <strong>B2B Sales Pro</strong>. No necesitas enviarnos tus respuestas; estos ejercicios son 100% para ti y para tu crecimiento.</p>
     <p><strong>Tu compromiso:</strong> Dedicar 15-20 minutos intensos cada día (incluyendo fines de semana y festivos). Te aseguro que <strong>la inversión valdrá la pena</strong>.</p>
 
+    @include('emails.crm.reinforcement.imagen', ['archivo' => 'dia-01.jpg', 'alt' => 'Dinero, una calculadora y una libreta: define cuánto quieres ganar'])
+
     <h3>🎯 La Misión de Hoy: Define tu Norte</h3>
     <p>Si estás en ventas, es porque sabes que aquí las posibilidades de ingresos son ilimitadas. Pero para llegar a la cima, primero necesitas saber qué montaña estás escalando.</p>
     <p><strong>Tu primera tarea es determinar cuánto dinero quieres ganar.</strong><br>No estamos hablando de "ganar más", sino de una cifra concreta. Sin este número, el resto del programa no tendrá brújula.</p>

@@ -75,6 +75,14 @@ class Company extends Model
     }
 
     /**
+     * @return HasMany<Course, $this>
+     */
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class)->orderByDesc('starts_on')->orderByDesc('id');
+    }
+
+    /**
      * @return HasMany<Activity, $this>
      */
     public function activities(): HasMany

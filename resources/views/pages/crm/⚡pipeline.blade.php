@@ -2,6 +2,7 @@
 
 use App\Domain\Crm\Actions\MoveCompanyToStage;
 use App\Domain\Crm\Models\Company;
+use App\Domain\Crm\Models\Sequence;
 use App\Domain\Crm\Models\Stage;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
@@ -25,6 +26,12 @@ new #[Title('Pipeline')] class extends Component {
             ->get();
     }
 
+    #[Computed]
+    public function sequence(): ?Sequence
+    {
+        return Sequence::orderBy('id')->first();
+    }
+
     /**
      * Se llama al soltar una tarjeta en una columna. El orden dentro de la
      * columna lo define la antigüedad en la etapa, así que solo importa la columna destino.
@@ -44,7 +51,12 @@ new #[Title('Pipeline')] class extends Component {
             <flux:subheading>Arrastra las empresas entre etapas del flujo comercial.</flux:subheading>
         </div>
 
-        <flux:button variant="primary" icon="plus" :href="route('crm.companies.create')" wire:navigate>Nueva empresa</flux:button>
+        <div class="flex flex-wrap justify-end gap-2">
+            @if ($this->sequence)
+                <flux:button icon="envelope" :href="route('crm.sequences.edit', $this->sequence)" wire:navigate>Secuencia de refuerzo</flux:button>
+            @endif
+            <flux:button variant="primary" icon="plus" :href="route('crm.companies.create')" wire:navigate>Nueva empresa</flux:button>
+        </div>
     </div>
 
     {{-- Las columnas hacen scroll horizontal dentro de su contenedor, no la página --}}

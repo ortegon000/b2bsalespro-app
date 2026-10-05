@@ -15,11 +15,11 @@ class ImportContacts
      * Al actualizar, las celdas vacías conservan el valor que ya tenía el contacto.
      *
      * @param  list<array{status: string, data: array{name: string, email: string, phone: ?string, job_title: ?string, is_primary: ?bool}, contact_id: ?int}>  $rows
-     * @return array{created: int, updated: int}
+     * @return array{created: int, updated: int, contact_ids: list<int>}
      */
     public function handle(Company $company, array $rows): array
     {
-        $result = ['created' => 0, 'updated' => 0];
+        $result = ['created' => 0, 'updated' => 0, 'contact_ids' => []];
 
         DB::transaction(function () use ($company, $rows, &$result): void {
             foreach ($rows as $row) {
@@ -29,7 +29,9 @@ class ImportContacts
 
                 $contact = $row['contact_id'] ? Contact::findOrFail($row['contact_id']) : null;
 
-                $this->saveContact->handle($company, array_filter($row['data'], fn ($value) => $value !== null), $contact);
+                $saved = $this->saveContact->handle($company, array_filter($row['data'], fn ($value) => $value !== null), $contact);
+
+                $result['contact_ids'][] = $saved->id;
 
                 $result[$contact ? 'updated' : 'created']++;
             }

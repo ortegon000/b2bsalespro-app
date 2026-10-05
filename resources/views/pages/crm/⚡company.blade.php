@@ -120,6 +120,7 @@ new #[Title('Empresa')] class extends Component {
     {
         return [
             'contacts' => $this->company->contacts()->orderByDesc('is_primary')->orderBy('name')->get(),
+            'courses' => $this->company->courses()->withCount('contacts')->get(),
             'activities' => $this->company->activities()->with(['author', 'contact'])->orderByDesc('occurred_at')->orderByDesc('id')->get(),
         ];
     }
@@ -180,6 +181,30 @@ new #[Title('Empresa')] class extends Component {
             </div>
         @empty
             <flux:text class="text-zinc-500">Todavía no hay contactos.</flux:text>
+        @endforelse
+    </section>
+
+    <section class="flex flex-col gap-3">
+        <div class="flex items-center justify-between gap-3">
+            <flux:heading size="lg">Cursos</flux:heading>
+            <flux:button size="sm" icon="plus" :href="route('crm.companies.courses.create', $company)" wire:navigate>Nuevo curso</flux:button>
+        </div>
+
+        @forelse ($courses as $course)
+            <a href="{{ route('crm.courses.show', $course) }}" wire:navigate wire:key="course-{{ $course->id }}" class="flex flex-wrap items-start justify-between gap-2 rounded-lg border border-zinc-200 p-3 hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
+                <div class="min-w-0">
+                    <flux:text variant="strong">{{ $course->title }}</flux:text>
+                    <flux:text class="text-zinc-500 dark:text-zinc-400">
+                        {{ $course->modality->label() }}@if ($course->hours) · {{ $course->hours }} h @endif · {{ trans_choice('{0} Sin inscritos|{1} 1 inscrito|[2,*] :count inscritos', $course->contacts_count) }}
+                    </flux:text>
+                </div>
+                <div class="flex gap-2">
+                    @if ($course->delivered_at)<flux:badge size="sm" color="green">Impartido</flux:badge>@endif
+                    @if ($course->isReinforcementActive())<flux:badge size="sm" color="blue">Refuerzo activo</flux:badge>@endif
+                </div>
+            </a>
+        @empty
+            <flux:text class="text-zinc-500">Todavía no hay cursos.</flux:text>
         @endforelse
     </section>
 

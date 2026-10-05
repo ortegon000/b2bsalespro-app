@@ -3,11 +3,14 @@
 namespace Database\Seeders;
 
 use App\Domain\Crm\Enums\ActivityType;
+use App\Domain\Crm\Enums\CourseModality;
 use App\Domain\Crm\Enums\LeadSource;
 use App\Domain\Crm\Enums\TeamRole;
 use App\Domain\Crm\Models\Activity;
 use App\Domain\Crm\Models\Company;
 use App\Domain\Crm\Models\Contact;
+use App\Domain\Crm\Models\Course;
+use App\Domain\Crm\Models\Sequence;
 use App\Domain\Crm\Models\Stage;
 use App\Domain\Crm\Models\TeamMember;
 use App\Models\User;
@@ -187,6 +190,20 @@ class CrmDemoSeeder extends Seeder
                 ]);
             }
         }
+
+        // Curso ya impartido con sus empleados inscritos, sin activar el refuerzo (no envía nada).
+        $company = Company::where('name', 'Alimentos La Cosecha')->firstOrFail();
+
+        $course = Course::updateOrCreate(['company_id' => $company->id, 'title' => 'Ventas consultivas B2B'], [
+            'sequence_id' => Sequence::orderBy('id')->value('id'),
+            'modality' => CourseModality::Online,
+            'hours' => 12,
+            'starts_on' => now()->subDays(25)->toDateString(),
+            'ends_on' => now()->subDays(20)->toDateString(),
+            'delivered_at' => now()->subDays(20),
+        ]);
+
+        $course->contacts()->syncWithoutDetaching($company->contacts()->pluck('id')->all());
 
         Contact::updateOrCreate(['email' => 'sofia.freelance@correo.test'], [
             'company_id' => null,

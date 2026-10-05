@@ -1,12 +1,15 @@
 <?php
 
+use App\Domain\Crm\Actions\EnrollContacts;
 use App\Domain\Crm\Actions\ImportContacts;
 use App\Domain\Crm\Models\Company;
+use App\Domain\Crm\Models\Course;
 use App\Domain\Crm\Services\ContactCsv;
 use Flux\Flux;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,6 +19,20 @@ new #[Title('Importar contactos')] class extends Component {
     public Company $company;
 
     public $file = null;
+
+    #[Url(as: 'curso')]
+    public ?int $courseId = null;
+
+    public bool $enrollInCourse = true;
+
+    /**
+     * Curso de esta empresa al que se pueden inscribir los contactos importados.
+     */
+    #[Computed]
+    public function course(): ?Course
+    {
+        return $this->courseId ? $this->company->courses()->find($this->courseId) : null;
+    }
 
     public function updatedFile(): void
     {
@@ -52,7 +69,7 @@ new #[Title('Importar contactos')] class extends Component {
         ];
     }
 
-    public function import(ImportContacts $importContacts, ContactCsv $contactCsv): void
+    public function import(ImportContacts $importContacts, EnrollContacts $enrollContacts, ContactCsv $contactCsv): void
     {
         $this->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:1024']]);
 
@@ -67,9 +84,16 @@ new #[Title('Importar contactos')] class extends Component {
 
         $result = $importContacts->handle($this->company, $parsed['rows']);
 
-        Flux::toast(variant: 'success', text: "{$result['created']} contactos nuevos y {$result['updated']} actualizados.");
+        $message = "{$result['created']} contactos nuevos y {$result['updated']} actualizados.";
 
-        $this->redirectRoute('crm.companies.show', $this->company, navigate: true);
+        if ($this->course && $this->enrollInCourse) {
+            $enrolled = $enrollContacts->handle($this->course, $result['contact_ids']);
+            $message .= " {$enrolled} inscritos en el curso.";
+        }
+
+        Flux::toast(variant: 'success', text: $message);
+
+        $this->redirectRoute($this->course ? 'crm.courses.show' : 'crm.companies.show', $this->course ?? $this->company, navigate: true);
     }
 }; ?>
 
@@ -95,6 +119,10 @@ new #[Title('Importar contactos')] class extends Component {
             <div wire:loading wire:target="file"><flux:text class="mt-2">Leyendo archivo…</flux:text></div>
         </div>
     </div>
+
+    @if ($this->course)
+        <flux:checkbox wire:model="enrollInCourse" :label="'Inscribir a los contactos importados en el curso: '.$this->course->title" />
+    @endif
 
     @if ($this->preview)
         @if ($this->preview['error'])
@@ -134,6 +162,6 @@ new #[Title('Importar contactos')] class extends Component {
         <flux:button variant="primary" wire:click="import" :disabled="! $this->preview || $this->preview['error'] || $this->counts['create'] + $this->counts['update'] === 0">
             Importar {{ $this->counts['create'] + $this->counts['update'] }} contactos
         </flux:button>
-        <flux:button :href="route('crm.companies.show', $company)" wire:navigate>Cancelar</flux:button>
+        <flux:button :href="$this->course ? route('crm.courses.show', $this->course) : route('crm.companies.show', $company)" wire:navigate>Cancelar</flux:button>
     </div>
 </div>

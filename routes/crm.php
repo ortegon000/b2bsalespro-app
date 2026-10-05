@@ -10,4 +10,8 @@ Route::middleware(['auth', 'verified', 'can:access-crm'])->prefix('crm')->name('
     Route::livewire('companies/{company}', 'pages::crm.company')->name('companies.show');
     Route::livewire('companies/{company}/contacts/import', 'pages::crm.contacts-import')->name('companies.contacts.import');
     Route::livewire('companies/{company}/edit', 'pages::crm.company-form')->name('companies.edit');
+    Route::livewire('companies/{company}/courses/create', 'pages::crm.course-form')->name('companies.courses.create');
+    Route::livewire('courses/{course}', 'pages::crm.course')->name('courses.show');
+    Route::livewire('courses/{course}/edit', 'pages::crm.course-form')->name('courses.edit');
+    Route::livewire('sequences/{sequence}', 'pages::crm.sequence')->name('sequences.edit');
 });

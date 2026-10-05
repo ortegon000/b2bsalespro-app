@@ -2,6 +2,7 @@
 
 use App\Domain\Crm\Models\Company;
 use App\Domain\Crm\Models\Contact;
+use App\Domain\Crm\Models\Course;
 use App\Domain\Crm\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
@@ -137,4 +138,37 @@ test('only csv files are accepted', function () {
         ->set('file', UploadedFile::fake()->create('contactos.pdf', 10, 'application/pdf'))
         ->assertHasErrors('file')
         ->assertSet('file', null);
+});
+
+test('importing contacts from a course page also enrolls them', function () {
+    $course = Course::factory()->create();
+    $csv = UploadedFile::fake()->createWithContent('contactos.csv', "nombre,email\nRosa Díaz,rosa@acme.test\nLuis Soto,luis@acme.test\n");
+
+    Livewire::test('pages::crm.contacts-import', ['company' => $course->company, 'courseId' => $course->id])
+        ->set('file', $csv)
+        ->call('import')
+        ->assertRedirect(route('crm.courses.show', $course));
+
+    expect($course->contacts()->pluck('email')->all())->toEqualCanonicalizing(['rosa@acme.test', 'luis@acme.test']);
+});
+
+test('the enrollment on import can be turned off and a foreign course is ignored', function () {
+    $course = Course::factory()->create();
+    $csv = fn () => UploadedFile::fake()->createWithContent('contactos.csv', "nombre,email\nRosa Díaz,rosa@acme.test\n");
+
+    Livewire::test('pages::crm.contacts-import', ['company' => $course->company, 'courseId' => $course->id])
+        ->set('enrollInCourse', false)
+        ->set('file', $csv())
+        ->call('import');
+
+    expect($course->contacts()->count())->toBe(0);
+
+    $foreign = Course::factory()->create();
+
+    Livewire::test('pages::crm.contacts-import', ['company' => Company::factory()->create(), 'courseId' => $foreign->id])
+        ->set('file', $csv())
+        ->call('import')
+        ->assertRedirect();
+
+    expect($foreign->contacts()->count())->toBe(0);
 });

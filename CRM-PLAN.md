@@ -2,7 +2,7 @@
 
 Documento vivo para continuar el trabajo en otras conversaciones o con otros LLM. Léelo completo antes de tocar código y **actualiza las secciones "Estado" y "Lo que ya existe" al terminar cada fase**.
 
-Última actualización: 2026-10-04 · rama `feat/crm` (nada subido al remoto por decisión del usuario).
+Última actualización: 2026-10-05 · rama `feat/crm` (nada subido al remoto por decisión del usuario).
 
 ---
 
@@ -64,13 +64,13 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 | 1 | Base del dominio, esquema, modelos, factories, acceso, seeders | ✅ |
 | 2 | Kanban con arrastre, empresa, contactos, actividades, `POST /api/crm/leads` | ✅ |
 | 3a | Importar contactos de **una empresa** desde CSV con plantilla | ✅ |
+| 3b | Importar **empresas con sus contactos** en lote desde CSV con plantilla | ✅ |
 | 4 | Refuerzo de 30 días: cursos, inscripciones, secuencia, envíos por Brevo, webhook, pantallas | ✅ **código y tests listos; falta configurar Brevo real (sección 6)** |
-| 3b | Importar **empresas** (+ contactos) en lote | ⏳ pendiente |
 | 5 | Edición de plantillas en el CRM, lista/campañas del newsletter, tareas, métricas, vínculo con Objeción Cero / `Lms`, comodines, roles reales | ⏳ |
 
 Historial de commits de la rama: `git log --oneline feat/crm` (convención `feat:` / `fix:` / `docs:` / `chore:` en español).
 
-Suite al cerrar la Fase 4: 155 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
+Suite al cerrar la Fase 3b: 181 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
 
 ---
 
@@ -102,15 +102,15 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 ### Código (`app/Domain/Crm/`)
 - `Models/`: `TeamMember`, `Stage`, `Company`, `Contact`, `Activity`, `Sequence`, `SequenceStep`, `Course`, `Subscription`, `Send` (con `#[UseFactory]`, `$fillable`, `casts()` y docblocks `@property`; factories en `database/factories/Crm/`). **Todo campo que se escriba con `update()`/`create()` debe estar en `$fillable`** (un olvido con `unsubscribed_at`/`bounced_at` casi deja a un contacto dado de baja recibiendo correos; hay tests).
 - `Enums/`: `TeamRole`, `StageType`, `LeadSource`, `ActivityType`, `CourseModality`, `SubscriptionStatus`, `SendStatus` (todos con `label()` en español).
-- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`.
-- `Services/`: `ContactCsv` (plantilla y lectura de CSV), `BrevoClient` (envío por plantilla con `Http`; `BrevoException` con `retryable`).
+- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `ImportCompanies`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`.
+- `Services/`: `CsvReader` (lectura/escritura genérica de CSV: BOM, Windows-1252, `,` o `;`, alias de encabezados, 500 filas), `ContactCsv` y `CompanyCsv` (plantilla y clasificación por fila de cada importador), `BrevoClient` (envío por plantilla con `Http`; `BrevoException` con `retryable`).
 - `Jobs/SendReinforcementEmail`, `Exceptions/BrevoException`.
 - Comando `php artisan crm:dispatch-sends` (`app/Console/Commands`), programado **cada minuto** con `withoutOverlapping` en `routes/console.php`.
 
 ### Rutas
-- Web (`routes/crm.php`, prefijo `crm`, nombres `crm.*`): `pipeline`, `companies.{create,show,edit}`, `companies.contacts.import` (acepta `?curso={id}`), `companies.courses.create`, `courses.{show,edit}`, `sequences.edit`, `contacts.template` (descarga).
+- Web (`routes/crm.php`, prefijo `crm`, nombres `crm.*`): `pipeline`, `companies.{create,show,edit}`, `companies.import` y `companies.template` (importación de empresas), `companies.contacts.import` (acepta `?curso={id}`), `companies.courses.create`, `courses.{show,edit}`, `sequences.edit`, `contacts.template` (descarga).
 - API (`routes/crm-api.php`, prefijo `api/crm`, cargada desde `bootstrap/app.php` con `then:`): `POST leads` (`crm.leads.store`) y `POST brevo/webhook` (`crm.brevo.webhook`). Ambas protegidas por `EnsureValidCrmToken:<clave de config>` (Bearer; si el token no está configurado, rechaza todo).
-- Páginas Livewire SFC en `resources/views/pages/crm/⚡*.blade.php`: `pipeline`, `company`, `company-form`, `contacts-import`, `course`, `course-form`, `sequence`.
+- Páginas Livewire SFC en `resources/views/pages/crm/⚡*.blade.php`: `pipeline`, `company`, `company-form`, `companies-import`, `contacts-import`, `course`, `course-form`, `sequence`.
 
 ### Flujo de la Fase 4 (cómo funciona)
 1. En la ficha de la empresa → «Nuevo curso» (elige la secuencia). Inscribir contactos: checkboxes de los contactos de la empresa, o «Importar CSV e inscribir» (reutiliza el importador).
@@ -132,6 +132,15 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 - Acepta `,` o `;`, encabezados con acentos/sinónimos, Windows-1252, máx. 500 filas y 1 MB. Vista previa por fila (Nuevo / Actualizar / Error) antes de confirmar; al confirmar se vuelve a leer el archivo.
 - Actualiza si el email existe en la misma empresa o sin empresa (celdas vacías conservan el valor); omite emails de otra empresa, repetidos o inválidos.
 
+### Importación de empresas (CSV)
+- Botón «Importar empresas» en el pipeline (`/crm/companies/import`). Plantilla `plantilla-empresas.csv`: `empresa,giro,sitio_web,etapa,responsable,origen,notas,contacto,email,telefono,puesto,principal`. Solo `empresa` es obligatoria.
+- **Una fila = una empresa + uno de sus contactos**; repetir el nombre de la empresa agrega más contactos. Los datos de la empresa se toman de la **primera celda no vacía** entre sus filas válidas.
+- La empresa se busca por nombre **sin importar mayúsculas, acentos ni espacios extra**. Si existe, solo cambia lo que el archivo trae lleno; una etapa distinta la mueve (reinicia la antigüedad) y una etapa vacía no la mueve.
+- Valores por defecto para empresas **nuevas**: etapa = primera etapa abierta, responsable = quien importa, origen = importación. `etapa` se resuelve por nombre o slug; `responsable` por **email** de alguien del equipo; `origen` por nombre o valor (formulario, WhatsApp, landing, sitio web, importación, manual).
+- Contactos: mismas reglas que el importador de contactos (email de otra empresa, repetido en el archivo o inválido → error; sin empresa → se adjunta; misma empresa → se actualiza). Nombre y email van juntos.
+- **Cada fila es atómica**: si falla algo (empresa o contacto) se omite completa; la empresa se crea con la siguiente fila válida de esa empresa. Vista previa con resumen y fila por fila; al confirmar se vuelve a leer el archivo. Todo en una transacción.
+- Límite: 500 filas / 1 MB. No hay `.xlsx` (guardar como CSV desde Excel).
+
 ### Datos de demostración
 - `php artisan db:seed --class=CrmDemoSeeder`: 11 empresas en todas las etapas, ~21 contactos, actividades, 2 vendedores y un **curso impartido con 3 inscritos y el refuerzo sin activar** (a propósito: no envía nada). Idempotente; **no hace nada en producción**; no está en `DatabaseSeeder`.
 
@@ -140,8 +149,7 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 ## 5. Lo que falta / siguientes pasos
 
 1. **Poner en marcha Brevo (sección 6)** y probar con un curso real de 1 persona antes del primero grande.
-2. **Fase 3b**: importar empresas con contactos desde CSV/Excel (mapeo de columnas, vista previa, deduplicación por nombre de empresa y email, cola con reporte). Hoy no hay librería `.xlsx`: pedir aprobación antes de agregar una dependencia.
-3. **Fase 5**:
+2. **Fase 5**:
    - Editar plantillas dentro del CRM (asunto/HTML propios) en lugar de depender del `templateId`.
    - Sincronizar contactos a una lista de Brevo y automatizar el envío de campañas del newsletter (hoy manual en su interfaz).
    - Registrar entregado/abierto/clic desde el webhook (columnas en `crm_sends`) y mostrar métricas.
@@ -149,7 +157,7 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
    - Vínculo contacto ↔ `User` de Objeción Cero (ya existe `crm_contacts.user_id`).
    - Comodines (destinatarios extra) y roles `admin`/`seller` con permisos reales.
    - Recuperar envíos atascados en `queued` si un worker muere (hoy no hay barrido automático).
-4. Pendiente de decidir con el usuario: remitente y nombres de parámetros de las plantillas reales (ver punto 6 de la sección 4).
+3. Pendiente de decidir con el usuario: remitente y nombres de parámetros de las plantillas reales (ver punto 6 de «Flujo de la Fase 4»).
 
 ---
 

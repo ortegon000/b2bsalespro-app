@@ -83,6 +83,14 @@ class Company extends Model
     }
 
     /**
+     * @return HasMany<Task, $this>
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class)->orderByRaw('due_on is null')->orderBy('due_on')->orderBy('id');
+    }
+
+    /**
      * @return HasMany<Activity, $this>
      */
     public function activities(): HasMany

@@ -3,6 +3,8 @@
 use App\Domain\Crm\Actions\SaveContact;
 use App\Domain\Crm\Enums\ActivityType;
 use App\Domain\Crm\Models\Company;
+use App\Domain\Crm\Models\TeamMember;
+use Carbon\CarbonImmutable;
 use Flux\Flux;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
@@ -20,10 +22,16 @@ new #[Title('Empresa')] class extends Component {
 
     public string $activityType = 'note';
     public string $activityBody = '';
+    public string $activityAt = '';
+
+    public string $taskTitle = '';
+    public string $taskDueOn = '';
+    public ?int $taskAssignee = null;
 
     public function mount(Company $company): void
     {
         $this->company = $company->load(['stage', 'owner']);
+        $this->taskAssignee = auth()->id();
     }
 
     public function newContact(): void
@@ -84,21 +92,64 @@ new #[Title('Empresa')] class extends Component {
         $validated = $this->validate([
             'activityType' => ['required', Rule::enum(ActivityType::class)],
             'activityBody' => ['required', 'string', 'max:5000'],
+            'activityAt' => ['nullable', 'date'],
         ]);
+
+        $occurredAt = filled($validated['activityAt'] ?? null)
+            ? CarbonImmutable::parse($validated['activityAt'], config('crm.timezone'))->utc()
+            : now();
+
+        if ($occurredAt->gt(now()->addMinute())) {
+            $this->addError('activityAt', 'La fecha no puede ser futura.');
+
+            return;
+        }
 
         $this->company->activities()->create([
             'user_id' => auth()->id(),
             'type' => $validated['activityType'],
             'body' => $validated['activityBody'],
-            'occurred_at' => now(),
+            'occurred_at' => $occurredAt,
         ]);
 
-        $this->reset('activityBody');
+        $this->reset('activityBody', 'activityAt');
     }
 
     public function deleteActivity(int $id): void
     {
         $this->company->activities()->findOrFail($id)->delete();
+    }
+
+    public function addTask(): void
+    {
+        $validated = $this->validate([
+            'taskTitle' => ['required', 'string', 'max:255'],
+            'taskDueOn' => ['nullable', 'date'],
+            'taskAssignee' => ['nullable', Rule::exists('crm_team_members', 'user_id')],
+        ], ['taskTitle.required' => 'Escribe qué hay que hacer.']);
+
+        $this->company->tasks()->create([
+            'title' => $validated['taskTitle'],
+            'due_on' => filled($validated['taskDueOn'] ?? null) ? $validated['taskDueOn'] : null,
+            'assigned_to' => $validated['taskAssignee'],
+        ]);
+
+        $this->reset('taskTitle', 'taskDueOn');
+    }
+
+    public function completeTask(int $id): void
+    {
+        $this->company->tasks()->findOrFail($id)->update(['completed_at' => now()]);
+    }
+
+    public function reopenTask(int $id): void
+    {
+        $this->company->tasks()->findOrFail($id)->update(['completed_at' => null]);
+    }
+
+    public function deleteTask(int $id): void
+    {
+        $this->company->tasks()->findOrFail($id)->delete();
     }
 
     public function deleteCompany(): void
@@ -120,6 +171,8 @@ new #[Title('Empresa')] class extends Component {
     {
         return [
             'contacts' => $this->company->contacts()->orderByDesc('is_primary')->orderBy('name')->get(),
+            'tasks' => $this->company->tasks()->with('assignee')->get(),
+            'assignees' => TeamMember::with('user')->get()->map->user->sortBy('name')->values(),
             'courses' => $this->company->courses()->withCount('contacts')->get(),
             'activities' => $this->company->activities()->with(['author', 'contact'])->orderByDesc('occurred_at')->orderByDesc('id')->get(),
         ];
@@ -185,6 +238,42 @@ new #[Title('Empresa')] class extends Component {
     </section>
 
     <section class="flex flex-col gap-3">
+        <flux:heading size="lg">Tareas</flux:heading>
+
+        <form wire:submit="addTask" class="flex flex-col gap-3 rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
+            <flux:input wire:model="taskTitle" label="Qué hay que hacer" placeholder="Llamar para dar seguimiento a la propuesta" />
+            <div class="grid gap-3 sm:grid-cols-2">
+                <flux:input wire:model="taskDueOn" type="date" label="Para el día" />
+                <flux:select wire:model="taskAssignee" label="Responsable" placeholder="Sin asignar">
+                    @foreach ($assignees as $assignee)
+                        <flux:select.option :value="$assignee->id">{{ $assignee->name }}</flux:select.option>
+                    @endforeach
+                </flux:select>
+            </div>
+            <div><flux:button type="submit" size="sm" variant="primary">Agregar tarea</flux:button></div>
+        </form>
+
+        @forelse ($tasks as $task)
+            <div class="flex items-start justify-between gap-3 rounded-lg border p-3 {{ $task->isOverdue() ? 'border-red-300 dark:border-red-800' : 'border-zinc-200 dark:border-zinc-700' }}" wire:key="task-{{ $task->id }}">
+                <div class="flex min-w-0 items-start gap-3">
+                    <flux:checkbox :checked="$task->completed_at !== null" wire:click="{{ $task->completed_at ? 'reopenTask' : 'completeTask' }}({{ $task->id }})" aria-label="Completar tarea" />
+                    <div class="min-w-0">
+                        <flux:text variant="strong" class="{{ $task->completed_at ? 'line-through opacity-60' : '' }}">{{ $task->title }}</flux:text>
+                        <flux:text size="sm" class="text-zinc-500 dark:text-zinc-400">
+                            @if ($task->due_on){{ $task->due_on->format('d/m/Y') }}@else Sin fecha @endif
+                            @if ($task->assignee) · {{ $task->assignee->name }}@endif
+                            @if ($task->isOverdue())<span class="text-red-600 dark:text-red-400"> · Vencida</span>@endif
+                        </flux:text>
+                    </div>
+                </div>
+                <flux:button size="sm" variant="ghost" icon="trash" wire:click="deleteTask({{ $task->id }})" wire:confirm="¿Eliminar esta tarea?" aria-label="Eliminar tarea" />
+            </div>
+        @empty
+            <flux:text class="text-zinc-500">No hay tareas para esta empresa.</flux:text>
+        @endforelse
+    </section>
+
+    <section class="flex flex-col gap-3">
         <div class="flex items-center justify-between gap-3">
             <flux:heading size="lg">Cursos</flux:heading>
             <flux:button size="sm" icon="plus" :href="route('crm.companies.courses.create', $company)" wire:navigate>Nuevo curso</flux:button>
@@ -218,6 +307,8 @@ new #[Title('Empresa')] class extends Component {
                 @endforeach
             </flux:select>
             <flux:textarea wire:model="activityBody" label="Detalle" rows="3" />
+            <flux:input wire:model="activityAt" type="datetime-local" label="Cuándo ocurrió (opcional)" description="Hora de {{ config('crm.timezone') }}. Vacío = ahora." />
+            <flux:error name="activityAt" />
             <div><flux:button type="submit" variant="primary" size="sm">Registrar</flux:button></div>
         </form>
 

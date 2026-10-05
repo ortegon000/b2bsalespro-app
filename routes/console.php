@@ -9,3 +9,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('crm:dispatch-sends')->everyMinute()->withoutOverlapping();
+
+Schedule::command('crm:send-task-digest')->weekdays()->dailyAt('08:00')->timezone(config('crm.timezone'));

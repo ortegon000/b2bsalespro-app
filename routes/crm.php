@@ -18,4 +18,5 @@ Route::middleware(['auth', 'verified', 'can:access-crm'])->prefix('crm')->name('
     Route::livewire('courses/{course}/edit', 'pages::crm.course-form')->name('courses.edit');
     Route::livewire('sequences/{sequence}', 'pages::crm.sequence')->name('sequences.edit');
     Route::livewire('newsletter', 'pages::crm.newsletter')->name('newsletter');
+    Route::livewire('tasks', 'pages::crm.tasks')->name('tasks');
 });

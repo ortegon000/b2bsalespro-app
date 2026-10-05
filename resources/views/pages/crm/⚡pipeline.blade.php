@@ -20,7 +20,7 @@ new #[Title('Pipeline')] class extends Component {
             ->orderBy('position')
             ->with(['companies' => fn ($query) => $query
                 ->with('owner')
-                ->withCount('contacts')
+                ->withCount(['contacts', 'tasks as overdue_tasks_count' => fn ($tasks) => $tasks->overdue()])
                 ->orderByDesc('stage_changed_at')
                 ->orderByDesc('id')])
             ->get();
@@ -55,6 +55,7 @@ new #[Title('Pipeline')] class extends Component {
             @if ($this->sequence)
                 <flux:button icon="envelope" :href="route('crm.sequences.edit', $this->sequence)" wire:navigate>Secuencia de refuerzo</flux:button>
             @endif
+            <flux:button icon="check-circle" :href="route('crm.tasks')" wire:navigate>Tareas</flux:button>
             <flux:button icon="newspaper" :href="route('crm.newsletter')" wire:navigate>Newsletter</flux:button>
             <flux:button icon="arrow-up-tray" :href="route('crm.companies.import')" wire:navigate>Importar empresas</flux:button>
             <flux:button variant="primary" icon="plus" :href="route('crm.companies.create')" wire:navigate>Nueva empresa</flux:button>
@@ -79,6 +80,9 @@ new #[Title('Pipeline')] class extends Component {
                             <flux:text class="mt-0.5 text-zinc-500 dark:text-zinc-400">
                                 {{ $company->source->label() }} · {{ trans_choice('{0} Sin contactos|{1} 1 contacto|[2,*] :count contactos', $company->contacts_count) }}
                             </flux:text>
+                            @if ($company->overdue_tasks_count)
+                                <flux:badge size="sm" color="red" class="mt-1">{{ trans_choice('{1} :count tarea vencida|[2,*] :count tareas vencidas', $company->overdue_tasks_count) }}</flux:badge>
+                            @endif
                             @if ($company->owner)
                                 <flux:text size="sm" class="mt-1 text-zinc-500 dark:text-zinc-400">{{ $company->owner->name }}</flux:text>
                             @endif

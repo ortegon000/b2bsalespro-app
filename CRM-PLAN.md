@@ -2,7 +2,7 @@
 
 Documento vivo para continuar el trabajo en otras conversaciones o con otros LLM. Léelo completo antes de tocar código y **actualiza las secciones "Estado" y "Lo que ya existe" al terminar cada fase**.
 
-Última actualización: 2026-10-05 (newsletter, tareas y recordatorios) · rama `feat/crm` (nada subido al remoto por decisión del usuario).
+Última actualización: 2026-10-05 (métricas de entrega) · rama `feat/crm` (nada subido al remoto por decisión del usuario).
 
 ---
 
@@ -55,6 +55,8 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 - **Las campañas se crean desde una plantilla de Brevo** (asunto y remitente salen de la plantilla) para toda la lista; se envían al momento o se programan (hora de `America/Mexico_City`, mínimo 10 minutos en el futuro). El envío siempre pide confirmación.
 - **Las tareas vencen por día en la zona del negocio** (una tarea del día 9 sigue vigente hasta las 23:59 de México, aunque en UTC ya sea el 10).
 - **Recordatorios**: tarjeta con «N tareas vencidas» en el pipeline, página «Tareas» (mías/todas) y un **correo diario** (lunes a viernes, 08:00 México) a cada persona del equipo con sus tareas de hoy o vencidas.
+- **Las tasas se calculan sobre los correos enviados** y se avisa en pantalla que las aperturas pueden estar infladas por la protección de privacidad de Apple Mail: el **clic es la señal más confiable**.
+- **Las métricas de la secuencia vienen del webhook de Brevo** (se enlazan por `message-id`, que se guarda al enviar); **las de las campañas se piden a la API** (se actualizan cada hora para campañas enviadas en los últimos 30 días, o a mano).
 - **Comodines** (destinatarios extra que reciben todos los correos): fuera de v1, se trabajan en detalle más adelante.
 - **Orden dentro de una columna del kanban**: por antigüedad en la etapa (`stage_changed_at` desc), no manual.
 - **Todos los miembros ven y editan todo.** Existen los roles `admin` y `seller`, pero aún no cambian permisos.
@@ -73,11 +75,12 @@ Los 30 correos son distintos entre sí pero **iguales para todos los clientes** 
 | 4 | Refuerzo de 30 días: cursos, inscripciones, secuencia, envíos por Brevo, webhook, pantallas | ✅ **código y tests listos; falta configurar Brevo real (sección 6)** |
 | 5a | Newsletter: sumar a quienes toman un curso a la lista `newsletter` de Brevo y enviar/programar campañas | ✅ **código y tests listos; falta configurar Brevo real (sección 6)** |
 | 5b | Tareas y recordatorios por empresa (+ resumen diario por correo) y actividades con fecha pasada | ✅ |
-| 5c | Resto: edición de plantillas en el CRM, métricas de entrega/apertura, vínculo con Objeción Cero / `Lms`, comodines, roles reales | ⏳ |
+| 5c | Métricas de entrega (entregado/abierto/clic) de la secuencia y de las campañas | ✅ **falta activar los eventos en el webhook de Brevo (sección 6)** |
+| 5d | Resto: edición de plantillas en el CRM, vínculo con Objeción Cero / `Lms`, comodines, roles reales | ⏳ |
 
 Historial de commits de la rama: `git log --oneline feat/crm` (convención `feat:` / `fix:` / `docs:` / `chore:` en español).
 
-Suite al cerrar la Fase 5b: 226 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
+Suite al cerrar la Fase 5c: 250 tests (2 omitidos, preexistentes), Pint y PHPStan nivel 7 limpios.
 
 ---
 
@@ -102,19 +105,19 @@ Suite al cerrar la Fase 5b: 226 tests (2 omitidos, preexistentes), Pint y PHPSta
 | `crm_courses` | `company_id`, `sequence_id`, `title`, `modality`, `hours`, `starts_on`, `ends_on`, `delivered_at`, `reinforcement_starts_on`, `reinforcement_activated_at` |
 | `crm_contact_course` | pivote de inscripción: `contact_id`, `course_id` (único el par) |
 | `crm_subscriptions` | `contact_id`, `course_id`, `status` (`active|paused|unsubscribed|bounced`); único el par |
-| `crm_newsletter_campaigns` | `name`, `brevo_template_id`, `brevo_campaign_id`, `scheduled_for` (null = enviada al momento), `user_id` |
+| `crm_newsletter_campaigns` | `name`, `brevo_template_id`, `brevo_campaign_id`, `scheduled_for` (null = enviada al momento), `user_id`, **`stats`** (json: sent, delivered, opened, clicked, unsubscribed, bounced, complaints), **`stats_synced_at`** |
 | `crm_tasks` | `company_id` (cascade), `assigned_to` → users (null on delete), `title`, `due_on` (date), `completed_at`; índice `(completed_at, due_on)` |
-| `crm_sends` | `subscription_id`, `sequence_step_id`, `scheduled_for` (UTC), `status` (`pending|queued|sent|failed|skipped|cancelled`), `sent_at`, `brevo_message_id`, `error`; **único `(subscription_id, sequence_step_id)`**; índice `(status, scheduled_for)` |
+| `crm_sends` | `subscription_id`, `sequence_step_id`, `scheduled_for` (UTC), `status` (`pending|queued|sent|failed|skipped|cancelled`), `sent_at`, `brevo_message_id`, `error`; **único `(subscription_id, sequence_step_id)`**; índices `(status, scheduled_for)` y `brevo_message_id`; **`delivered_at`, `opened_at`, `clicked_at`** (primera vez), **`opens_count`, `clicks_count`** |
 
 Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Diagnóstico → Propuesta enviada → Aceptado → **Curso impartido** (won) / **Perdido** (lost).
 
 ### Código (`app/Domain/Crm/`)
 - `Models/`: `TeamMember`, `Stage`, `Company`, `Contact`, `Activity`, `Sequence`, `SequenceStep`, `Course`, `Subscription`, `Send`, `NewsletterCampaign`, `Task` (con `#[UseFactory]`, `$fillable`, `casts()` y docblocks `@property`; factories en `database/factories/Crm/`). **Todo campo que se escriba con `update()`/`create()` debe estar en `$fillable`** (un olvido con `unsubscribed_at`/`bounced_at` casi deja a un contacto dado de baja recibiendo correos; hay tests).
 - `Enums/`: `TeamRole`, `StageType`, `LeadSource`, `ActivityType`, `CourseModality`, `SubscriptionStatus`, `SendStatus` (todos con `label()` en español).
-- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `ImportCompanies`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`, `SyncNewsletter`, `CreateNewsletterCampaign`, `SendTaskDigest`.
-- `Services/`: `CsvReader` (lectura/escritura genérica de CSV: BOM, Windows-1252, `,` o `;`, alias de encabezados, 500 filas), `ContactCsv` y `CompanyCsv` (plantilla y clasificación por fila de cada importador), `BrevoClient` (con `Http`: envío por plantilla, lista del newsletter por nombre con caché de 1 h, alta/actualización de contactos y campañas; `BrevoException` con `retryable`).
+- `Actions/`: `MoveCompanyToStage`, `SaveContact`, `ImportContacts`, `ImportCompanies`, `RegisterLead`, `MarkCourseDelivered`, `EnrollContacts`, `ActivateReinforcement`, `ScheduleSubscription`, `PauseSubscription`, `ResumeSubscription`, `SendMissedEmails`, `RetryFailedSends`, `DispatchDueSends`, `RecordBrevoEvent`, `SyncNewsletter`, `CreateNewsletterCampaign`, `SendTaskDigest`, `RecordSendEvent`, `SyncCampaignStats`.
+- `Services/`: `CsvReader` (lectura/escritura genérica de CSV: BOM, Windows-1252, `,` o `;`, alias de encabezados, 500 filas), `ContactCsv` y `CompanyCsv` (plantilla y clasificación por fila de cada importador), `SendMetrics` (resumen y tasas de `crm_sends`), `BrevoClient` (con `Http`: envío por plantilla, lista del newsletter por nombre con caché de 1 h, alta/actualización de contactos y campañas; `BrevoException` con `retryable`).
 - `Jobs/SendReinforcementEmail`, `Jobs/SyncContactToNewsletter`, `Exceptions/BrevoException`, `Notifications/TaskDigest`.
-- Comandos (`app/Console/Commands`, programados en `routes/console.php`): `crm:dispatch-sends` **cada minuto** (`withoutOverlapping`) y `crm:send-task-digest` **lunes a viernes 08:00 México**.
+- Comandos (`app/Console/Commands`, programados en `routes/console.php`): `crm:dispatch-sends` **cada minuto** (`withoutOverlapping`), `crm:send-task-digest` **lunes a viernes 08:00 México** y `crm:sync-campaign-stats` **cada hora**.
 
 ### Rutas
 - Web (`routes/crm.php`, prefijo `crm`, nombres `crm.*`): `pipeline`, `companies.{create,show,edit}`, `companies.import` y `companies.template` (importación de empresas), `companies.contacts.import` (acepta `?curso={id}`), `companies.courses.create`, `courses.{show,edit}`, `sequences.edit`, `newsletter`, `tasks`, `contacts.template` (descarga).
@@ -136,6 +139,12 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 - `SyncContactToNewsletter` hace `POST /contacts` en Brevo (crea o actualiza, `listIds`, atributos `FIRSTNAME`/`LASTNAME`) y marca `newsletter_synced_at`. Reintenta 3 veces los errores temporales; un error permanente (clave inválida, lista inexistente) deja al contacto pendiente.
 - «Enviar una campaña»: nombre + ID de plantilla de Brevo (+ fecha opcional) → `POST /emailCampaigns` a la lista y, si no hay fecha, `sendNow`. Queda en el historial (`crm_newsletter_campaigns`).
 - El webhook entiende también los eventos de campañas (`unsubscribe`, `hardBounce`) además de los transaccionales.
+
+### Métricas
+- **Secuencia (webhook transaccional de Brevo)**: `RecordSendEvent` ubica el envío por `message-id` (con o sin `<>`) y registra `delivered` (entrega), `unique_opened` (primera apertura, sin contarla), `opened` (cuenta cada apertura) y `click` (cuenta el clic e implica apertura). Usa `ts_event` del evento cuando viene. Los eventos de baja/rebote siguen yendo a `RecordBrevoEvent`; el controlador aplica ambos.
+- **Ficha del curso**: bloque «Resultados del refuerzo» (enviados, entregados, abiertos y con clic, con %) y, por persona, «N abiertos · M clics».
+- **Página de la secuencia**: bajo cada día, `N env. · X% abiertos · Y% clics` sumando **todos los cursos** (los 30 correos son los mismos para todos, así se ve cuáles funcionan).
+- **Campañas**: `BrevoClient::campaignStats()` lee `GET /emailCampaigns/{id}?statistics=globalStats` (abiertos = vistas únicas, con clic = personas que hicieron clic, rebotes = duros + blandos). `/crm/newsletter` las muestra con sus % y un botón «Actualizar métricas».
 
 ### Tareas y actividades
 - En la ficha de la empresa: sección «Tareas» (título, día, responsable —por defecto quien la crea—, completar/reabrir/eliminar) y las actividades aceptan «Cuándo ocurrió» (hora de México, no futura).
@@ -169,8 +178,8 @@ Etapas por defecto (`CrmSeeder`, editables en tabla): Nuevo → Atendido → Dia
 ## 5. Lo que falta / siguientes pasos
 
 1. **Poner en marcha Brevo (sección 6)** y probar con un curso real de 1 persona antes del primero grande. También probar el newsletter con una lista de prueba.
-2. **Fase 5c** (por orden de utilidad probable):
-   - Registrar entregado/abierto/clic desde el webhook (columnas en `crm_sends`) y mostrar métricas de la secuencia y de las campañas.
+2. **Fase 5d** (por orden de utilidad probable):
+   - Alertas o resumen cuando suban los rebotes/bajas o falle una racha de envíos.
    - Editar plantillas dentro del CRM (asunto/HTML propios) en lugar de depender del `templateId`.
    - Comodines (destinatarios extra que reciben todos los correos) y roles `admin`/`seller` con permisos reales.
    - Vínculo contacto ↔ `User` de Objeción Cero (ya existe `crm_contacts.user_id`).
@@ -192,7 +201,7 @@ Nada de esto está configurado en el `.env` local del usuario todavía.
    - `CRM_BREVO_NEWSLETTER_LIST`: nombre de la lista (por defecto `newsletter`). **La lista debe existir en Brevo** (Contactos → Listas).
 2. **Worker de cola**: `QUEUE_CONNECTION=database`, así que debe haber un `php artisan queue:work` corriendo (en local, `composer run dev` o equivalente; en producción, un proceso supervisado).
 3. **Scheduler**: debe correr `php artisan schedule:work` (local) o el cron `* * * * * php artisan schedule:run` (producción); sin él no se encolan los envíos ni sale el resumen diario de tareas.
-4. **Webhook en Brevo**: URL `https://<dominio>/api/crm/brevo/webhook` con encabezado `Authorization: Bearer <CRM_BREVO_WEBHOOK_TOKEN>` y los eventos hard bounce, blocked, spam, unsubscribed e invalid email (transaccionales) y, para las campañas, unsubscribe y hard bounce del webhook de marketing (si la interfaz de Brevo no permite encabezados, crear el webhook por su API).
+4. **Webhook en Brevo**: URL `https://<dominio>/api/crm/brevo/webhook` con encabezado `Authorization: Bearer <CRM_BREVO_WEBHOOK_TOKEN>` y los eventos hard bounce, blocked, spam, unsubscribed e invalid email (bajas/rebotes) **más delivered, opened, unique opened y click (métricas)**; son transaccionales y, para las campañas, unsubscribe y hard bounce del webhook de marketing (si la interfaz de Brevo no permite encabezados, crear el webhook por su API).
 5. **Plantillas**: en `/crm/sequences/{id}` pegar los 30 IDs de plantilla, en orden de día.
    **Correo del resumen de tareas**: usa el mailer de Laravel (`MAIL_*`); en producción apuntarlo al SMTP de Brevo u otro proveedor.
 6. **Primera prueba**: con la clave real, abrir `/crm/newsletter` (debe mostrar la lista y los pendientes), sumar un contacto tuyo y mandar una campaña de prueba a una lista chica antes de usar la real.

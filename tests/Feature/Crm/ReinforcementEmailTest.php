@@ -22,6 +22,7 @@ use Livewire\Livewire;
 
 beforeEach(function () {
     config([
+        'crm.email_images_override_url' => null,
         'crm.brevo.api_key' => 'test-key',
         'crm.brevo.sender_name' => 'B2B Sales Pro',
         'crm.brevo.sender_email' => 'cursos@b2bsalespro.mx',
@@ -354,6 +355,14 @@ describe('preview and test email', function () {
             ->and($html)->toContain('https://crm.example.com/img/actividades/dia-01.jpg');
     });
 
+    test('the preview shows the real images even when a single local test image is configured', function () {
+        config(['crm.email_images_override_url' => 'https://cdn.example.com/publica.jpg']);
+
+        $this->get(route('crm.sequences.preview', [$this->sequence, 1]))
+            ->assertSee(asset('img/actividades/dia-01.jpg'), false)
+            ->assertDontSee('cdn.example.com', false);
+    });
+
     test('the preview is closed to users outside the crm team', function () {
         $this->actingAs(User::factory()->create());
 
@@ -403,6 +412,18 @@ describe('preview and test email', function () {
 
         Http::assertNothingSent();
     });
+});
+
+test('a single public image can replace every activity image for local email tests', function () {
+    $emails = app(ReinforcementEmail::class);
+    $normal = $emails->render(1, $emails->sampleData(30))['html'];
+
+    config(['crm.email_images_override_url' => 'https://cdn.example.com/publica.jpg']);
+    $overridden = $emails->render(1, $emails->sampleData(30))['html'];
+
+    expect($normal)->toContain('/img/actividades/dia-01.jpg')->not->toContain('cdn.example.com')
+        ->and($overridden)->toContain('src="https://cdn.example.com/publica.jpg"')
+        ->and($overridden)->not->toContain('dia-01.jpg');
 });
 
 test('the logo and the activity images the emails point to exist in public/', function () {

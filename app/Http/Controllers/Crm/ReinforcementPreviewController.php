@@ -16,6 +16,9 @@ class ReinforcementPreviewController extends Controller
     {
         abort_unless($sequence->steps()->where('day', $day)->exists() && $emails->exists($day), 404);
 
+        // La vista previa muestra las imágenes reales, no la imagen única de pruebas locales.
+        config(['crm.email_images_override_url' => null]);
+
         $total = $sequence->steps()->count();
         $html = $emails->render($day, $emails->sampleData($total))['html'];
 

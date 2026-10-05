@@ -88,4 +88,19 @@ return [
 
     'email_images_url' => env('CRM_EMAIL_IMAGES_URL', rtrim((string) env('APP_URL', 'http://localhost'), '/').'/img/actividades'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Imagen única para pruebas locales
+    |--------------------------------------------------------------------------
+    |
+    | Si se define (CRM_EMAIL_IMAGES_OVERRIDE_URL), TODAS las imágenes de actividad de
+    | los correos usan esta URL pública en lugar de su archivo de public/img/actividades.
+    | Sirve para ver una imagen en las pruebas por correo desde local, donde APP_URL no
+    | es público. No definirla en producción. La vista previa del CRM la ignora y
+    | muestra las imágenes reales.
+    |
+    */
+
+    'email_images_override_url' => env('CRM_EMAIL_IMAGES_OVERRIDE_URL'),
+
 ];
